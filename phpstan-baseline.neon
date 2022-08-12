@@ -1,0 +1,29 @@
+parameters:
+    ignoreErrors:
+        -
+            message: "#^Property JiraRestApi\\\\Issue\\\\IssueField::\\$duedate \\(DateTimeInterface|null\\) does not accept string\\.$#"
+            count: 1
+            path: src/Issue/IssueField.php
+        -
+            message: "#^Property JiraRestApi\\\\Issue\\\\Version::\\$releaseDate \\(DateTimeInterface|null\\) does not accept string\\.$#"
+            count: 1
+            path: src/Version/VersionService.php
+        -
+            message: "#^Property JiraRestApi\\\\JiraClient::\\$log \\(Monolog\\\\Logger\\) does not accept Psr\\\\Log\\\\LoggerInterface\\.$#"
+            count: 1
+            path: src/JiraClient.php
+        -
+            message: "#^Property JiraRestApi\\\\Issue\\\\RemoteIssueLink::\\$object \\(JiraRestApi\\\\Issue\\\\RemoteIssueLinkObject|null\\) does not accept JiraRestApi\\\\Issue\\\\RemoteIssueLink\\.$#"
+            count: 1
+            path: src/Issue/RemoteIssueLink.php
+        -
+            message: "#^Call to function is_.+ with .+ will always evaluate to false\\.$#"
+            path: src
+
+        -
+            message: "#expects Curl.*?Handle, resource given#"
+            path: src/JiraClient.php
+
+        -
+            message: "#\\(resource\\) does not accept CurlHandle#"
+            path: src/JiraClient.php
