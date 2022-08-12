@@ -65,11 +65,8 @@ you can choose loads environment variables either 'dotenv' or 'array'.
 copy .env.example file to .env on your project root.	
 
 ```sh
-JIRA_HOST='https://your-jira.host.com'
+JIRA_HOST='https://your-jira.atlassian.net'
 JIRA_USER='jira-username'
-JIRA_PASS='jira-password-OR-api-token'
-# if TOKEN_BASED_AUTH set to true, ignore JIRA_USER and JIRA_PASS.
-TOKEN_BASED_AUTH=true
 PERSONAL_ACCESS_TOKEN='your-access-token-here'
 # to enable session cookie authorization
 # COOKIE_AUTH_ENABLED=true
@@ -79,21 +76,7 @@ PROXY_SERVER='your-proxy-server'
 PROXY_PORT='proxy-port'
 PROXY_USER='proxy-username'
 PROXY_PASSWORD='proxy-password'
-JIRA_REST_API_V3=false
 ```
-
-**Important Note:**
-As of March 15, 2018, in accordance to the [Atlassian REST API Policy](https://developer.atlassian.com/platform/marketplace/atlassian-rest-api-policy/), Basic auth with password to be deprecated.
-Instead of password, you should using [API token](https://confluence.atlassian.com/cloud/api-tokens-938839638.html).
-
-**Laravel Users:** 
-If you are developing with laravel framework(5.x), you must append above configuration to your application .env file.
-
-**REST API V3 Note:**
-In accordance to the [Atlassian's deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/), After the 29th of april 2019, REST API no longer supported username and userKey, 
-and instead use the account ID.
-if you are JIRA Cloud users, you need to set *JIRA_REST_API_V3=true* in the .env file.
-
 **CAUTION**
 this library not fully supported JIRA REST API V3 yet. 
 
@@ -107,15 +90,8 @@ use JiraRestApi\Issue\IssueService;
 
 $iss = new IssueService(new ArrayConfiguration(
           [
-               'jiraHost' => 'https://your-jira.host.com',
-                // Basic authentication deprecated 
-                /*                 
-                 'jiraUser' => 'jira-username',
-                'jiraPassword' => 'jira-password-OR-api-token',
-                */
-               // instead,you can use the token based authentication. 
-               'useV3RestApi' => false,
-               'useTokenBasedAuth' => true,
+               'jiraHost' => 'https://your-jira.atlassian.net',                                           
+               'jiraUser' => 'jira-username',              
                'personalAccessToken' => 'your-token-here',
                 
                 // custom log config

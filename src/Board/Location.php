@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\Board;
+namespace JiraCloud\Board;
 
 class Location implements \JsonSerializable
 {

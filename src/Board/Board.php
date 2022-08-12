@@ -1,8 +1,8 @@
 <?php
 
-namespace JiraRestApi\Board;
+namespace JiraCloud\Board;
 
-use JiraRestApi\ClassSerialize;
+use JiraCloud\ClassSerialize;
 
 class Board implements \JsonSerializable
 {
@@ -21,9 +21,9 @@ class Board implements \JsonSerializable
     public $type;
 
     /**
-     * Location [\JiraRestApi\Board\Location].
+     * Location [\JiraCloud\Board\Location].
      *
-     * @var \JiraRestApi\Board\Location
+     * @var \JiraCloud\Board\Location
      */
     public $location;
 

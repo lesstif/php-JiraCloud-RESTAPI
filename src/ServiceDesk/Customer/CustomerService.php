@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\ServiceDesk\Customer;
+namespace JiraCloud\ServiceDesk\Customer;
 
-use JiraRestApi\JiraException;
-use JiraRestApi\ServiceDesk\ServiceDeskClient;
-use JiraRestApi\User\User;
-use JiraRestApi\User\UserService;
+use JiraCloud\JiraException;
+use JiraCloud\ServiceDesk\ServiceDeskClient;
+use JiraCloud\User\User;
+use JiraCloud\User\UserService;
 use JsonException;
 use JsonMapper;
 use JsonMapper_Exception;

@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
 /**
  * Class JqlQuery used to build JQL queries for issue searching.

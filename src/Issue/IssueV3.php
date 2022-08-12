@@ -1,10 +1,10 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
 class IssueV3 extends Issue
 {
-    /** @var \JiraRestApi\Issue\IssueFieldV3 */
+    /** @var \JiraCloud\Issue\IssueFieldV3 */
     public IssueField $fields;
 
     #[\ReturnTypeWillChange]

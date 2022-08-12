@@ -6,7 +6,7 @@
  * Time: 13:12.
  */
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
 /**
  * Issue search result.
@@ -34,7 +34,7 @@ class IssueSearchResult
     public $total;
 
     /**
-     * @var \JiraRestApi\Issue\Issue[]
+     * @var \JiraCloud\Issue\Issue[]
      */
     public $issues;
 

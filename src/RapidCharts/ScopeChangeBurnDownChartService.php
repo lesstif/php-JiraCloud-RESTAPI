@@ -1,12 +1,12 @@
 <?php
 
-namespace JiraRestApi\RapidCharts;
+namespace JiraCloud\RapidCharts;
 
-use JiraRestApi\Configuration\ConfigurationInterface;
-use JiraRestApi\GreenHopperTrait;
+use JiraCloud\Configuration\ConfigurationInterface;
+use JiraCloud\GreenHopperTrait;
 use Psr\Log\LoggerInterface;
 
-class ScopeChangeBurnDownChartService extends \JiraRestApi\JiraClient
+class ScopeChangeBurnDownChartService extends \JiraCloud\JiraClient
 {
     use GreenHopperTrait;
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
 use JsonMapper;
 use PHPUnit\Framework\TestCase;
-use JiraRestApi\Dumper;
-use JiraRestApi\Issue\IssueField;
-use JiraRestApi\Issue\Reporter;
-use JiraRestApi\Issue\Version;
+use JiraCloud\Dumper;
+use JiraCloud\Issue\IssueField;
+use JiraCloud\Issue\Reporter;
+use JiraCloud\Issue\Version;
 use \Mockery as m;
 
 class AssigneeTest extends TestCase
@@ -18,7 +18,7 @@ class AssigneeTest extends TestCase
     public function setUp(): void
     {
         $this->mapper = new JsonMapper();
-        $this->mapper->undefinedPropertyHandler = [new \JiraRestApi\JsonMapperHelper(), 'setUndefinedProperty'];
+        $this->mapper->undefinedPropertyHandler = [new \JiraCloud\JsonMapperHelper(), 'setUndefinedProperty'];
         $this->mapper->classMap['\\'.\DateTimeInterface::class] = \DateTime::class;
     }
 

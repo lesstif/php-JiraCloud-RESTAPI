@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
 class Attachment implements \JsonSerializable
 {
@@ -13,7 +13,7 @@ class Attachment implements \JsonSerializable
     /* @var string */
     public $filename;
 
-    /* @var \JiraRestApi\Issue\Reporter */
+    /* @var \JiraCloud\Issue\Reporter */
     public $author;
 
     /* @var \DateTimeInterface */

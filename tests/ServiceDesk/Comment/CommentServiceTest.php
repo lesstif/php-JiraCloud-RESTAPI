@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\Test\ServiceDesk\Comment;
+namespace JiraCloud\Test\ServiceDesk\Comment;
 
-use JiraRestApi\JiraException;
-use JiraRestApi\ServiceDesk\Comment\Comment;
-use JiraRestApi\ServiceDesk\Comment\CommentService;
-use JiraRestApi\ServiceDesk\ServiceDeskClient;
+use JiraCloud\JiraException;
+use JiraCloud\ServiceDesk\Comment\Comment;
+use JiraCloud\ServiceDesk\Comment\CommentService;
+use JiraCloud\ServiceDesk\ServiceDeskClient;
 use JsonMapper;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

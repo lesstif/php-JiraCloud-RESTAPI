@@ -1,10 +1,10 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
-use JiraRestApi\Status\Status;
+use JiraCloud\Status\Status;
 use PHPUnit\Framework\TestCase;
-use JiraRestApi\Status\StatusService;
+use JiraCloud\Status\StatusService;
 
 class StatusTest extends TestCase
 {

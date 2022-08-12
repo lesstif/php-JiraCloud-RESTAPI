@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\Group;
+namespace JiraCloud\Group;
 
 class GroupUser
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace JiraRestApi\Group;
+namespace JiraCloud\Group;
 
 /**
  * Class to perform all groups related queries.
  */
-class GroupService extends \JiraRestApi\JiraClient
+class GroupService extends \JiraCloud\JiraClient
 {
     private $uri = '/group';
 
@@ -15,7 +15,7 @@ class GroupService extends \JiraRestApi\JiraClient
      * @param array $paramArray Possible values for $paramArray 'username', 'key'.
      *                          "Either the 'username' or the 'key' query parameters need to be provided".
      *
-     * @throws \JiraRestApi\JiraException
+     * @throws \JiraCloud\JiraException
      * @throws \JsonMapper_Exception
      *
      * @return Group
@@ -39,7 +39,7 @@ class GroupService extends \JiraRestApi\JiraClient
      *
      * @param array $paramArray groupname, includeInactiveUsers, startAt, maxResults
      *
-     * @throws \JiraRestApi\JiraException
+     * @throws \JiraCloud\JiraException
      * @throws \JsonMapper_Exception
      *
      * @return GroupSearchResult
@@ -62,9 +62,9 @@ class GroupService extends \JiraRestApi\JiraClient
     /**
      * Creates a group by given group parameter.
      *
-     * @param \JiraRestApi\Group\Group $group
+     * @param \JiraCloud\Group\Group $group
      *
-     * @throws \JiraRestApi\JiraException
+     * @throws \JiraCloud\JiraException
      * @throws \JsonMapper_Exception
      *
      * @return Group
@@ -91,7 +91,7 @@ class GroupService extends \JiraRestApi\JiraClient
      * @param string $groupName
      * @param string $userName
      *
-     * @throws \JiraRestApi\JiraException
+     * @throws \JiraCloud\JiraException
      * @throws \JsonMapper_Exception
      *
      * @return Group Returns the current state of the group.
@@ -118,7 +118,7 @@ class GroupService extends \JiraRestApi\JiraClient
      * @param string $groupName
      * @param string $userName
      *
-     * @throws \JiraRestApi\JiraException
+     * @throws \JiraCloud\JiraException
      *
      * @return string|null Returns no content
      */

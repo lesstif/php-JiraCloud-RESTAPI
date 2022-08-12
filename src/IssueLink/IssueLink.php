@@ -1,9 +1,9 @@
 <?php
 
-namespace JiraRestApi\IssueLink;
+namespace JiraCloud\IssueLink;
 
-use JiraRestApi\ClassSerialize;
-use JiraRestApi\Issue\Comment;
+use JiraCloud\ClassSerialize;
+use JiraCloud\Issue\Comment;
 
 class IssueLink implements \JsonSerializable
 {
@@ -12,13 +12,13 @@ class IssueLink implements \JsonSerializable
     /** @var array */
     public $type;
 
-    /** @var \JiraRestApi\Issue\Issue */
+    /** @var \JiraCloud\Issue\Issue */
     public $inwardIssue;
 
-    /** @var \JiraRestApi\Issue\Issue */
+    /** @var \JiraCloud\Issue\Issue */
     public $outwardIssue;
 
-    /** @var \JiraRestApi\Issue\Comment */
+    /** @var \JiraCloud\Issue\Comment */
     public $comment;
 
     #[\ReturnTypeWillChange]
@@ -66,7 +66,7 @@ class IssueLink implements \JsonSerializable
     }
 
     /**
-     * @param string|Comment $comment string or \JiraRestApi\Issue\Comment instance
+     * @param string|Comment $comment string or \JiraCloud\Issue\Comment instance
      *
      * @return $this
      */

@@ -1,13 +1,13 @@
 <?php
 
-namespace JiraRestApi\Request;
+namespace JiraCloud\Request;
 
-use JiraRestApi\Configuration\ConfigurationInterface;
-use JiraRestApi\JiraException;
-use JiraRestApi\ServiceDeskTrait;
+use JiraCloud\Configuration\ConfigurationInterface;
+use JiraCloud\JiraException;
+use JiraCloud\ServiceDeskTrait;
 use Psr\Log\LoggerInterface;
 
-class RequestService extends \JiraRestApi\JiraClient
+class RequestService extends \JiraCloud\JiraClient
 {
     use ServiceDeskTrait;
 

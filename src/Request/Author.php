@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\Request;
+namespace JiraCloud\Request;
 
 class Author implements \JsonSerializable
 {

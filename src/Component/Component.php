@@ -1,10 +1,10 @@
 <?php
 
-namespace JiraRestApi\Component;
+namespace JiraCloud\Component;
 
-use JiraRestApi\AssigneeTypeEnum;
-use JiraRestApi\ClassSerialize;
-use JiraRestApi\User\User;
+use JiraCloud\AssigneeTypeEnum;
+use JiraCloud\ClassSerialize;
+use JiraCloud\User\User;
 
 /**
  * Class Component.

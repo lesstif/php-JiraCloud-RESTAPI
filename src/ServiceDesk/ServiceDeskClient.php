@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\ServiceDesk;
+namespace JiraCloud\ServiceDesk;
 
-use JiraRestApi\Configuration\ConfigurationInterface;
-use JiraRestApi\JiraClient;
+use JiraCloud\Configuration\ConfigurationInterface;
+use JiraCloud\JiraClient;
 use JsonMapper;
 use Psr\Log\LoggerInterface;
 

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\Test\ServiceDesk\Organisation;
+namespace JiraCloud\Test\ServiceDesk\Organisation;
 
-use JiraRestApi\ServiceDesk\Customer\Customer;
-use JiraRestApi\ServiceDesk\Organisation\Organisation;
-use JiraRestApi\ServiceDesk\Organisation\OrganisationService;
-use JiraRestApi\ServiceDesk\ServiceDeskClient;
+use JiraCloud\ServiceDesk\Customer\Customer;
+use JiraCloud\ServiceDesk\Organisation\Organisation;
+use JiraCloud\ServiceDesk\Organisation\OrganisationService;
+use JiraCloud\ServiceDesk\ServiceDeskClient;
 use JsonMapper;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

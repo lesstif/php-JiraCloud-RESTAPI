@@ -1,10 +1,10 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
 use PHPUnit\Framework\TestCase;
-use JiraRestApi\Dumper;
-use JiraRestApi\Issue\Reporter;
+use JiraCloud\Dumper;
+use JiraCloud\Issue\Reporter;
 
 class SerializeTest extends TestCase
 {

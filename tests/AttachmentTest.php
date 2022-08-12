@@ -1,10 +1,10 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
 use PHPUnit\Framework\TestCase;
-use JiraRestApi\Attachment\AttachmentService;
-use JiraRestApi\JiraException;
+use JiraCloud\Attachment\AttachmentService;
+use JiraCloud\JiraException;
 
 class AttachmentTest extends TestCase
 {

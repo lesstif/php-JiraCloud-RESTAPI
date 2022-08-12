@@ -1,12 +1,12 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
 use PHPUnit\Framework\TestCase;
-use JiraRestApi\JiraException;
-use JiraRestApi\Issue\Version;
-use JiraRestApi\Project\ProjectService;
-use JiraRestApi\Version\VersionService;
+use JiraCloud\JiraException;
+use JiraCloud\Issue\Version;
+use JiraCloud\Project\ProjectService;
+use JiraCloud\Version\VersionService;
 
 class VersionTest extends TestCase
 {

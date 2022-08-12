@@ -1,8 +1,8 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
-use JiraRestApi\ClassSerialize;
+use JiraCloud\ClassSerialize;
 
 /**
  * Class PaginatedWorklog.
@@ -27,7 +27,7 @@ class PaginatedWorklog
     public $total;
 
     /**
-     * @var \JiraRestApi\Issue\Worklog[] Worklog
+     * @var \JiraCloud\Issue\Worklog[] Worklog
      */
     public $worklogs;
 
@@ -80,7 +80,7 @@ class PaginatedWorklog
     }
 
     /**
-     * @return \JiraRestApi\Issue\Worklog[] Worklogs
+     * @return \JiraCloud\Issue\Worklog[] Worklogs
      */
     public function getWorklogs()
     {
@@ -88,7 +88,7 @@ class PaginatedWorklog
     }
 
     /**
-     * @param \JiraRestApi\Issue\Worklog[] $worklogs
+     * @param \JiraCloud\Issue\Worklog[] $worklogs
      */
     public function setWorklogs($worklogs)
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
 trait VisibilityTrait
 {

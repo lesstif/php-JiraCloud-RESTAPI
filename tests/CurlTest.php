@@ -1,9 +1,9 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
 use PHPUnit\Framework\TestCase;
-use JiraRestApi\HTTPException;
+use JiraCloud\HTTPException;
 
 class CurlTest extends TestCase
 {
@@ -15,7 +15,7 @@ class CurlTest extends TestCase
 
             $config['host'] = 'http://requestb.in/vqid8qvq';
 
-            $j = new \JiraRestApi\JiraClient($config, getOptions());
+            $j = new \JiraCloud\JiraClient($config, getOptions());
 
             $post_data = ['name' => 'value'];
 

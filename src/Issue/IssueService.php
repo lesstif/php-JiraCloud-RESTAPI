@@ -1,12 +1,13 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
 use ArrayObject;
-use JiraRestApi\JiraException;
-use JiraRestApi\Project\ProjectService;
+use JiraCloud\Dumper;
+use JiraCloud\JiraException;
+use JiraCloud\Project\ProjectService;
 
-class IssueService extends \JiraRestApi\JiraClient
+class IssueService extends \JiraCloud\JiraClient
 {
     private $uri = '/issue';
 
@@ -41,21 +42,9 @@ class IssueService extends \JiraRestApi\JiraClient
      */
     public function get($issueIdOrKey, $paramArray = [], $issueObject = null): Issue
     {
-        // for REST API V3
-        if ($this->isRestApiV3()) {
-            $issueObject = ($issueObject) ? $issueObject : new IssueV3();
-        } else {
-            $issueObject = ($issueObject) ? $issueObject : new Issue();
-        }
+        $issueObject = ($issueObject) ? $issueObject : new Issue();
 
         $ret = $this->exec($this->uri.'/'.$issueIdOrKey.$this->toHttpQueryParameter($paramArray), null);
-
-        // very ugly workaround for avoiding below error.
-        // JSON property "description" in class "JiraRestApi\Issue\IssueFieldV3" is an object and cannot be converted to a string
-        // @see https://github.com/lesstif/php-jira-rest-client/issues/457
-        if ($this->isRestApiV3()) {
-            $ret = str_replace('description', 'descriptionv3', $ret);
-        }
 
         $this->log->info("Result=\n".$ret);
 
@@ -79,12 +68,13 @@ class IssueService extends \JiraRestApi\JiraClient
     {
         $issue = new Issue();
 
-        // serilize only not null field.
+        // serialized only not null field.
         $issue->fields = $issueField;
 
         $data = json_encode($issue);
 
         $this->log->info("Create Issue=\n".$data);
+        Dumper::dump($data);
 
         $ret = $this->exec($this->uri, $data, 'POST');
 
@@ -560,18 +550,10 @@ class IssueService extends \JiraRestApi\JiraClient
         $ret = $this->exec('search', $data, 'POST');
         $json = json_decode($ret);
 
-        $result = null;
-        if ($this->isRestApiV3()) {
-            $result = $this->json_mapper->map(
-                $json,
-                new IssueSearchResultV3()
-            );
-        } else {
-            $result = $this->json_mapper->map(
-                $json,
-                new IssueSearchResult()
-            );
-        }
+        $result = $this->json_mapper->map(
+            $json,
+            new IssueSearchResult()
+        );
 
         return $result;
     }

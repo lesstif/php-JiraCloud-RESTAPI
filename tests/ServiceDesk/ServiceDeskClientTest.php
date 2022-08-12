@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\Test\ServiceDesk;
+namespace JiraCloud\Test\ServiceDesk;
 
 use DateTime;
 use DateTimeInterface;
-use JiraRestApi\Configuration\ConfigurationInterface;
-use JiraRestApi\JsonMapperHelper;
-use JiraRestApi\ServiceDesk\ServiceDeskClient;
+use JiraCloud\Configuration\ConfigurationInterface;
+use JiraCloud\JsonMapperHelper;
+use JiraCloud\ServiceDesk\ServiceDeskClient;
 use JsonMapper;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;

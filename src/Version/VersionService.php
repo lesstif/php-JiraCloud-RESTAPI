@@ -1,14 +1,14 @@
 <?php
 
-namespace JiraRestApi\Version;
+namespace JiraCloud\Version;
 
-use JiraRestApi\Issue\Version;
-use JiraRestApi\Issue\VersionIssueCounts;
-use JiraRestApi\Issue\VersionUnresolvedCount;
-use JiraRestApi\JiraException;
-use JiraRestApi\Project\ProjectService;
+use JiraCloud\Issue\Version;
+use JiraCloud\Issue\VersionIssueCounts;
+use JiraCloud\Issue\VersionUnresolvedCount;
+use JiraCloud\JiraException;
+use JiraCloud\Project\ProjectService;
 
-class VersionService extends \JiraRestApi\JiraClient
+class VersionService extends \JiraCloud\JiraClient
 {
     private $uri = '/version';
 
@@ -17,7 +17,7 @@ class VersionService extends \JiraRestApi\JiraClient
      *
      * @param Version|array $version
      *
-     * @throws \JiraRestApi\JiraException
+     * @throws \JiraCloud\JiraException
      * @throws \JsonMapper_Exception
      *
      * @return Version Version class

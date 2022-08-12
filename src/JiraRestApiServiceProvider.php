@@ -1,12 +1,12 @@
 <?php
 
-namespace JiraRestApi;
+namespace JiraCloud;
 
 use Illuminate\Support\ServiceProvider;
-use JiraRestApi\Configuration\ConfigurationInterface;
-use JiraRestApi\Configuration\DotEnvConfiguration;
+use JiraCloud\Configuration\ConfigurationInterface;
+use JiraCloud\Configuration\DotEnvConfiguration;
 
-class JiraRestApiServiceProvider extends ServiceProvider
+class JiraCloudServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.

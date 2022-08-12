@@ -1,8 +1,8 @@
 <?php
 
-namespace JiraRestApi\IssueLink;
+namespace JiraCloud\IssueLink;
 
-use JiraRestApi\ClassSerialize;
+use JiraCloud\ClassSerialize;
 
 /**
  * Class IssueLinkType.

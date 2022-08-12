@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\Field;
+namespace JiraCloud\Field;
 
 /**
  * Custom filed schema.

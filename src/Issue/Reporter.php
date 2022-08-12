@@ -1,8 +1,8 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
-use JiraRestApi\ClassSerialize;
+use JiraCloud\ClassSerialize;
 
 class Reporter implements \JsonSerializable
 {

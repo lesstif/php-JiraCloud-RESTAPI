@@ -1,17 +1,19 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
 use DateInterval;
 use DateTime;
 use Exception;
+use JiraCloud\ADF\ADFMarkType;
+use JiraCloud\Issue\Description;
 use PHPUnit\Framework\TestCase;
-use JiraRestApi\Dumper;
-use JiraRestApi\Issue\Comment;
-use JiraRestApi\Issue\IssueField;
-use JiraRestApi\Issue\IssueService;
-use JiraRestApi\Issue\Transition;
-use JiraRestApi\JiraException;
+use JiraCloud\Dumper;
+use JiraCloud\Issue\Comment;
+use JiraCloud\Issue\IssueField;
+use JiraCloud\Issue\IssueService;
+use JiraCloud\Issue\Transition;
+use JiraCloud\JiraException;
 
 class IssueTest extends TestCase
 {
@@ -46,18 +48,23 @@ class IssueTest extends TestCase
 
             $due = (new DateTime('NOW'))->add(DateInterval::createFromDateString('1 month 5 day'));
 
+            $descV3 = new Description();
+
+            $descV3->addDescriptionParagraph('We support');
+            //$descV3->addDescriptionParagraph('markdown', ADFMarkType::strong);
+
             $issueField->setProjectKey('TEST')
                         ->setSummary("something's wrong")
                         ->setAssigneeNameAsString('lesstif')
                         ->setPriorityNameAsString('Critical')
                         ->setIssueTypeAsString('Bug')
-                        ->setDescription('Full description for issue')
+                        ->setDescription($descV3)
                         ->addVersionAsArray(['1.0.1', '1.0.3'])
                         //->addComponentsAsArray(['Component-1', 'Component-2'])
                         ->addComponentAsString('Component-1')
-                        ->setDueDateAsDateTime(
-                            (new DateTime('NOW'))->add(DateInterval::createFromDateString('1 month 5 day'))
-                        )
+//                        ->setDueDateAsDateTime(
+//                            (new DateTime('NOW'))->add(DateInterval::createFromDateString('1 month 5 day'))
+//                        )
                         //->setDueDateAsString('2022-10-03')
             ;
 
@@ -112,14 +119,32 @@ class IssueTest extends TestCase
         try {
             $issueField = new IssueField(true);
 
+            $paraDesc =<<< DESC
+# heading 1
+
+This is a *shorthand* for a **set** operation on the summary field
+
+## heading 2
+
+```sh
+ls -l 
+```
+
+## other h2
+- sub order list 1
+- sub order list 1 
+DESC;
+            $descV3 = new Description();
+            $descV3->addDescriptionContent('paragraph', $paraDesc);
+
             $issueField->setAssigneeNameAsString('lesstif')
-                ->setPriorityNameAsString('Major')
+                //->setPriorityNameAsString('Major')
                 ->setIssueTypeAsString('Task')
                 ->addLabelAsString('test-label-first')
                 ->addLabelAsString('test-label-second')
                 ->addVersionAsString('1.0.1')
                 ->addVersionAsArray(['1.0.2'])
-                ->setDescription('This is a shorthand for a set operation on the summary field');
+                ->setDescription($descV3);
 
             $issueService = new IssueService();
 
@@ -142,11 +167,17 @@ class IssueTest extends TestCase
         try {
             $issueField = new IssueField();
 
+            $paraDesc =<<< DESC
+Subtask - Full description for issue
+DESC;
+            $descV3 = new Description();
+            $descV3->addDescriptionContent('paragraph', $paraDesc);
+
             $issueField->setProjectKey('TEST')
                 ->setSummary("Subtask - something's wrong")
                 ->setAssigneeNameAsString('lesstif')
-                ->setPriorityNameAsString('Critical')
-                ->setDescription('Subtask - Full description for issue')
+                //->setPriorityNameAsString('Critical')
+                ->setDescription($descV3)
                 ->addVersionAsString('1.0.1')
                 ->addVersionAsString('1.0.3')
                 ->setIssueTypeAsString('Sub-task')
@@ -204,7 +235,7 @@ class IssueTest extends TestCase
 
             $issueService = new IssueService();
 
-            // $ret is Array of JiraRestApi\Issue\Attachment
+            // $ret is Array of JiraCloud\Issue\Attachment
             $ret = $issueService->addAttachments($subTaskIssueKey, $files);
 
             $this->assertNotNull($subTaskIssueKey);

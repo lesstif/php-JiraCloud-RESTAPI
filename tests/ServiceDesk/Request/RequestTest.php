@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\Test\ServiceDesk\Request;
+namespace JiraCloud\Test\ServiceDesk\Request;
 
 use DateTime;
-use JiraRestApi\ServiceDesk\Customer\Customer;
-use JiraRestApi\ServiceDesk\Request\Request;
-use JiraRestApi\ServiceDesk\Request\RequestStatus;
+use JiraCloud\ServiceDesk\Customer\Customer;
+use JiraCloud\ServiceDesk\Request\Request;
+use JiraCloud\ServiceDesk\Request\RequestStatus;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 

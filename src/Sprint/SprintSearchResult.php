@@ -6,7 +6,7 @@
  * Time: 13:12.
  */
 
-namespace JiraRestApi\Sprint;
+namespace JiraCloud\Sprint;
 
 /**
  * Sprint search result.

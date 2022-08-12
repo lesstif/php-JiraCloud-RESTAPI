@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\Test\ServiceDesk\Request;
+namespace JiraCloud\Test\ServiceDesk\Request;
 
 use JetBrains\PhpStorm\Pure;
-use JiraRestApi\Issue\Attachment;
-use JiraRestApi\Issue\Issue;
-use JiraRestApi\Issue\IssueField;
-use JiraRestApi\Issue\Notify;
-use JiraRestApi\Issue\RemoteIssueLink;
-use JiraRestApi\Issue\TimeTracking;
-use JiraRestApi\Issue\TransitionTo;
-use JiraRestApi\Issue\Visibility;
-use JiraRestApi\Issue\Worklog;
-use JiraRestApi\ServiceDesk\Attachment\AttachmentService;
-use JiraRestApi\ServiceDesk\Comment\Comment;
-use JiraRestApi\ServiceDesk\Comment\CommentService;
-use JiraRestApi\ServiceDesk\Customer\Customer;
-use JiraRestApi\ServiceDesk\Request\Request;
-use JiraRestApi\ServiceDesk\Request\RequestService;
-use JiraRestApi\ServiceDesk\ServiceDeskClient;
+use JiraCloud\Issue\Attachment;
+use JiraCloud\Issue\Issue;
+use JiraCloud\Issue\IssueField;
+use JiraCloud\Issue\Notify;
+use JiraCloud\Issue\RemoteIssueLink;
+use JiraCloud\Issue\TimeTracking;
+use JiraCloud\Issue\TransitionTo;
+use JiraCloud\Issue\Visibility;
+use JiraCloud\Issue\Worklog;
+use JiraCloud\ServiceDesk\Attachment\AttachmentService;
+use JiraCloud\ServiceDesk\Comment\Comment;
+use JiraCloud\ServiceDesk\Comment\CommentService;
+use JiraCloud\ServiceDesk\Customer\Customer;
+use JiraCloud\ServiceDesk\Request\Request;
+use JiraCloud\ServiceDesk\Request\RequestService;
+use JiraCloud\ServiceDesk\ServiceDeskClient;
 use JsonMapper;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

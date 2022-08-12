@@ -1,14 +1,14 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
-use JiraRestApi\Dumper;
-use JiraRestApi\Issue\Version;
-use JiraRestApi\JiraException;
-use JiraRestApi\Project\Project;
-use JiraRestApi\Project\ProjectType;
+use JiraCloud\Dumper;
+use JiraCloud\Issue\Version;
+use JiraCloud\JiraException;
+use JiraCloud\Project\Project;
+use JiraCloud\Project\ProjectType;
 use PHPUnit\Framework\TestCase;
-use JiraRestApi\Project\ProjectService;
+use JiraCloud\Project\ProjectService;
 
 class ProjectTest extends TestCase
 {

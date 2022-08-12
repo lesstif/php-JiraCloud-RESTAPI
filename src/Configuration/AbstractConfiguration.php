@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\Configuration;
+namespace JiraCloud\Configuration;
 
 /**
  * Class AbstractConfiguration.
@@ -74,11 +74,6 @@ abstract class AbstractConfiguration implements ConfigurationInterface
      */
     protected ?string $proxyPassword = null;
 
-    /**
-     * Use Jira Cloud REST API v3.
-     */
-    protected bool $useV3RestApi;
-
     protected ?string $curlOptSslCert;
 
     protected ?string $curlOptSslCertPassword;
@@ -88,8 +83,6 @@ abstract class AbstractConfiguration implements ConfigurationInterface
     protected ?string $curlOptSslKeyPassword;
 
     protected int $timeout = 60;
-
-    protected bool $useTokenBasedAuth;
 
     protected ?string $personalAccessToken;
 
@@ -213,19 +206,9 @@ abstract class AbstractConfiguration implements ConfigurationInterface
         return $this->proxyPassword;
     }
 
-    public function getUseV3RestApi(): bool
-    {
-        return $this->useV3RestApi;
-    }
-
     public function getTimeout(): int
     {
         return $this->timeout;
-    }
-
-    public function isTokenBasedAuth(): bool
-    {
-        return $this->useTokenBasedAuth;
     }
 
     public function getPersonalAccessToken(): string

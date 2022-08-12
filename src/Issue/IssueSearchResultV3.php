@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
 /**
  * Issue search result.
@@ -8,12 +8,12 @@ namespace JiraRestApi\Issue;
 class IssueSearchResultV3 extends IssueSearchResult
 {
     /**
-     * @var \JiraRestApi\Issue\IssueV3[]
+     * @var \JiraCloud\Issue\IssueV3[]
      */
     public $issues;
 
     /**
-     * @return \JiraRestApi\Issue\IssueV3[]
+     * @return \JiraCloud\Issue\IssueV3[]
      */
     public function getIssues()
     {
@@ -21,7 +21,7 @@ class IssueSearchResultV3 extends IssueSearchResult
     }
 
     /**
-     * @param \JiraRestApi\Issue\IssueV3[] $issues
+     * @param \JiraCloud\Issue\IssueV3[] $issues
      */
     public function setIssues($issues)
     {

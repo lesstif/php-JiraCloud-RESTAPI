@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi;
+namespace JiraCloud;
 
 class JsonMapperHelper
 {

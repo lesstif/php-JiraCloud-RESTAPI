@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\Test\ServiceDesk\Customer;
+namespace JiraCloud\Test\ServiceDesk\Customer;
 
-use JiraRestApi\ServiceDesk\Customer\Customer;
-use JiraRestApi\ServiceDesk\Customer\CustomerLinks;
+use JiraCloud\ServiceDesk\Customer\Customer;
+use JiraCloud\ServiceDesk\Customer\CustomerLinks;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 

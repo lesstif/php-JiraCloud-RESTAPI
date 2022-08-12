@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
 /**
  * ChangeLog History.
@@ -12,7 +12,7 @@ class History implements \JsonSerializable
     /** @var int */
     public $id;
 
-    /** @var \JiraRestApi\Issue\Reporter */
+    /** @var \JiraCloud\Issue\Reporter */
     public $author;
 
     /** @var string */

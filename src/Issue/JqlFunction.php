@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
 /**
  * Class JqlFunction used with JqlQuery to set JQL function calls as values in expressions.

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\Test\ServiceDesk\Comment;
+namespace JiraCloud\Test\ServiceDesk\Comment;
 
 use DateTimeInterface;
-use JiraRestApi\Issue\Reporter;
-use JiraRestApi\ServiceDesk\Comment\Comment;
+use JiraCloud\Issue\Reporter;
+use JiraCloud\ServiceDesk\Comment\Comment;
 use PHPUnit\Framework\TestCase;
 
 class CommentTest extends TestCase

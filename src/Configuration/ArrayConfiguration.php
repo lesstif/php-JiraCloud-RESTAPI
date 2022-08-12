@@ -1,12 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: keanor
- * Date: 17.08.15
- * Time: 22:40.
- */
-
-namespace JiraRestApi\Configuration;
+namespace JiraCloud\Configuration;
 
 /**
  * Class ArrayConfiguration.
@@ -29,8 +22,6 @@ class ArrayConfiguration extends AbstractConfiguration
         $this->cookieFile = 'jira-cookie.txt';
         $this->curlOptUserAgent = $this->getDefaultUserAgentString();
         $this->serviceDeskId = null;
-
-        $this->useV3RestApi = false;
 
         $this->useTokenBasedAuth = false;
         $this->personalAccessToken = '';

@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
 /**
  * Issue ChangeLog.
@@ -18,7 +18,7 @@ class ChangeLog implements \JsonSerializable
     /** @var int */
     public $total;
 
-    /** @var \JiraRestApi\Issue\History[]|null */
+    /** @var \JiraCloud\Issue\History[]|null */
     public $histories;
 
     #[\ReturnTypeWillChange]

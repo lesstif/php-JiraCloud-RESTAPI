@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
 class VersionIssueCounts implements \JsonSerializable
 {
@@ -16,7 +16,7 @@ class VersionIssueCounts implements \JsonSerializable
     /** @var int */
     public $issueCountWithCustomFieldsShowingVersion;
 
-    /** @var \JiraRestApi\Issue\CustomFieldUsage[] */
+    /** @var \JiraCloud\Issue\CustomFieldUsage[] */
     public $customFieldUsage;
 
     public function __construct()

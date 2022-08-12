@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\ServiceDesk\Comment;
+namespace JiraCloud\ServiceDesk\Comment;
 
 use DateTime;
 use DateTimeInterface;
-use JiraRestApi\ClassSerialize;
-use JiraRestApi\Issue\Reporter;
-use JiraRestApi\ServiceDesk\DataObjectTrait;
+use JiraCloud\ClassSerialize;
+use JiraCloud\Issue\Reporter;
+use JiraCloud\ServiceDesk\DataObjectTrait;
 use JsonSerializable;
 
 class Comment implements JsonSerializable

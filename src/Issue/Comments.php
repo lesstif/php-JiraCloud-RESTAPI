@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
 class Comments implements \JsonSerializable
 {
@@ -13,7 +13,7 @@ class Comments implements \JsonSerializable
     /** @var int */
     public $total;
 
-    /** @var \JiraRestApi\Issue\Comment[] */
+    /** @var \JiraCloud\Issue\Comment[] */
     public $comments;
 
     #[\ReturnTypeWillChange]

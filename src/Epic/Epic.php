@@ -1,8 +1,8 @@
 <?php
 
-namespace JiraRestApi\Epic;
+namespace JiraCloud\Epic;
 
-use JiraRestApi\JsonSerializableTrait;
+use JiraCloud\JsonSerializableTrait;
 
 class Epic implements \JsonSerializable
 {

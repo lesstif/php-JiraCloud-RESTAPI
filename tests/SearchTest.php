@@ -1,12 +1,12 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
 use PHPUnit\Framework\TestCase;
-use JiraRestApi\Dumper;
-use JiraRestApi\Issue\Comment;
-use JiraRestApi\Issue\IssueService;
-use JiraRestApi\JiraException;
+use JiraCloud\Dumper;
+use JiraCloud\Issue\Comment;
+use JiraCloud\Issue\IssueService;
+use JiraCloud\JiraException;
 
 class SearchTest extends TestCase
 {

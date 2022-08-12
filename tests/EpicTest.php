@@ -1,18 +1,18 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
 use DateInterval;
 use DateTime;
 use Exception;
-use JiraRestApi\Epic\EpicService;
-use JiraRestApi\Issue\IssueField;
-use JiraRestApi\Issue\IssueService;
+use JiraCloud\Epic\EpicService;
+use JiraCloud\Issue\IssueField;
+use JiraCloud\Issue\IssueService;
 use PHPUnit\Framework\TestCase;
-use JiraRestApi\Dumper;
-use JiraRestApi\Group\Group;
-use JiraRestApi\Group\GroupService;
-use JiraRestApi\JiraException;
+use JiraCloud\Dumper;
+use JiraCloud\Group\Group;
+use JiraCloud\Group\GroupService;
+use JiraCloud\JiraException;
 
 class EpicTest extends TestCase
 {

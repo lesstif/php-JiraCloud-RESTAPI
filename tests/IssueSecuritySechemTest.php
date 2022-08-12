@@ -1,17 +1,17 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
 use Exception;
 use JsonMapper_Exception;
 use PHPUnit\Framework\TestCase;
-use JiraRestApi\Dumper;
-use JiraRestApi\Issue\Comment;
-use JiraRestApi\Issue\Issue;
-use JiraRestApi\Issue\IssueField;
-use JiraRestApi\Issue\IssueService;
-use JiraRestApi\Issue\Transition;
-use JiraRestApi\JiraException;
+use JiraCloud\Dumper;
+use JiraCloud\Issue\Comment;
+use JiraCloud\Issue\Issue;
+use JiraCloud\Issue\IssueField;
+use JiraCloud\Issue\IssueService;
+use JiraCloud\Issue\Transition;
+use JiraCloud\JiraException;
 
 class IssueSecuritySechemTest extends TestCase
 {

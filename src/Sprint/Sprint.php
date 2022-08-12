@@ -6,9 +6,9 @@
  * Time: 14:17.
  */
 
-namespace JiraRestApi\Sprint;
+namespace JiraCloud\Sprint;
 
-use JiraRestApi\JsonSerializableTrait;
+use JiraCloud\JsonSerializableTrait;
 
 class Sprint implements \JsonSerializable
 {

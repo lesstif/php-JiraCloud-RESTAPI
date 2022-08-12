@@ -1,11 +1,11 @@
 <?php
 
-namespace JiraRestApi\Auth;
+namespace JiraCloud\Auth;
 
-use JiraRestApi\Configuration\ConfigurationInterface;
+use JiraCloud\Configuration\ConfigurationInterface;
 use Psr\Log\LoggerInterface;
 
-class AuthService extends \JiraRestApi\JiraClient
+class AuthService extends \JiraCloud\JiraClient
 {
     private $auth_api_uri = '/rest/auth/1';
 
@@ -47,7 +47,7 @@ class AuthService extends \JiraRestApi\JiraClient
      * @param null|string $username
      * @param null|string $password
      *
-     * @throws \JiraRestApi\JiraException
+     * @throws \JiraCloud\JiraException
      * @throws \JsonMapper_Exception
      */
     public function authorizeWithCookie($username = null, $password = null)
@@ -78,7 +78,7 @@ class AuthService extends \JiraRestApi\JiraClient
      * @param string                        $path
      *
      * @throws \Exception
-     * @throws \JiraRestApi\JiraException
+     * @throws \JiraCloud\JiraException
      */
     public function __construct(ConfigurationInterface $configuration = null, LoggerInterface $logger = null, $path = './')
     {
@@ -92,7 +92,7 @@ class AuthService extends \JiraRestApi\JiraClient
      *
      * @see https://docs.atlassian.com/software/jira/docs/api/REST/latest/#auth/1/session-currentUser Jira Reference
      *
-     * @throws \JiraRestApi\JiraException
+     * @throws \JiraCloud\JiraException
      * @throws \JsonMapper_Exception
      *
      * @return CurrentUser
@@ -114,7 +114,7 @@ class AuthService extends \JiraRestApi\JiraClient
      *
      * @see https://docs.atlassian.com/software/jira/docs/api/REST/latest/#auth/1/session-logout Jira Reference
      *
-     * @throws \JiraRestApi\JiraException
+     * @throws \JiraCloud\JiraException
      * @throws \Exception
      *
      * @return bool
@@ -137,7 +137,7 @@ class AuthService extends \JiraRestApi\JiraClient
      * @param string|null $username If null - takes username from configuration.
      * @param string|null $password If null - takes password from configuration.
      *
-     * @throws \JiraRestApi\JiraException
+     * @throws \JiraCloud\JiraException
      * @throws \JsonMapper_Exception
      *
      * @return AuthSession
@@ -170,7 +170,7 @@ class AuthService extends \JiraRestApi\JiraClient
      *
      * @see https://docs.atlassian.com/software/jira/docs/api/REST/latest/#auth/1/websudo-release Jira Reference
      *
-     * @throws \JiraRestApi\JiraException
+     * @throws \JiraCloud\JiraException
      *
      * @return bool
      */

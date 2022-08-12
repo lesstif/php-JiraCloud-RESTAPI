@@ -1,8 +1,8 @@
 <?php
 
-namespace JiraRestApi\Field;
+namespace JiraCloud\Field;
 
-use JiraRestApi\ClassSerialize;
+use JiraCloud\ClassSerialize;
 
 /**
  * Class Field.

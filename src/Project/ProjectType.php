@@ -1,8 +1,8 @@
 <?php
 
-namespace JiraRestApi\Project;
+namespace JiraCloud\Project;
 
-use JiraRestApi\ClassSerialize;
+use JiraCloud\ClassSerialize;
 
 class ProjectType
 {

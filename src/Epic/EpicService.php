@@ -1,12 +1,12 @@
 <?php
 
-namespace JiraRestApi\Epic;
+namespace JiraCloud\Epic;
 
-use JiraRestApi\Configuration\ConfigurationInterface;
-use JiraRestApi\Issue\AgileIssue;
+use JiraCloud\Configuration\ConfigurationInterface;
+use JiraCloud\Issue\AgileIssue;
 use Psr\Log\LoggerInterface;
 
-class EpicService extends \JiraRestApi\JiraClient
+class EpicService extends \JiraCloud\JiraClient
 {
     private $uri = '/epic';
     private $version = '1.0';

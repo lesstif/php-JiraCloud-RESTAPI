@@ -1,8 +1,8 @@
 <?php
 
-namespace JiraRestApi\Group;
+namespace JiraCloud\Group;
 
-use JiraRestApi\ClassSerialize;
+use JiraCloud\ClassSerialize;
 
 /**
  * Class GroupSearchResult.
@@ -36,7 +36,7 @@ class GroupSearchResult implements \JsonSerializable
      */
     public $total;
 
-    /** @var \JiraRestApi\User\User[] */
+    /** @var \JiraCloud\User\User[] */
     public $values;
 
     #[\ReturnTypeWillChange]

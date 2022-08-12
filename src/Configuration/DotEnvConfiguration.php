@@ -1,8 +1,8 @@
 <?php
 
-namespace JiraRestApi\Configuration;
+namespace JiraCloud\Configuration;
 
-use JiraRestApi\JiraException;
+use JiraCloud\JiraException;
 
 /**
  * Class DotEnvConfiguration.
@@ -20,7 +20,7 @@ class DotEnvConfiguration extends AbstractConfiguration
 
         $this->jiraHost = $this->env('JIRA_HOST');
         $this->jiraUser = $this->env('JIRA_USER');
-        $this->jiraPassword = $this->env('JIRA_PASS');
+
         $this->oauthAccessToken = $this->env('OAUTH_ACCESS_TOKEN');
         $this->cookieAuthEnabled = $this->env('COOKIE_AUTH_ENABLED', false);
         $this->cookieFile = $this->env('COOKIE_FILE', 'jira-cookie.txt');
@@ -40,11 +40,8 @@ class DotEnvConfiguration extends AbstractConfiguration
         $this->proxyUser = $this->env('PROXY_USER');
         $this->proxyPassword = $this->env('PROXY_PASSWORD');
 
-        $this->useV3RestApi = $this->env('JIRA_REST_API_V3', false);
-
         $this->timeout = $this->env('JIRA_TIMEOUT', 30);
 
-        $this->useTokenBasedAuth = $this->env('TOKEN_BASED_AUTH', false);
         $this->personalAccessToken = $this->env('PERSONAL_ACCESS_TOKEN', false);
         $this->serviceDeskId = $this->env('JIRA_SERVICE_DESK_ID', null);
     }
@@ -119,7 +116,7 @@ class DotEnvConfiguration extends AbstractConfiguration
     private function loadDotEnv(string $path)
     {
         $requireParam = [
-            'JIRA_HOST', 'TOKEN_BASED_AUTH',
+            'JIRA_HOST', 'JIRA_USER', 'PERSONAL_ACCESS_TOKEN',
         ];
 
         // support for dotenv 1.x and 2.x. see also https://github.com/lesstif/php-jira-rest-client/issues/102

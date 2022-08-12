@@ -1,14 +1,14 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
 use JsonMapper;
 use PHPUnit\Framework\TestCase;
-use JiraRestApi\Issue\Comment;
-use JiraRestApi\Issue\Issue;
-use JiraRestApi\Issue\IssueField;
-use JiraRestApi\Issue\Reporter;
-use JiraRestApi\Issue\SecurityScheme;
+use JiraCloud\Issue\Comment;
+use JiraCloud\Issue\Issue;
+use JiraCloud\Issue\IssueField;
+use JiraCloud\Issue\Reporter;
+use JiraCloud\Issue\SecurityScheme;
 use \Mockery as m;
 
 class MapperTest extends TestCase
@@ -19,7 +19,7 @@ class MapperTest extends TestCase
     public function setUp(): void
     {
         $this->mapper = new JsonMapper();
-        $this->mapper->undefinedPropertyHandler = [new \JiraRestApi\JsonMapperHelper(), 'setUndefinedProperty'];
+        $this->mapper->undefinedPropertyHandler = [new \JiraCloud\JsonMapperHelper(), 'setUndefinedProperty'];
         $this->mapper->classMap['\\'.\DateTimeInterface::class] = \DateTime::class;
     }
 
@@ -64,7 +64,7 @@ class MapperTest extends TestCase
     {
         $ret = file_get_contents('test-data/issue.json');
 
-        $is = new \JiraRestApi\Issue\IssueService();
+        $is = new \JiraCloud\Issue\IssueService();
         $issue = $this->mapper->map(
                 json_decode($ret), new Issue()
             );
@@ -94,16 +94,16 @@ class MapperTest extends TestCase
         $ret = file_get_contents('test-data/issueFieldV3.json');
 
         $issue = $this->mapper->map(
-            json_decode($ret), new \JiraRestApi\Issue\IssueV3()
+            json_decode($ret), new \JiraCloud\Issue\IssueV3()
         );
 
-        $this->assertInstanceOf(\JiraRestApi\Issue\IssueV3::class, $issue);
+        $this->assertInstanceOf(\JiraCloud\Issue\IssueV3::class, $issue);
 
         $field = $issue->fields;
 
-        $this->assertInstanceOf(\JiraRestApi\Issue\IssueFieldV3::class, $field);
+        $this->assertInstanceOf(\JiraCloud\Issue\IssueFieldV3::class, $field);
 
-        $this->assertInstanceOf(\JiraRestApi\Issue\DescriptionV3::class, $field->description);
+        $this->assertInstanceOf(\JiraCloud\Issue\DescriptionV3::class, $field->description);
 
         $this->assertEquals(1, $field->description->version);
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace JiraRestApi\Status;
+namespace JiraCloud\Status;
 
-use JiraRestApi\JiraException;
+use JiraCloud\JiraException;
 use JsonMapper_Exception;
 
-class StatusService extends \JiraRestApi\JiraClient
+class StatusService extends \JiraCloud\JiraClient
 {
     private $uri = '/status';
 
@@ -25,7 +25,7 @@ class StatusService extends \JiraRestApi\JiraClient
         return $this->json_mapper->mapArray(
             json_decode($ret, false),
             new \ArrayObject(),
-            \JiraRestApi\Status\Status::class
+            \JiraCloud\Status\Status::class
         );
     }
 }

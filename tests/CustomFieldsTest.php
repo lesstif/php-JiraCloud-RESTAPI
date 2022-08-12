@@ -1,12 +1,12 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
 use PHPUnit\Framework\TestCase;
-use JiraRestApi\Dumper;
-use JiraRestApi\Field\Field;
-use JiraRestApi\Field\FieldService;
-use JiraRestApi\JiraException;
+use JiraCloud\Dumper;
+use JiraCloud\Field\Field;
+use JiraCloud\Field\FieldService;
+use JiraCloud\JiraException;
 
 class CustomFieldsTest extends TestCase
 {

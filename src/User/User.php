@@ -1,8 +1,8 @@
 <?php
 
-namespace JiraRestApi\User;
+namespace JiraCloud\User;
 
-use JiraRestApi\ClassSerialize;
+use JiraCloud\ClassSerialize;
 
 /**
  * Description of User.

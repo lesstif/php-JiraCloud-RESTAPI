@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\Status;
+namespace JiraCloud\Status;
 
 class Status implements \JsonSerializable
 {

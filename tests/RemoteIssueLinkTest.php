@@ -1,11 +1,11 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
 use PHPUnit\Framework\TestCase;
-use JiraRestApi\Issue\IssueService;
-use JiraRestApi\Issue\RemoteIssueLink;
-use JiraRestApi\JiraException;
+use JiraCloud\Issue\IssueService;
+use JiraCloud\Issue\RemoteIssueLink;
+use JiraCloud\JiraException;
 
 class RemoteIssueLinkTest extends TestCase
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
 use PHPUnit\Framework\TestCase;
-use JiraRestApi\Dumper;
-use JiraRestApi\Group\Group;
-use JiraRestApi\Group\GroupService;
-use JiraRestApi\JiraException;
+use JiraCloud\Dumper;
+use JiraCloud\Group\Group;
+use JiraCloud\Group\GroupService;
+use JiraCloud\JiraException;
 
 class GroupTest extends TestCase
 {

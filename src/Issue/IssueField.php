@@ -1,10 +1,10 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
 use DateTimeInterface;
-use JiraRestApi\ClassSerialize;
-use JiraRestApi\Project\Project;
+use JiraCloud\ClassSerialize;
+use JiraCloud\Project\Project;
 
 class IssueField implements \JsonSerializable
 {
@@ -24,7 +24,7 @@ class IssueField implements \JsonSerializable
 
     public ?DateTimeInterface $updated = null;
 
-    public string $description;
+    public Description $description;
 
     public ?Priority $priority = null;
 
@@ -36,7 +36,7 @@ class IssueField implements \JsonSerializable
 
     public ?string $environment;
 
-    /* @var \JiraRestApi\Issue\Component[] This property must don't describe the type feature for JSON deserialized. */
+    /* @var \JiraCloud\Issue\Component[] This property must don't describe the type feature for JSON deserialized. */
     public $components;
 
     public ?Comments $comment = null;
@@ -55,10 +55,10 @@ class IssueField implements \JsonSerializable
 
     public ?Reporter $assignee = null;
 
-    /** @var \JiraRestApi\Issue\Version[] */
+    /** @var \JiraCloud\Issue\Version[] */
     public $versions;
 
-    /** @var \JiraRestApi\Issue\Attachment[] */
+    /** @var \JiraCloud\Issue\Attachment[] */
     public $attachment;
 
     public ?string $aggregatetimespent;
@@ -75,7 +75,7 @@ class IssueField implements \JsonSerializable
 
     public array $issuelinks;
 
-    /** @var \JiraRestApi\Issue\Issue[] */
+    /** @var \JiraCloud\Issue\Issue[] */
     public $subtasks;
 
     public int $workratio;
@@ -98,7 +98,7 @@ class IssueField implements \JsonSerializable
     public function __construct($updateIssue = false)
     {
         if ($updateIssue !== true) {
-            $this->project = new \JiraRestApi\Project\Project();
+            $this->project = new \JiraCloud\Project\Project();
 
             $this->assignee = new Reporter();
             // priority maybe empty.
@@ -267,10 +267,8 @@ class IssueField implements \JsonSerializable
      *
      * REST API V3 must use addDescriptionXXXX
      *
-     * @see \JiraRestApi\Issue\IssueFieldV3::addDescriptionHeading
-     * @see \JiraRestApi\Issue\IssueFieldV3::addDescriptionParagraph
      */
-    public function setDescription(?string $description): static
+    public function setDescription(Description $description): static
     {
         if (!empty($description)) {
             $this->description = $description;
@@ -441,4 +439,38 @@ class IssueField implements \JsonSerializable
 
         return $this;
     }
+
+    /**
+     * @param \JiraCloud\Issue\Description|null $description
+     *
+     * @return $this
+     */
+    public function addDescriptionParagraph(?Description $description): static
+    {
+        if (empty($this->description)) {
+            $this->description = new Description();
+        }
+
+        $this->description->addDescriptionContent('paragraph', $description);
+
+        return $this;
+    }
+
+    /**
+     * @param int    $level       heading level
+     * @param string $description
+     *
+     * @return $this
+     */
+    public function addDescriptionHeading($level, string $description): static
+    {
+        if (empty($this->descriptionV3)) {
+            $this->description = new Description();
+        }
+
+        $this->description->addDescriptionContent('heading', $description, ['level' => $level]);
+
+        return $this;
+    }
+
 }

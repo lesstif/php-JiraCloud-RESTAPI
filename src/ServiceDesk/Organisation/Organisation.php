@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\ServiceDesk\Organisation;
+namespace JiraCloud\ServiceDesk\Organisation;
 
-use JiraRestApi\ClassSerialize;
-use JiraRestApi\ServiceDesk\DataObjectTrait;
+use JiraCloud\ClassSerialize;
+use JiraCloud\ServiceDesk\DataObjectTrait;
 use JsonSerializable;
 
 class Organisation implements JsonSerializable

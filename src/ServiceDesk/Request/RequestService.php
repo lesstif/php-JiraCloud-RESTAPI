@@ -2,27 +2,27 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\ServiceDesk\Request;
+namespace JiraCloud\ServiceDesk\Request;
 
 use InvalidArgumentException;
-use JiraRestApi\Issue\Attachment;
-use JiraRestApi\Issue\Issue;
-use JiraRestApi\Issue\Notify;
-use JiraRestApi\Issue\PaginatedWorklog;
-use JiraRestApi\Issue\Priority;
-use JiraRestApi\Issue\RemoteIssueLink;
-use JiraRestApi\Issue\Reporter;
-use JiraRestApi\Issue\SecurityScheme;
-use JiraRestApi\Issue\TimeTracking;
-use JiraRestApi\Issue\Transition;
-use JiraRestApi\Issue\Worklog;
-use JiraRestApi\JiraException;
-use JiraRestApi\Project\ProjectService;
-use JiraRestApi\ServiceDesk\Attachment\AttachmentService;
-use JiraRestApi\ServiceDesk\Comment\Comment;
-use JiraRestApi\ServiceDesk\Comment\CommentService;
-use JiraRestApi\ServiceDesk\Customer\Customer;
-use JiraRestApi\ServiceDesk\ServiceDeskClient;
+use JiraCloud\Issue\Attachment;
+use JiraCloud\Issue\Issue;
+use JiraCloud\Issue\Notify;
+use JiraCloud\Issue\PaginatedWorklog;
+use JiraCloud\Issue\Priority;
+use JiraCloud\Issue\RemoteIssueLink;
+use JiraCloud\Issue\Reporter;
+use JiraCloud\Issue\SecurityScheme;
+use JiraCloud\Issue\TimeTracking;
+use JiraCloud\Issue\Transition;
+use JiraCloud\Issue\Worklog;
+use JiraCloud\JiraException;
+use JiraCloud\Project\ProjectService;
+use JiraCloud\ServiceDesk\Attachment\AttachmentService;
+use JiraCloud\ServiceDesk\Comment\Comment;
+use JiraCloud\ServiceDesk\Comment\CommentService;
+use JiraCloud\ServiceDesk\Customer\Customer;
+use JiraCloud\ServiceDesk\ServiceDeskClient;
 use JsonException;
 use JsonMapper;
 use JsonMapper_Exception;

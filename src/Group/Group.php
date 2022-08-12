@@ -1,8 +1,8 @@
 <?php
 
-namespace JiraRestApi\Group;
+namespace JiraCloud\Group;
 
-use JiraRestApi\ClassSerialize;
+use JiraCloud\ClassSerialize;
 
 /**
  * Class Group.

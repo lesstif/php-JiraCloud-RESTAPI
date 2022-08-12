@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\Test\ServiceDesk\Organisation;
+namespace JiraCloud\Test\ServiceDesk\Organisation;
 
-use JiraRestApi\ServiceDesk\Organisation\Organisation;
+use JiraCloud\ServiceDesk\Organisation\Organisation;
 use PHPUnit\Framework\TestCase;
 
 class OrganisationTest extends TestCase

@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: keanor
- * Date: 17.08.15
- * Time: 21:58.
- */
 
-namespace JiraRestApi\Configuration;
+namespace JiraCloud\Configuration;
 
 /**
  * Interface ConfigurationInterface.
@@ -107,21 +101,9 @@ interface ConfigurationInterface
     public function getProxyPassword(): ?string;
 
     /**
-     * use REST v3 API.
-     */
-    public function getUseV3RestApi(): bool;
-
-    /**
      * The number of seconds to wait while trying to connect.
      */
     public function getTimeout(): int;
-
-    /**
-     * check whether token based auth.
-     *
-     * @see https://confluence.atlassian.com/enterprise/using-personal-access-tokens-1026032365.html
-     */
-    public function isTokenBasedAuth(): bool;
 
     /**
      * Personal Access Token.

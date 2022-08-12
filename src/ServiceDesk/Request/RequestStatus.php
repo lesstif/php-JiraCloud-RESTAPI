@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\ServiceDesk\Request;
+namespace JiraCloud\ServiceDesk\Request;
 
 use DateTime;
-use JiraRestApi\ClassSerialize;
-use JiraRestApi\ServiceDesk\DataObjectTrait;
+use JiraCloud\ClassSerialize;
+use JiraCloud\ServiceDesk\DataObjectTrait;
 use JsonSerializable;
 
 class RequestStatus implements JsonSerializable

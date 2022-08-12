@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\Test\ServiceDesk\Attachment;
+namespace JiraCloud\Test\ServiceDesk\Attachment;
 
-use JiraRestApi\Issue\Attachment;
-use JiraRestApi\ServiceDesk\Attachment\AttachmentService;
-use JiraRestApi\ServiceDesk\ServiceDeskClient;
+use JiraCloud\Issue\Attachment;
+use JiraCloud\ServiceDesk\Attachment\AttachmentService;
+use JiraCloud\ServiceDesk\ServiceDeskClient;
 use JsonMapper;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

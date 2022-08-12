@@ -1,10 +1,10 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
 class CommentV3 extends Comment
 {
-    /** @var \JiraRestApi\Issue\DescriptionV3|null */
+    /** @var \JiraCloud\Issue\DescriptionV3|null */
     public $body;
 
     public function setBody($body)
@@ -13,7 +13,7 @@ class CommentV3 extends Comment
     }
 
     /**
-     * @param \JiraRestApi\Issue\DescriptionV3|null $description
+     * @param \JiraCloud\Issue\DescriptionV3|null $description
      *
      * @return $this
      */

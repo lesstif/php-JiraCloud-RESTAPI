@@ -1,10 +1,10 @@
 <?php
 
-namespace JiraRestApi\Project;
+namespace JiraCloud\Project;
 
-use JiraRestApi\AssigneeTypeEnum;
-use JiraRestApi\ClassSerialize;
-use JiraRestApi\JiraException;
+use JiraCloud\AssigneeTypeEnum;
+use JiraCloud\ClassSerialize;
+use JiraCloud\JiraException;
 
 class Project implements \JsonSerializable
 {
@@ -60,16 +60,16 @@ class Project implements \JsonSerializable
     public string $leadAccountId;
 
     /**
-     * ComponentList [\JiraRestApi\Project\Component].
+     * ComponentList [\JiraCloud\Project\Component].
      *
-     * @var \JiraRestApi\Project\Component[]
+     * @var \JiraCloud\Project\Component[]
      */
     public $components;
 
     /**
-     * IssueTypeList [\JiraRestApi\Issue\IssueType].
+     * IssueTypeList [\JiraCloud\Issue\IssueType].
      *
-     * @var \JiraRestApi\Issue\IssueType[]
+     * @var \JiraCloud\Issue\IssueType[]
      */
     public $issueTypes;
 

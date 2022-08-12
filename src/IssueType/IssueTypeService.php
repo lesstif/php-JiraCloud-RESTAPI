@@ -1,12 +1,12 @@
 <?php
 
-namespace JiraRestApi\IssueType;
+namespace JiraCloud\IssueType;
 
-use JiraRestApi\Issue\IssueType;
-use JiraRestApi\JiraException;
+use JiraCloud\Issue\IssueType;
+use JiraCloud\JiraException;
 use JsonMapper_Exception;
 
-class IssueTypeService extends \JiraRestApi\JiraClient
+class IssueTypeService extends \JiraCloud\JiraClient
 {
     private $uri = '/issuetype';
 

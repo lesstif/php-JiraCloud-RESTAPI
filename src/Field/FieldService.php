@@ -1,17 +1,17 @@
 <?php
 
-namespace JiraRestApi\Field;
+namespace JiraCloud\Field;
 
-use JiraRestApi\Issue\IssueService;
+use JiraCloud\Issue\IssueService;
 
-class FieldService extends \JiraRestApi\JiraClient
+class FieldService extends \JiraCloud\JiraClient
 {
     private $uri = '/field';
 
     /**
      * get all field list.
      *
-     * @throws \JiraRestApi\JiraException
+     * @throws \JiraCloud\JiraException
      *
      * @return array of Filed class
      */
@@ -22,7 +22,7 @@ class FieldService extends \JiraRestApi\JiraClient
         $fields = $this->json_mapper->mapArray(
             json_decode($ret, false),
             new \ArrayObject(),
-            '\JiraRestApi\Field\Field'
+            '\JiraCloud\Field\Field'
         );
 
         // temp array
@@ -55,7 +55,7 @@ class FieldService extends \JiraRestApi\JiraClient
      *
      * @param string $id custom field option id
      *
-     * @throws \JiraRestApi\JiraException
+     * @throws \JiraCloud\JiraException
      *
      * @return string
      */
@@ -73,7 +73,7 @@ class FieldService extends \JiraRestApi\JiraClient
      *
      * @param Field $field object of Field class
      *
-     * @throws \JiraRestApi\JiraException
+     * @throws \JiraCloud\JiraException
      * @throws \JsonMapper_Exception
      *
      * @return Field created field class

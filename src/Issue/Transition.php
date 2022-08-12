@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
 /**
  * Issue Transition mapping class.
@@ -13,13 +13,13 @@ class Transition implements \JsonSerializable
     /** @var string */
     public $name;
 
-    /** @var \JiraRestApi\Issue\TransitionTo */
+    /** @var \JiraCloud\Issue\TransitionTo */
     public $to;
 
     /** @var array */
     public $fields;
 
-    /** @var \JiraRestApi\Issue\IssueField */
+    /** @var \JiraCloud\Issue\IssueField */
     public $issueFields;
 
     /** @var array */

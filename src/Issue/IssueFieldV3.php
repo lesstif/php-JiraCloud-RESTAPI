@@ -1,8 +1,8 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
-use JiraRestApi\ClassSerialize;
+use JiraCloud\ClassSerialize;
 
 /**
  * Atlassian Document Format.
@@ -13,12 +13,12 @@ class IssueFieldV3 extends IssueField
 {
     use ClassSerialize;
 
-    public ?DescriptionV3 $descriptionV3;
+    public ?DescriptionV3 $description;
 
-    public ?DescriptionV3 $environmentV3;
+    public ?DescriptionV3 $environment;
 
     /**
-     * @param \JiraRestApi\Issue\DescriptionV3|null $description
+     * @param \JiraCloud\Issue\DescriptionV3|null $description
      *
      * @return IssueFieldV3
      */
@@ -30,7 +30,7 @@ class IssueFieldV3 extends IssueField
     }
 
     /**
-     * @param \JiraRestApi\Issue\DescriptionV3|null $description
+     * @param \JiraCloud\Issue\DescriptionV3|null $description
      *
      * @return $this
      */
@@ -62,8 +62,9 @@ class IssueFieldV3 extends IssueField
         return $this;
     }
 
+
     /**
-     * @param \JiraRestApi\Issue\DescriptionV3|null $environment
+     * @param \JiraCloud\Issue\DescriptionV3|null $environment
      *
      * @return $this
      */

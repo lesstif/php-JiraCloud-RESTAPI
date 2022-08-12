@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\Test\ServiceDesk\Request;
+namespace JiraCloud\Test\ServiceDesk\Request;
 
 use DateTime;
-use JiraRestApi\ServiceDesk\Request\RequestStatus;
+use JiraCloud\ServiceDesk\Request\RequestStatus;
 use PHPUnit\Framework\TestCase;
 
 class RequestStatusTest extends TestCase

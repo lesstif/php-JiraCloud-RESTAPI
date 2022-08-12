@@ -1,8 +1,8 @@
 <?php
 
-namespace JiraRestApi\Auth;
+namespace JiraCloud\Auth;
 
-use JiraRestApi\ClassSerialize;
+use JiraCloud\ClassSerialize;
 
 class LoginInfo implements \JsonSerializable
 {

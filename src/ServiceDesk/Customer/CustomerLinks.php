@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\ServiceDesk\Customer;
+namespace JiraCloud\ServiceDesk\Customer;
 
-use JiraRestApi\ClassSerialize;
-use JiraRestApi\ServiceDesk\DataObjectTrait;
+use JiraCloud\ClassSerialize;
+use JiraCloud\ServiceDesk\DataObjectTrait;
 use JsonSerializable;
 
 class CustomerLinks implements JsonSerializable

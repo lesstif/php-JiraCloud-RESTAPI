@@ -1,9 +1,9 @@
 <?php
 
-namespace JiraRestApi;
+namespace JiraCloud;
 
-use JiraRestApi\Configuration\ConfigurationInterface;
-use JiraRestApi\Configuration\DotEnvConfiguration;
+use JiraCloud\Configuration\ConfigurationInterface;
+use JiraCloud\Configuration\DotEnvConfiguration;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
@@ -28,7 +28,7 @@ class JiraClient
     /**
      * JIRA REST API URI.
      */
-    private string $api_uri = '/rest/api/2';
+    private string $api_uri = '/rest/api/3';
 
     /**
      * CURL instance.
@@ -73,8 +73,8 @@ class JiraClient
 
         $this->json_mapper = new \JsonMapper();
 
-        // Fix "\JiraRestApi\JsonMapperHelper::class" syntax error, unexpected 'class' (T_CLASS), expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$'
-        $this->json_mapper->undefinedPropertyHandler = [new \JiraRestApi\JsonMapperHelper(), 'setUndefinedProperty'];
+        // Fix "\JiraCloud\JsonMapperHelper::class" syntax error, unexpected 'class' (T_CLASS), expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$'
+        $this->json_mapper->undefinedPropertyHandler = [new \JiraCloud\JsonMapperHelper(), 'setUndefinedProperty'];
 
         // Properties that are annotated with `@var \DateTimeInterface` should result in \DateTime objects being created.
         $this->json_mapper->classMap['\\'.\DateTimeInterface::class] = \DateTime::class;
@@ -96,10 +96,6 @@ class JiraClient
         }
 
         $this->http_response = 200;
-
-        if ($this->configuration->getUseV3RestApi()) {
-            $this->setRestApiV3();
-        }
 
         $this->curl = curl_init();
 
@@ -443,20 +439,8 @@ class JiraClient
 
         // if cookie file not exist, using id/pwd login
         if (!is_string($cookieFile) || !file_exists($cookieFile)) {
-            if ($this->getConfiguration()->isTokenBasedAuth() === true) {
-                // JIRA Cloud API v3 using Basic Auth
-                // See https://developer.atlassian.com/cloud/jira/platform/basic-auth-for-rest-apis/
-                if ($this->getConfiguration()->getUseV3RestApi()) {
-                    $token = base64_encode($this->getConfiguration()->getJiraUser().':'.$this->getConfiguration()->getPersonalAccessToken());
-                    $curl_http_headers[] = 'Authorization: Basic '.$token;
-                } else {
-                    $curl_http_headers[] = 'Authorization: Bearer '.$this->getConfiguration()->getPersonalAccessToken();
-                }
-            } else {
-                $username = $this->getConfiguration()->getJiraUser();
-                $password = $this->getConfiguration()->getJiraPassword();
-                curl_setopt($ch, CURLOPT_USERPWD, "$username:$password");
-            }
+            $token = base64_encode($this->getConfiguration()->getJiraUser().':'.$this->getConfiguration()->getPersonalAccessToken());
+            $curl_http_headers[] = 'Authorization: Basic '.$token;
         }
     }
 
@@ -533,9 +517,7 @@ class JiraClient
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         }
 
-        if ($this->isRestApiV3()) {
-            $curl_http_header[] = 'x-atlassian-force-account-id: true';
-        }
+        $curl_http_header[] = 'x-atlassian-force-account-id: true';
 
         curl_setopt(
             $ch,
@@ -608,36 +590,6 @@ class JiraClient
             $password = $this->getConfiguration()->getProxyPassword();
             curl_setopt($ch, CURLOPT_PROXYUSERPWD, "$username:$password");
         }
-    }
-
-    /**
-     * setting REST API url to V3.
-     */
-    public function setRestApiV3(): static
-    {
-        $this->api_uri = '/rest/api/3';
-
-        return $this;
-    }
-
-    /**
-     * check whether current API is v3.
-     */
-    public function isRestApiV3(): bool
-    {
-        return $this->configuration->getUseV3RestApi();
-    }
-
-    /**
-     * setting REST API url to V2.
-     *
-     * @return $this
-     */
-    public function setRestApiV2()
-    {
-        $this->api_uri = '/rest/api/2';
-
-        return $this;
     }
 
     /**

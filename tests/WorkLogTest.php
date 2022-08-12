@@ -1,12 +1,12 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
 use PHPUnit\Framework\TestCase;
-use JiraRestApi\Dumper;
-use JiraRestApi\Issue\IssueService;
-use JiraRestApi\Issue\Worklog;
-use JiraRestApi\JiraException;
+use JiraCloud\Dumper;
+use JiraCloud\Issue\IssueService;
+use JiraCloud\Issue\Worklog;
+use JiraCloud\JiraException;
 
 class WorkLogTest extends TestCase
 {

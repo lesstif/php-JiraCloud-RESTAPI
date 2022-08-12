@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi;
+namespace JiraCloud;
 
 use Symfony\Component\VarDumper\Cloner\VarCloner;
 use Symfony\Component\VarDumper\Dumper\CliDumper;

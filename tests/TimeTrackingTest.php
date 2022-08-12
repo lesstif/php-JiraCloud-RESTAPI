@@ -1,11 +1,11 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
 use PHPUnit\Framework\TestCase;
-use JiraRestApi\Issue\IssueService;
-use JiraRestApi\Issue\TimeTracking;
-use JiraRestApi\JiraException;
+use JiraCloud\Issue\IssueService;
+use JiraCloud\Issue\TimeTracking;
+use JiraCloud\JiraException;
 
 class TimeTrackingTest extends TestCase
 {

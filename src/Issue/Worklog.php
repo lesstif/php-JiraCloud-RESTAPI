@@ -1,9 +1,9 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
-use JiraRestApi\ClassSerialize;
-use JiraRestApi\JiraException;
+use JiraCloud\ClassSerialize;
+use JiraCloud\JiraException;
 
 /**
  * Class Worklog.
@@ -62,7 +62,7 @@ class Worklog
     public $timeSpentSeconds;
 
     /**
-     * @var \JiraRestApi\Issue\Visibility
+     * @var \JiraCloud\Issue\Visibility
      */
     public $visibility;
 

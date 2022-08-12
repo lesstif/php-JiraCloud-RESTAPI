@@ -1,20 +1,20 @@
 <?php
 
-namespace JiraRestApi\Auth;
+namespace JiraCloud\Auth;
 
-use JiraRestApi\ClassSerialize;
+use JiraCloud\ClassSerialize;
 
 class AuthSession implements \JsonSerializable
 {
     use ClassSerialize;
 
     /**
-     * @var \JiraRestApi\Auth\SessionInfo
+     * @var \JiraCloud\Auth\SessionInfo
      */
     public $session;
 
     /**
-     * @var \JiraRestApi\Auth\LoginInfo
+     * @var \JiraCloud\Auth\LoginInfo
      */
     public $loginInfo;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace JiraRestApi\Component;
+namespace JiraCloud\Component;
 
-use JiraRestApi\JiraException;
+use JiraCloud\JiraException;
 
-class ComponentService extends \JiraRestApi\JiraClient
+class ComponentService extends \JiraCloud\JiraClient
 {
     private $uri = '/component';
 
@@ -13,7 +13,7 @@ class ComponentService extends \JiraRestApi\JiraClient
      *
      * @param Component|array $component
      *
-     * @throws \JiraRestApi\JiraException
+     * @throws \JiraCloud\JiraException
      * @throws \JsonMapper_Exception
      *
      * @return Component class

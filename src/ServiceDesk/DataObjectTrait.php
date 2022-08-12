@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\ServiceDesk;
+namespace JiraCloud\ServiceDesk;
 
 trait DataObjectTrait
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
-use JiraRestApi\JiraException;
+use JiraCloud\JiraException;
 use PHPUnit\Framework\TestCase;
-use JiraRestApi\Dumper;
+use JiraCloud\Dumper;
 
-use JiraRestApi\Priority\PriorityService;
+use JiraCloud\Priority\PriorityService;
 
 class PriorityTest extends TestCase
 {

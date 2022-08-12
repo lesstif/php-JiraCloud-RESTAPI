@@ -1,17 +1,12 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
 class ContentField implements \JsonSerializable
 {
-    /** @var string */
-    public $type;
-
-    /** @var array */
-    public $content;
-
-    /** @var array */
-    public $attrs;
+    public string $type;
+    public array $content;
+    public array $attrs;
 
     public function __construct()
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
 class IssueStatus implements \JsonSerializable
 {
@@ -19,7 +19,7 @@ class IssueStatus implements \JsonSerializable
     /* @var string */
     public $name;
 
-    /* @var \JiraRestApi\Issue\Statuscategory */
+    /* @var \JiraCloud\Issue\Statuscategory */
     public $statuscategory;
 
     #[\ReturnTypeWillChange]

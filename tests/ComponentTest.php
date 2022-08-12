@@ -1,10 +1,10 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
-use JiraRestApi\AssigneeTypeEnum;
-use JiraRestApi\Component\Component;
-use JiraRestApi\Component\ComponentService;
+use JiraCloud\AssigneeTypeEnum;
+use JiraCloud\Component\Component;
+use JiraCloud\Component\ComponentService;
 use PHPUnit\Framework\TestCase;
 
 /**

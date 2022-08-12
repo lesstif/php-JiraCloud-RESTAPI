@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\ServiceDesk\Comment;
+namespace JiraCloud\ServiceDesk\Comment;
 
 use InvalidArgumentException;
-use JiraRestApi\JiraException;
-use JiraRestApi\ServiceDesk\ServiceDeskClient;
+use JiraCloud\JiraException;
+use JiraCloud\ServiceDesk\ServiceDeskClient;
 use JsonException;
 use JsonMapper;
 use JsonMapper_Exception;

@@ -1,10 +1,10 @@
 <?php
 
-namespace JiraRestApi\Project;
+namespace JiraCloud\Project;
 
 /**
- * @deprecated Please use \JiraRestApi\Component\Component
+ * @deprecated Please use \JiraCloud\Component\Component
  */
-class Component extends \JiraRestApi\Component\Component
+class Component extends \JiraCloud\Component\Component
 {
 }

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\ServiceDesk\Attachment;
+namespace JiraCloud\ServiceDesk\Attachment;
 
-use JiraRestApi\Issue\Attachment;
-use JiraRestApi\JiraException;
-use JiraRestApi\ServiceDesk\ServiceDeskClient;
+use JiraCloud\Issue\Attachment;
+use JiraCloud\JiraException;
+use JiraCloud\ServiceDesk\ServiceDeskClient;
 use JsonException;
 use JsonMapper;
 use JsonMapper_Exception;

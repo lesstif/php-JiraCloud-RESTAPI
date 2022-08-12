@@ -1,12 +1,12 @@
 <?php
 
-namespace JiraRestApi\StatusCategory;
+namespace JiraCloud\StatusCategory;
 
-use JiraRestApi\Issue\Statuscategory;
-use JiraRestApi\JiraException;
+use JiraCloud\Issue\Statuscategory;
+use JiraCloud\JiraException;
 use JsonMapper_Exception;
 
-class StatusCategoryService extends \JiraRestApi\JiraClient
+class StatusCategoryService extends \JiraCloud\JiraClient
 {
     private $uri = '/statuscategory';
 
@@ -26,7 +26,7 @@ class StatusCategoryService extends \JiraRestApi\JiraClient
         return $this->json_mapper->mapArray(
             json_decode($ret, false),
             new \ArrayObject(),
-            \JiraRestApi\Issue\Statuscategory::class
+            \JiraCloud\Issue\Statuscategory::class
         );
     }
 }

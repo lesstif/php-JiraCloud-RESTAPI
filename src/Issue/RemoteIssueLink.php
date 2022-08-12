@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
 class RemoteIssueLink implements \JsonSerializable
 {
@@ -19,7 +19,7 @@ class RemoteIssueLink implements \JsonSerializable
     /** @var string|null */
     public $relationship;
 
-    /** @var \JiraRestApi\Issue\RemoteIssueLinkObject|null */
+    /** @var \JiraCloud\Issue\RemoteIssueLinkObject|null */
     public $object;
 
     #[\ReturnTypeWillChange]

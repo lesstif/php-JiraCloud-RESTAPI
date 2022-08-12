@@ -1,6 +1,6 @@
 <?php
 
-namespace JiraRestApi\Issue;
+namespace JiraCloud\Issue;
 
 class IssueType implements \JsonSerializable
 {
@@ -16,7 +16,7 @@ class IssueType implements \JsonSerializable
 
     public bool $subtask;
 
-    /** @var \JiraRestApi\Issue\IssueStatus[] */
+    /** @var \JiraCloud\Issue\IssueStatus[] */
     public $statuses;
 
     public int $avatarId;

@@ -1,14 +1,14 @@
 <?php
 
-namespace JiraRestApi\Board;
+namespace JiraCloud\Board;
 
-use JiraRestApi\Configuration\ConfigurationInterface;
-use JiraRestApi\Epic\Epic;
-use JiraRestApi\Issue\AgileIssue;
-use JiraRestApi\Sprint\Sprint;
+use JiraCloud\Configuration\ConfigurationInterface;
+use JiraCloud\Epic\Epic;
+use JiraCloud\Issue\AgileIssue;
+use JiraCloud\Sprint\Sprint;
 use Psr\Log\LoggerInterface;
 
-class BoardService extends \JiraRestApi\JiraClient
+class BoardService extends \JiraCloud\JiraClient
 {
     private $uri = '/board';
 
@@ -25,7 +25,7 @@ class BoardService extends \JiraRestApi\JiraClient
      *
      * @param array $paramArray
      *
-     * @throws \JiraRestApi\JiraException
+     * @throws \JiraCloud\JiraException
      *
      * @return \ArrayObject|Board[]|null array of Board class
      */

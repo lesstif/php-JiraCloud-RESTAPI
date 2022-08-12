@@ -1,20 +1,20 @@
 <?php
 
-namespace JiraRestApi\Priority;
+namespace JiraCloud\Priority;
 
-use JiraRestApi\Issue\Priority;
+use JiraCloud\Issue\Priority;
 
 /**
  * Class to query priority.
  */
-class PriorityService extends \JiraRestApi\JiraClient
+class PriorityService extends \JiraCloud\JiraClient
 {
     private $uri = '/priority';
 
     /**
      * Function to get all priorities.
      *
-     * @throws \JiraRestApi\JiraException
+     * @throws \JiraCloud\JiraException
      * @throws \JsonMapper_Exception
      *
      * @return array Priority class
@@ -40,10 +40,10 @@ class PriorityService extends \JiraRestApi\JiraClient
      *
      * @param string|int $priorityId priority id
      *
-     * @throws \JiraRestApi\JiraException
+     * @throws \JiraCloud\JiraException
      * @throws \JsonMapper_Exception
      *
-     * @return \JiraRestApi\Issue\Priority
+     * @return \JiraCloud\Issue\Priority
      */
     public function get($priorityId)
     {

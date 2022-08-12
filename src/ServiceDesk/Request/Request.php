@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace JiraRestApi\ServiceDesk\Request;
+namespace JiraCloud\ServiceDesk\Request;
 
 use DateTime;
 use DateTimeInterface;
-use JiraRestApi\ClassSerialize;
-use JiraRestApi\ServiceDesk\Customer\Customer;
-use JiraRestApi\ServiceDesk\DataObjectTrait;
+use JiraCloud\ClassSerialize;
+use JiraCloud\ServiceDesk\Customer\Customer;
+use JiraCloud\ServiceDesk\DataObjectTrait;
 use JsonMapper;
 use JsonSerializable;
 

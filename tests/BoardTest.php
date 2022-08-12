@@ -1,13 +1,13 @@
 <?php
 
-namespace JiraRestApi\Test;
+namespace JiraCloud\Test;
 
 use ArrayObject;
 use PHPUnit\Framework\TestCase;
-use JiraRestApi\Board\BoardService;
-use JiraRestApi\Board\Board;
-use JiraRestApi\Board\Location;
-use JiraRestApi\Issue\Issue;
+use JiraCloud\Board\BoardService;
+use JiraCloud\Board\Board;
+use JiraCloud\Board\Location;
+use JiraCloud\Issue\Issue;
 
 /**
  * Test agile boards integration.
@@ -54,7 +54,7 @@ class BoardTest extends TestCase
 
         $board = $board_service->getBoard($last_board_id);
 
-        /** @var \JiraRestApi\Board\Board $board */
+        /** @var \JiraCloud\Board\Board $board */
         $this->assertInstanceOf(Board::class, $board, 'We receive a board instance');
         $this->assertNotEmpty($board->getId(), 'Check board id.');
         $this->assertNotEmpty($board->getName(), 'Check board name.');
