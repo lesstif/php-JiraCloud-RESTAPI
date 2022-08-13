@@ -24,7 +24,7 @@ class Comment implements \JsonSerializable
 
     public Visibility $visibility;
 
-    public function setBody(string $body) : static
+    public function setBody(string $body): static
     {
         $this->body = $body;
 
@@ -32,7 +32,7 @@ class Comment implements \JsonSerializable
     }
 
     #[\ReturnTypeWillChange]
-    public function jsonSerialize() : array
+    public function jsonSerialize(): array
     {
         return array_filter(get_object_vars($this));
     }

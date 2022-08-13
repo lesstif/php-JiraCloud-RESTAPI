@@ -20,10 +20,10 @@ class AttachmentService extends \JiraCloud\JiraClient
      * @mode int outDir creation mode.
      * @recursive boolean Allows the creation of nested directories specified in the pathname.
      *
-     * @return \JiraCloud\ADF\Attachment
      *@throws \JsonMapper_Exception
-     *
      * @throws \JiraCloud\JiraException
+     *
+     * @return \JiraCloud\ADF\Attachment
      */
     public function get($id, $outDir = null, $overwrite = false, $mode = 0777, $recursive = true)
     {

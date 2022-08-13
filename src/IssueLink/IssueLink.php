@@ -19,7 +19,7 @@ class IssueLink implements \JsonSerializable
     public Comment $comment;
 
     #[\ReturnTypeWillChange]
-    public function jsonSerialize() : array
+    public function jsonSerialize(): array
     {
         $vars = array_filter(get_object_vars($this));
 
@@ -43,7 +43,7 @@ class IssueLink implements \JsonSerializable
      *
      * @return $this
      */
-    public function setInwardIssue(string $issueKey) : static
+    public function setInwardIssue(string $issueKey): static
     {
         $this->inwardIssue['key'] = $issueKey;
 
@@ -55,7 +55,7 @@ class IssueLink implements \JsonSerializable
      *
      * @return $this
      */
-    public function setOutwardIssue(string $issueKey) : static
+    public function setOutwardIssue(string $issueKey): static
     {
         $this->outwardIssue['key'] = $issueKey;
 
@@ -67,7 +67,7 @@ class IssueLink implements \JsonSerializable
      *
      * @return $this
      */
-    public function setComment(string|Comment $comment) : static
+    public function setComment(string|Comment $comment): static
     {
         if (is_string($comment)) {
             $this->comment = new Comment();

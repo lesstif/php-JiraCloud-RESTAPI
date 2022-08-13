@@ -268,7 +268,6 @@ class IssueField implements \JsonSerializable
      * set issue description.
      *
      * REST API V3 must use addDescriptionXXXX
-     *
      */
     public function setDescription(AtlassianDocumentFormat $description): static
     {
