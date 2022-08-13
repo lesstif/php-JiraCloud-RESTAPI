@@ -39,49 +39,49 @@ class Version implements \JsonSerializable
         return array_filter(get_object_vars($this));
     }
 
-    public function setProjectId(int $id) : static
+    public function setProjectId(int $id): static
     {
         $this->projectId = $id;
 
         return $this;
     }
 
-    public function setName(string $name) :static
+    public function setName(string $name): static
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function setDescription(string $description) :static
+    public function setDescription(string $description): static
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function setArchived(bool $archived) : static
+    public function setArchived(bool $archived): static
     {
         $this->archived = $archived;
 
         return $this;
     }
 
-    public function setReleased(bool $released) : static
+    public function setReleased(bool $released): static
     {
         $this->released = $released;
 
         return $this;
     }
 
-    public function setReleaseDate(DateTimeInterface $releaseDate) : static
+    public function setReleaseDate(DateTimeInterface $releaseDate): static
     {
         $this->releaseDate = $releaseDate;
 
         return $this;
     }
 
-    public function setUserReleaseDate(string $userReleaseDate) : static
+    public function setUserReleaseDate(string $userReleaseDate): static
     {
         $this->userReleaseDate = $userReleaseDate;
 

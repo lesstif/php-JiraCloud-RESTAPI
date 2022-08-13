@@ -3,7 +3,6 @@
 namespace JiraCloud\Issue;
 
 use ArrayObject;
-use JiraCloud\Dumper;
 use JiraCloud\JiraException;
 use JiraCloud\Project\ProjectService;
 

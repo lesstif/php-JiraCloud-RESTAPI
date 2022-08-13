@@ -21,7 +21,7 @@ class Transition implements \JsonSerializable
 
     public ?array $update;
 
-    public function setTransitionName($name) :void
+    public function setTransitionName($name): void
     {
         if (is_null($this->transition)) {
             $this->transition = [];
@@ -32,9 +32,8 @@ class Transition implements \JsonSerializable
 
     /**
      * set none translated transition name.
-     *
      */
-    public function setUntranslatedName(string $untranslatedName) :void
+    public function setUntranslatedName(string $untranslatedName): void
     {
         if (is_null($this->transition)) {
             $this->transition = [];
@@ -43,7 +42,7 @@ class Transition implements \JsonSerializable
         $this->transition['untranslatedName'] = $untranslatedName;
     }
 
-    public function setTransitionId(string $id) :void
+    public function setTransitionId(string $id): void
     {
         if (is_null($this->transition)) {
             $this->transition = [];
@@ -52,7 +51,7 @@ class Transition implements \JsonSerializable
         $this->transition['id'] = $id;
     }
 
-    public function setCommentBody(string $commentBody) :void
+    public function setCommentBody(string $commentBody): void
     {
         if (is_null($this->update)) {
             $this->update = [];

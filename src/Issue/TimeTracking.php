@@ -1,4 +1,5 @@
 <?php
+
 namespace JiraCloud\Issue;
 
 use JiraCloud\ClassSerialize;
@@ -11,52 +12,49 @@ class TimeTracking implements \JsonSerializable
     use ClassSerialize;
 
     /**
-     * Original estimate.(ex 90m, 2h, 1d 2h 30m)
+     * Original estimate.(ex 90m, 2h, 1d 2h 30m).
      */
     public string $originalEstimate;
 
     /**
-     * Remaining estimate.(ex 90m, 2h, 1d 2h 30m)
+     * Remaining estimate.(ex 90m, 2h, 1d 2h 30m).
      */
     public string $remainingEstimate;
 
     /**
-     * Time spent. (ex 90m, 2h, 1d 2h 30m)
+     * Time spent. (ex 90m, 2h, 1d 2h 30m).
      */
     public string $timeSpent;
 
     /**
      * Original estimate in seconds, generated in jira
      * for create/update issue set $this->originalEstimate.
-     *
      */
     public int $originalEstimateSeconds;
 
     /**
      * Remaining estimate in seconds, generated in jira
      * for create/update issue set $this->remainingEstimate.
-     *
      */
     public int $remainingEstimateSeconds;
 
     /**
      * Time spent in seconds, generated in jira
      * for create/update issue set $this->timeSpent.
-     *
      */
     public int $timeSpentSeconds;
 
-    public function getOriginalEstimate() : string
+    public function getOriginalEstimate(): string
     {
         return $this->originalEstimate;
     }
 
-    public function setOriginalEstimate(string $originalEstimate) :void
+    public function setOriginalEstimate(string $originalEstimate): void
     {
         $this->originalEstimate = $originalEstimate;
     }
 
-    public function getRemainingEstimate() :string
+    public function getRemainingEstimate(): string
     {
         return $this->remainingEstimate;
     }
@@ -66,7 +64,7 @@ class TimeTracking implements \JsonSerializable
         $this->remainingEstimate = $remainingEstimate;
     }
 
-    public function getTimeSpent() :string
+    public function getTimeSpent(): string
     {
         return $this->timeSpent;
     }
@@ -76,7 +74,7 @@ class TimeTracking implements \JsonSerializable
         $this->timeSpent = $timeSpent;
     }
 
-    public function getOriginalEstimateSeconds() :int
+    public function getOriginalEstimateSeconds(): int
     {
         return $this->originalEstimateSeconds;
     }
@@ -86,7 +84,7 @@ class TimeTracking implements \JsonSerializable
         $this->originalEstimateSeconds = $originalEstimateSeconds;
     }
 
-    public function getRemainingEstimateSeconds() :int
+    public function getRemainingEstimateSeconds(): int
     {
         return $this->remainingEstimateSeconds;
     }
@@ -96,7 +94,7 @@ class TimeTracking implements \JsonSerializable
         $this->remainingEstimateSeconds = $remainingEstimateSeconds;
     }
 
-    public function getTimeSpentSeconds() :int
+    public function getTimeSpentSeconds(): int
     {
         return $this->timeSpentSeconds;
     }

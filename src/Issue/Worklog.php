@@ -39,7 +39,7 @@ class Worklog
     public Visibility $visibility;
 
     #[\ReturnTypeWillChange]
-    public function jsonSerialize() : array
+    public function jsonSerialize(): array
     {
         return array_filter(get_object_vars($this));
     }
@@ -47,7 +47,7 @@ class Worklog
     /**
      * Function to set comments.
      */
-    public function setComment(AtlassianDocumentFormat $comment) : static
+    public function setComment(AtlassianDocumentFormat $comment): static
     {
         $this->comment = $comment;
 
@@ -59,10 +59,12 @@ class Worklog
 
     /**
      * @param DateTimeInterface|string $started started time value(\DateTimeInterface|string)  e.g. -  new \DateTime("2016-03-17 11:15:34") or "2016-03-17 11:15:34"
-     * @return $this
+     *
      * @throws JiraException
+     *
+     * @return $this
      */
-    public function setStarted(DateTimeInterface|string $started) : static
+    public function setStarted(DateTimeInterface|string $started): static
     {
         if (is_string($started)) {
             $dt = new \DateTime($started);
@@ -85,7 +87,7 @@ class Worklog
      *
      * @return Worklog
      */
-    public function setStartedDateTime(DateTimeInterface $started) : static
+    public function setStartedDateTime(DateTimeInterface $started): static
     {
         // workround micro second
         $this->started = $started->format("Y-m-d\TH:i:s").'.000'.$started->format('O');
@@ -97,9 +99,8 @@ class Worklog
      * Function to set worklog time in string.
      *
      * @param string $timeSpent
-     *
      */
-    public function setTimeSpent(string $timeSpent) : static
+    public function setTimeSpent(string $timeSpent): static
     {
         $this->timeSpent = $timeSpent;
 
@@ -113,7 +114,7 @@ class Worklog
      *
      * @return Worklog
      */
-    public function setTimeSpentSeconds(int $timeSpentSeconds) : static
+    public function setTimeSpentSeconds(int $timeSpentSeconds): static
     {
         $this->timeSpentSeconds = $timeSpentSeconds;
 
