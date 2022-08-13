@@ -19,13 +19,13 @@ enum ADFMarkType
     // return enum name as string
     public function name(): string
     {
-        return match($this) {
-            ADFMarkType::code => 'code',
-            ADFMarkType::strong => 'strong',
-            ADFMarkType::em => 'em',
-            ADFMarkType::link => 'link',
-            ADFMarkType::strike => 'strike',
-            ADFMarkType::subsup => 'subsup',
+        return match ($this) {
+            ADFMarkType::code      => 'code',
+            ADFMarkType::strong    => 'strong',
+            ADFMarkType::em        => 'em',
+            ADFMarkType::link      => 'link',
+            ADFMarkType::strike    => 'strike',
+            ADFMarkType::subsup    => 'subsup',
             ADFMarkType::textColor => 'textColor',
             ADFMarkType::underline => 'underline',
         };

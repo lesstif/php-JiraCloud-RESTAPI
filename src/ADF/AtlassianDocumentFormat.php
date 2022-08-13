@@ -2,10 +2,8 @@
 
 namespace JiraCloud\ADF;
 
-use JiraCloud\ADF\ADFMarkType;
-
 /**
- * Class AtlassianDocumentFormat
+ * Class AtlassianDocumentFormat.
  */
 class AtlassianDocumentFormat implements \JsonSerializable
 {
@@ -33,7 +31,7 @@ class AtlassianDocumentFormat implements \JsonSerializable
 
     public function addParagraph($text, ADFMarkType $markType = null)
     {
-        if (empty($this->paragraph['type'])){
+        if (empty($this->paragraph['type'])) {
             $this->paragraph['type'] = 'paragraph';
         }
 

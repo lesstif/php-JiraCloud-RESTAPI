@@ -6,8 +6,8 @@ namespace JiraCloud\ServiceDesk\Request;
 
 use InvalidArgumentException;
 use JiraCloud\ADF\Attachment;
-use JiraCloud\Issue\Issue;
 use JiraCloud\ADF\Notify;
+use JiraCloud\Issue\Issue;
 use JiraCloud\Issue\PaginatedWorklog;
 use JiraCloud\Issue\Priority;
 use JiraCloud\Issue\RemoteIssueLink;
