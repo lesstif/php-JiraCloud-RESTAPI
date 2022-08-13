@@ -4,20 +4,16 @@ namespace JiraCloud\Issue;
 
 class VersionIssueCounts implements \JsonSerializable
 {
-    /** @var string */
-    public $self;
+    public string $self;
 
-    /** @var int */
-    public $issuesFixedCount;
+    public int $issuesFixedCount;
 
-    /** @var int */
-    public $issuesAffectedCount;
+    public int $issuesAffectedCount;
 
-    /** @var int */
-    public $issueCountWithCustomFieldsShowingVersion;
+    public int $issueCountWithCustomFieldsShowingVersion;
 
     /** @var \JiraCloud\Issue\CustomFieldUsage[] */
-    public $customFieldUsage;
+    public array $customFieldUsage;
 
     public function __construct()
     {
@@ -29,35 +25,35 @@ class VersionIssueCounts implements \JsonSerializable
         return array_filter(get_object_vars($this));
     }
 
-    public function setSelf($self)
+    public function setSelf(string $self) :static
     {
         $this->self = $self;
 
         return $this;
     }
 
-    public function setIssuesFixedCount($issuesFixedCount)
+    public function setIssuesFixedCount(int $issuesFixedCount) : static
     {
         $this->issuesFixedCount = $issuesFixedCount;
 
         return $this;
     }
 
-    public function setIssuesAffectedCount($issuesAffectedCount)
+    public function setIssuesAffectedCount(int $issuesAffectedCount) :static
     {
         $this->issuesAffectedCount = $issuesAffectedCount;
 
         return $this;
     }
 
-    public function setIssueCountWithCustomFieldsShowingVersion($issueCountWithCustomFieldsShowingVersion)
+    public function setIssueCountWithCustomFieldsShowingVersion(int $issueCountWithCustomFieldsShowingVersion) : static
     {
         $this->issueCountWithCustomFieldsShowingVersion = $issueCountWithCustomFieldsShowingVersion;
 
         return $this;
     }
 
-    public function setCustomFieldUsage($customFieldUsage)
+    public function setCustomFieldUsage(array $customFieldUsage) : static
     {
         $this->customFieldUsage = $customFieldUsage;
 

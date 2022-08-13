@@ -4,26 +4,20 @@ namespace JiraCloud\Request;
 
 class Author implements \JsonSerializable
 {
-    /** @var string */
-    public $name;
+    public string $name;
 
-    /** @var string */
-    public $key;
+    public string $key;
 
-    /** @var string */
-    public $emailAddress;
+    public string $emailAddress;
 
-    /** @var string */
-    public $displayName;
+    public string $displayName;
 
-    /** @var bool */
-    public $active;
+    public bool $active;
 
-    /** @var string */
-    public $timeZone;
+    public string $timeZone;
 
     #[\ReturnTypeWillChange]
-    public function jsonSerialize()
+    public function jsonSerialize() : array
     {
         return array_filter(get_object_vars($this));
     }

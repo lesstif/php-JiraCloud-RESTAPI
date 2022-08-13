@@ -4,25 +4,22 @@ namespace JiraCloud\IssueLink;
 
 use JiraCloud\ClassSerialize;
 use JiraCloud\Issue\Comment;
+use JiraCloud\Issue\Issue;
 
 class IssueLink implements \JsonSerializable
 {
     use ClassSerialize;
 
-    /** @var array */
-    public $type;
+    public array $type;
 
-    /** @var \JiraCloud\Issue\Issue */
-    public $inwardIssue;
+    public Issue $inwardIssue;
 
-    /** @var \JiraCloud\Issue\Issue */
-    public $outwardIssue;
+    public Issue $outwardIssue;
 
-    /** @var \JiraCloud\Issue\Comment */
-    public $comment;
+    public Comment $comment;
 
     #[\ReturnTypeWillChange]
-    public function jsonSerialize()
+    public function jsonSerialize() : array
     {
         $vars = array_filter(get_object_vars($this));
 
@@ -46,7 +43,7 @@ class IssueLink implements \JsonSerializable
      *
      * @return $this
      */
-    public function setInwardIssue($issueKey)
+    public function setInwardIssue(string $issueKey) : static
     {
         $this->inwardIssue['key'] = $issueKey;
 
@@ -58,7 +55,7 @@ class IssueLink implements \JsonSerializable
      *
      * @return $this
      */
-    public function setOutwardIssue($issueKey)
+    public function setOutwardIssue(string $issueKey) : static
     {
         $this->outwardIssue['key'] = $issueKey;
 
@@ -70,7 +67,7 @@ class IssueLink implements \JsonSerializable
      *
      * @return $this
      */
-    public function setComment($comment)
+    public function setComment(string|Comment $comment) : static
     {
         if (is_string($comment)) {
             $this->comment = new Comment();

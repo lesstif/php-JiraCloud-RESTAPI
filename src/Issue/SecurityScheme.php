@@ -4,23 +4,17 @@ namespace JiraCloud\Issue;
 
 class SecurityScheme implements \JsonSerializable
 {
-    /** @var string */
-    public $self;
+    public string $self;
 
-    /** @var int */
-    public $id;
+    public int $id;
 
-    /** @var string */
-    public $name;
+    public string $name;
 
-    /** @var string */
-    public $description;
+    public string $description;
 
-    /** @var int */
-    public $defaultSecurityLevelId;
+    public int $defaultSecurityLevelId;
 
-    /** @var array security level */
-    public $levels;
+    public array $levels;
 
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

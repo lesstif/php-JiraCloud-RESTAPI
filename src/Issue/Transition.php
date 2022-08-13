@@ -7,28 +7,21 @@ namespace JiraCloud\Issue;
  */
 class Transition implements \JsonSerializable
 {
-    /** @var string */
-    public $id;
+    public string $id;
 
-    /** @var string */
-    public $name;
+    public string $name;
 
-    /** @var \JiraCloud\Issue\TransitionTo */
-    public $to;
+    public TransitionTo $to;
 
-    /** @var array */
-    public $fields;
+    public array $fields;
 
-    /** @var \JiraCloud\Issue\IssueField */
-    public $issueFields;
+    public IssueField $issueFields;
 
-    /** @var array */
-    public $transition;
+    public ?array $transition;
 
-    /** @var array */
-    public $update;
+    public ?array $update;
 
-    public function setTransitionName($name)
+    public function setTransitionName($name) :void
     {
         if (is_null($this->transition)) {
             $this->transition = [];
@@ -40,9 +33,8 @@ class Transition implements \JsonSerializable
     /**
      * set none translated transition name.
      *
-     * @param string $untranslatedName
      */
-    public function setUntranslatedName(string $untranslatedName)
+    public function setUntranslatedName(string $untranslatedName) :void
     {
         if (is_null($this->transition)) {
             $this->transition = [];
@@ -51,7 +43,7 @@ class Transition implements \JsonSerializable
         $this->transition['untranslatedName'] = $untranslatedName;
     }
 
-    public function setTransitionId($id)
+    public function setTransitionId(string $id) :void
     {
         if (is_null($this->transition)) {
             $this->transition = [];
@@ -60,7 +52,7 @@ class Transition implements \JsonSerializable
         $this->transition['id'] = $id;
     }
 
-    public function setCommentBody($commentBody)
+    public function setCommentBody(string $commentBody) :void
     {
         if (is_null($this->update)) {
             $this->update = [];

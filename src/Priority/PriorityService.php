@@ -40,10 +40,10 @@ class PriorityService extends \JiraCloud\JiraClient
      *
      * @param string|int $priorityId priority id
      *
-     * @throws \JiraCloud\JiraException
-     * @throws \JsonMapper_Exception
-     *
      * @return \JiraCloud\Issue\Priority
+     *@throws \JsonMapper_Exception
+     *
+     * @throws \JiraCloud\JiraException
      */
     public function get($priorityId)
     {

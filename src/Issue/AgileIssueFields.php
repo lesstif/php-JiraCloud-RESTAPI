@@ -2,7 +2,7 @@
 
 namespace JiraCloud\Issue;
 
-class AgileIssueFields extends IssueFieldV3
+class AgileIssueFields extends IssueField
 {
     /** @var \JiraCloud\Epic\Epic|null */
     public $epic;

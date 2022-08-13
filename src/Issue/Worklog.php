@@ -2,6 +2,8 @@
 
 namespace JiraCloud\Issue;
 
+use DateTimeInterface;
+use JiraCloud\ADF\AtlassianDocumentFormat;
 use JiraCloud\ClassSerialize;
 use JiraCloud\JiraException;
 
@@ -13,78 +15,39 @@ class Worklog
     use ClassSerialize;
     use VisibilityTrait;
 
-    /**
-     * @var int id of worklog
-     */
-    public $id;
+    /* id of worklog  */
+    public int $id;
 
-    /**
-     * @var string api link of worklog
-     */
-    public $self;
+    /*  api link of worklog */
+    public string $self;
 
-    /**
-     * @var array details about author
-     */
-    public $author;
+    /* details about author */
+    public array $author;
 
-    /**
-     * @var array
-     */
-    public $updateAuthor;
+    public array $updateAuthor;
 
-    /**
-     * @var string
-     */
-    public $updated;
+    public string $updated;
 
-    /**
-     * @var string
-     */
-    public $timeSpent;
+    public string $timeSpent;
 
-    /**
-     * @var mixed
-     *
-     * API V2 accepts a string, whereas API V3 requires an Atlassian Document
-     * Format, defined in this project by the ContentField class.
-     */
-    public $comment;
+    public AtlassianDocumentFormat $comment;
 
-    /**
-     * @var string
-     */
-    public $started;
+    public string $started;
 
-    /**
-     * @var int
-     */
-    public $timeSpentSeconds;
+    public int $timeSpentSeconds;
 
-    /**
-     * @var \JiraCloud\Issue\Visibility
-     */
-    public $visibility;
+    public Visibility $visibility;
 
-    /**
-     * Function to serialize obj vars.
-     *
-     * @return array
-     */
     #[\ReturnTypeWillChange]
-    public function jsonSerialize()
+    public function jsonSerialize() : array
     {
         return array_filter(get_object_vars($this));
     }
 
     /**
      * Function to set comments.
-     *
-     * @param mixed $comment
-     *
-     * @return Worklog
      */
-    public function setComment($comment)
+    public function setComment(AtlassianDocumentFormat $comment) : static
     {
         $this->comment = $comment;
 
@@ -95,15 +58,11 @@ class Worklog
     // see <https://github.com/cweiske/jsonmapper/issues/64#issuecomment-269545585>.
 
     /**
-     * Function to set start time of worklog.
-     *
-     * @param mixed $started started time value(\DateTimeInterface|string)  e.g. -  new \DateTime("2016-03-17 11:15:34") or "2016-03-17 11:15:34"
-     *
+     * @param DateTimeInterface|string $started started time value(\DateTimeInterface|string)  e.g. -  new \DateTime("2016-03-17 11:15:34") or "2016-03-17 11:15:34"
+     * @return $this
      * @throws JiraException
-     *
-     * @return Worklog
      */
-    public function setStarted($started)
+    public function setStarted(DateTimeInterface|string $started) : static
     {
         if (is_string($started)) {
             $dt = new \DateTime($started);
@@ -126,7 +85,7 @@ class Worklog
      *
      * @return Worklog
      */
-    public function setStartedDateTime($started)
+    public function setStartedDateTime(DateTimeInterface $started) : static
     {
         // workround micro second
         $this->started = $started->format("Y-m-d\TH:i:s").'.000'.$started->format('O');
@@ -139,9 +98,8 @@ class Worklog
      *
      * @param string $timeSpent
      *
-     * @return Worklog
      */
-    public function setTimeSpent($timeSpent)
+    public function setTimeSpent(string $timeSpent) : static
     {
         $this->timeSpent = $timeSpent;
 
@@ -155,7 +113,7 @@ class Worklog
      *
      * @return Worklog
      */
-    public function setTimeSpentSeconds($timeSpentSeconds)
+    public function setTimeSpentSeconds(int $timeSpentSeconds) : static
     {
         $this->timeSpentSeconds = $timeSpentSeconds;
 

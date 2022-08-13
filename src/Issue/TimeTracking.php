@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: keanor
- * Date: 29.07.15
- * Time: 21:27.
- */
-
 namespace JiraCloud\Issue;
 
 use JiraCloud\ClassSerialize;
@@ -18,142 +11,97 @@ class TimeTracking implements \JsonSerializable
     use ClassSerialize;
 
     /**
-     * Original estimate.
-     *
-     * @var string (ex 90m, 2h, 1d 2h 30m)
+     * Original estimate.(ex 90m, 2h, 1d 2h 30m)
      */
-    public $originalEstimate;
+    public string $originalEstimate;
 
     /**
-     * Remaining estimate.
-     *
-     * @var string (ex 90m, 2h, 1d 2h 30m)
+     * Remaining estimate.(ex 90m, 2h, 1d 2h 30m)
      */
-    public $remainingEstimate;
+    public string $remainingEstimate;
 
     /**
-     * Time spent.
-     *
-     * @var string (ex 90m, 2h, 1d 2h 30m)
+     * Time spent. (ex 90m, 2h, 1d 2h 30m)
      */
-    public $timeSpent;
+    public string $timeSpent;
 
     /**
      * Original estimate in seconds, generated in jira
      * for create/update issue set $this->originalEstimate.
      *
-     * @var int
      */
-    public $originalEstimateSeconds;
+    public int $originalEstimateSeconds;
 
     /**
      * Remaining estimate in seconds, generated in jira
      * for create/update issue set $this->remainingEstimate.
      *
-     * @var int
      */
-    public $remainingEstimateSeconds;
+    public int $remainingEstimateSeconds;
 
     /**
      * Time spent in seconds, generated in jira
      * for create/update issue set $this->timeSpent.
      *
-     * @var int
      */
-    public $timeSpentSeconds;
+    public int $timeSpentSeconds;
 
-    /**
-     * @return string
-     */
-    public function getOriginalEstimate()
+    public function getOriginalEstimate() : string
     {
         return $this->originalEstimate;
     }
 
-    /**
-     * @param string $originalEstimate
-     */
-    public function setOriginalEstimate($originalEstimate)
+    public function setOriginalEstimate(string $originalEstimate) :void
     {
         $this->originalEstimate = $originalEstimate;
     }
 
-    /**
-     * @return string
-     */
-    public function getRemainingEstimate()
+    public function getRemainingEstimate() :string
     {
         return $this->remainingEstimate;
     }
 
-    /**
-     * @param string $remainingEstimate
-     */
-    public function setRemainingEstimate($remainingEstimate)
+    public function setRemainingEstimate(string $remainingEstimate)
     {
         $this->remainingEstimate = $remainingEstimate;
     }
 
-    /**
-     * @return string
-     */
-    public function getTimeSpent()
+    public function getTimeSpent() :string
     {
         return $this->timeSpent;
     }
 
-    /**
-     * @param string $timeSpent
-     */
-    public function setTimeSpent($timeSpent)
+    public function setTimeSpent(string $timeSpent)
     {
         $this->timeSpent = $timeSpent;
     }
 
-    /**
-     * @return int
-     */
-    public function getOriginalEstimateSeconds()
+    public function getOriginalEstimateSeconds() :int
     {
         return $this->originalEstimateSeconds;
     }
 
-    /**
-     * @param int $originalEstimateSeconds
-     */
-    public function setOriginalEstimateSeconds($originalEstimateSeconds)
+    public function setOriginalEstimateSeconds(int $originalEstimateSeconds)
     {
         $this->originalEstimateSeconds = $originalEstimateSeconds;
     }
 
-    /**
-     * @return int
-     */
-    public function getRemainingEstimateSeconds()
+    public function getRemainingEstimateSeconds() :int
     {
         return $this->remainingEstimateSeconds;
     }
 
-    /**
-     * @param int $remainingEstimateSeconds
-     */
-    public function setRemainingEstimateSeconds($remainingEstimateSeconds)
+    public function setRemainingEstimateSeconds(int $remainingEstimateSeconds)
     {
         $this->remainingEstimateSeconds = $remainingEstimateSeconds;
     }
 
-    /**
-     * @return int
-     */
-    public function getTimeSpentSeconds()
+    public function getTimeSpentSeconds() :int
     {
         return $this->timeSpentSeconds;
     }
 
-    /**
-     * @param int $timeSpentSeconds
-     */
-    public function setTimeSpentSeconds($timeSpentSeconds)
+    public function setTimeSpentSeconds(int $timeSpentSeconds)
     {
         $this->timeSpentSeconds = $timeSpentSeconds;
     }

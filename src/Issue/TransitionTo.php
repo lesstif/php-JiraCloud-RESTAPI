@@ -4,25 +4,19 @@ namespace JiraCloud\Issue;
 
 class TransitionTo
 {
-    /** @var string */
-    public $self;
+    public string $self;
 
-    /** @var string|null */
-    public $description;
+    public ?string $description;
 
-    /** @var string */
-    public $iconUrl;
+    public string $iconUrl;
 
     /**
      * Closed, Resolved, etc..
      *
-     * @var string
      */
-    public $name;
+    public string $name;
 
-    /** @var string */
-    public $id;
+    public string $id;
 
-    /** @var array */
-    public $statusCategory;
+    public array $statusCategory;
 }

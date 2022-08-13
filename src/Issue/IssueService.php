@@ -74,7 +74,6 @@ class IssueService extends \JiraCloud\JiraClient
         $data = json_encode($issue);
 
         $this->log->info("Create Issue=\n".$data);
-        Dumper::dump($data);
 
         $ret = $this->exec($this->uri, $data, 'POST');
 

@@ -2,20 +2,16 @@
 
 namespace JiraCloud\Issue;
 
-use JiraCloud\AgileApiTrait;
 use JiraCloud\Configuration\ConfigurationInterface;
 use Psr\Log\LoggerInterface;
 
 class AgileIssueService extends \JiraCloud\JiraClient
 {
-    use AgileApiTrait;
-
-    private $uri = '/issue';
+    private $uri = '/rest/agile/1.0';
 
     public function __construct(ConfigurationInterface $configuration = null, LoggerInterface $logger = null, $path = './')
     {
         parent::__construct($configuration, $logger, $path);
-        $this->setupAPIUri();
     }
 
     public function get($issueIdOrKey, $paramArray = []): ?AgileIssue

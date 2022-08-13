@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace JiraCloud\Test\ServiceDesk\Request;
 
 use JetBrains\PhpStorm\Pure;
-use JiraCloud\Issue\Attachment;
+use JiraCloud\ADF\Attachment;
 use JiraCloud\Issue\Issue;
 use JiraCloud\Issue\IssueField;
-use JiraCloud\Issue\Notify;
+use JiraCloud\ADF\Notify;
 use JiraCloud\Issue\RemoteIssueLink;
 use JiraCloud\Issue\TimeTracking;
 use JiraCloud\Issue\TransitionTo;

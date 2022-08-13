@@ -6,7 +6,7 @@ use DateInterval;
 use DateTime;
 use Exception;
 use JiraCloud\ADF\ADFMarkType;
-use JiraCloud\Issue\Description;
+use JiraCloud\ADF\AtlassianDocumentFormat;
 use PHPUnit\Framework\TestCase;
 use JiraCloud\Dumper;
 use JiraCloud\Issue\Comment;
@@ -48,10 +48,11 @@ class IssueTest extends TestCase
 
             $due = (new DateTime('NOW'))->add(DateInterval::createFromDateString('1 month 5 day'));
 
-            $descV3 = new Description();
+            $descV3 = new AtlassianDocumentFormat();
 
-            $descV3->addDescriptionParagraph('We support');
-            //$descV3->addDescriptionParagraph('markdown', ADFMarkType::strong);
+            $descV3->addParagraph('We support markdown ');
+            $descV3->addParagraph('bold ', ADFMarkType::strong);
+            $descV3->addParagraph('italic ', ADFMarkType::em);
 
             $issueField->setProjectKey('TEST')
                         ->setSummary("something's wrong")
@@ -134,8 +135,8 @@ ls -l
 - sub order list 1
 - sub order list 1 
 DESC;
-            $descV3 = new Description();
-            $descV3->addDescriptionContent('paragraph', $paraDesc);
+            $descV3 = new AtlassianDocumentFormat();
+            $descV3->addParagraph('text', ADFMarkType::em);
 
             $issueField->setAssigneeNameAsString('lesstif')
                 //->setPriorityNameAsString('Major')
@@ -167,11 +168,8 @@ DESC;
         try {
             $issueField = new IssueField();
 
-            $paraDesc =<<< DESC
-Subtask - Full description for issue
-DESC;
-            $descV3 = new Description();
-            $descV3->addDescriptionContent('paragraph', $paraDesc);
+            $descV3 = new AtlassianDocumentFormat();
+            $descV3->addParagraph('Subtask - Full description for issue');
 
             $issueField->setProjectKey('TEST')
                 ->setSummary("Subtask - something's wrong")

@@ -4,18 +4,13 @@ namespace JiraCloud\Issue;
 
 class Statuscategory
 {
-    /** @var string */
-    public $self;
+    public string $self;
 
-    /** @var string */
-    public $id;
+    public string $id;
 
-    /** @var string|null */
-    public $key;
+    public ?string $key;
 
-    /** @var string */
-    public $colorName;
+    public string $colorName;
 
-    /** @var string */
-    public $name;
+    public string $name;
 }

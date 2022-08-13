@@ -13,23 +13,18 @@ class IssueLinkType implements \JsonSerializable
 {
     use ClassSerialize;
 
-    /** @var int */
-    public $id;
+    public int $id;
 
-    /** @var string */
-    public $name;
+    public string $name;
 
-    /** @var string */
-    public $inward;
+    public string $inward;
 
-    /** @var string */
-    public $outward;
+    public string $outward;
 
-    /** @var string */
-    public $self;
+    public string $self;
 
     #[\ReturnTypeWillChange]
-    public function jsonSerialize()
+    public function jsonSerialize() : array
     {
         $vars = array_filter(get_object_vars($this));
 

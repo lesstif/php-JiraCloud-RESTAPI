@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace JiraCloud\Test\ServiceDesk\Attachment;
 
-use JiraCloud\Issue\Attachment;
+use JiraCloud\ADF\Attachment;
 use JiraCloud\ServiceDesk\Attachment\AttachmentService;
 use JiraCloud\ServiceDesk\ServiceDeskClient;
 use JsonMapper;

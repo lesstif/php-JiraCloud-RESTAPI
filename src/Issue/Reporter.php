@@ -8,29 +8,21 @@ class Reporter implements \JsonSerializable
 {
     use ClassSerialize;
 
-    /** @var string */
-    public $self;
+    public string $self;
 
-    /** @var string|null */
-    public $name;
+    public ?string $name;
 
-    /** @var string */
-    public $emailAddress;
+    public string $emailAddress;
 
-    /** @var array|null */
-    public $avatarUrls;
+    public array|null $avatarUrls;
 
-    /** @var string */
-    public $displayName;
+    public string $displayName;
 
-    /** @var string */
-    public $active;
+    public string $active;
 
-    /** @var bool want assignee to unassigned */
-    private $wantUnassigned = false;
+    private bool $wantUnassigned = false;
 
-    /** @var string */
-    public $accountId;
+    public string $accountId;
 
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

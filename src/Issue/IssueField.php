@@ -3,6 +3,8 @@
 namespace JiraCloud\Issue;
 
 use DateTimeInterface;
+use JiraCloud\ADF\ADFMarkType;
+use JiraCloud\ADF\AtlassianDocumentFormat;
 use JiraCloud\ClassSerialize;
 use JiraCloud\Project\Project;
 
@@ -24,7 +26,7 @@ class IssueField implements \JsonSerializable
 
     public ?DateTimeInterface $updated = null;
 
-    public Description $description;
+    public AtlassianDocumentFormat $description;
 
     public ?Priority $priority = null;
 
@@ -268,7 +270,7 @@ class IssueField implements \JsonSerializable
      * REST API V3 must use addDescriptionXXXX
      *
      */
-    public function setDescription(Description $description): static
+    public function setDescription(AtlassianDocumentFormat $description): static
     {
         if (!empty($description)) {
             $this->description = $description;
@@ -441,36 +443,18 @@ class IssueField implements \JsonSerializable
     }
 
     /**
-     * @param \JiraCloud\Issue\Description|null $description
+     * @param \JiraCloud\ADF\AtlassianDocumentFormat|null $description
      *
      * @return $this
      */
-    public function addDescriptionParagraph(?Description $description): static
+    public function addDescriptionParagraph(string $text, ADFMarkType $markType): static
     {
         if (empty($this->description)) {
-            $this->description = new Description();
+            $this->description = new AtlassianDocumentFormat();
         }
 
-        $this->description->addDescriptionContent('paragraph', $description);
+        $this->description->addParagraph('paragraph', $markType);
 
         return $this;
     }
-
-    /**
-     * @param int    $level       heading level
-     * @param string $description
-     *
-     * @return $this
-     */
-    public function addDescriptionHeading($level, string $description): static
-    {
-        if (empty($this->descriptionV3)) {
-            $this->description = new Description();
-        }
-
-        $this->description->addDescriptionContent('heading', $description, ['level' => $level]);
-
-        return $this;
-    }
-
 }

@@ -4,11 +4,9 @@ namespace JiraCloud\Issue;
 
 class VersionUnresolvedCount implements \JsonSerializable
 {
-    /** @var string */
-    public $self;
+    public string $self;
 
-    /** @var int */
-    public $issuesUnresolvedCount;
+    public int $issuesUnresolvedCount;
 
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
@@ -16,14 +14,14 @@ class VersionUnresolvedCount implements \JsonSerializable
         return array_filter(get_object_vars($this));
     }
 
-    public function setSelf($self)
+    public function setSelf(string $self) : static
     {
         $this->self = $self;
 
         return $this;
     }
 
-    public function setIssuesUnresolvedCount($issuesUnresolvedCount)
+    public function setIssuesUnresolvedCount(int $issuesUnresolvedCount) : static
     {
         $this->issuesUnresolvedCount = $issuesUnresolvedCount;
 

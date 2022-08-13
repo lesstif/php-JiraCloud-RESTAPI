@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace JiraCloud\ServiceDesk\Request;
 
 use InvalidArgumentException;
-use JiraCloud\Issue\Attachment;
+use JiraCloud\ADF\Attachment;
 use JiraCloud\Issue\Issue;
-use JiraCloud\Issue\Notify;
+use JiraCloud\ADF\Notify;
 use JiraCloud\Issue\PaginatedWorklog;
 use JiraCloud\Issue\Priority;
 use JiraCloud\Issue\RemoteIssueLink;

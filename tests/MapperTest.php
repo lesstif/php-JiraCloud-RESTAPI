@@ -103,7 +103,7 @@ class MapperTest extends TestCase
 
         $this->assertInstanceOf(\JiraCloud\Issue\IssueFieldV3::class, $field);
 
-        $this->assertInstanceOf(\JiraCloud\Issue\DescriptionV3::class, $field->description);
+        $this->assertInstanceOf(\JiraCloud\ADF\DescriptionV3::class, $field->description);
 
         $this->assertEquals(1, $field->description->version);
 

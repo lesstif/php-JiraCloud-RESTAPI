@@ -2,35 +2,29 @@
 
 namespace JiraCloud\Issue;
 
+use DateTimeInterface;
+
 class Comment implements \JsonSerializable
 {
     use VisibilityTrait;
 
-    /** @var string */
-    public $self;
+    public string $self;
 
-    /** @var string */
-    public $id;
+    public string $id;
 
-    /** @var \JiraCloud\Issue\Reporter */
-    public $author;
+    public Reporter $author;
 
-    /** @var string */
-    public $body;
+    public string $body;
 
-    /** @var \JiraCloud\Issue\Reporter */
-    public $updateAuthor;
+    public Reporter $updateAuthor;
 
-    /** @var \DateTimeInterface */
-    public $created;
+    public ?DateTimeInterface $created;
 
-    /** @var \DateTimeInterface */
-    public $updated;
+    public ?DateTimeInterface $updated;
 
-    /** @var \JiraCloud\Issue\Visibility */
-    public $visibility;
+    public Visibility $visibility;
 
-    public function setBody($body)
+    public function setBody(string $body) : static
     {
         $this->body = $body;
 
@@ -38,7 +32,7 @@ class Comment implements \JsonSerializable
     }
 
     #[\ReturnTypeWillChange]
-    public function jsonSerialize()
+    public function jsonSerialize() : array
     {
         return array_filter(get_object_vars($this));
     }

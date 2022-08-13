@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace JiraCloud\ServiceDesk\Attachment;
 
-use JiraCloud\Issue\Attachment;
+use JiraCloud\ADF\Attachment;
 use JiraCloud\JiraException;
 use JiraCloud\ServiceDesk\ServiceDeskClient;
 use JsonException;

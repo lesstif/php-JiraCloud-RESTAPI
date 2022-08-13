@@ -2,41 +2,28 @@
 
 namespace JiraCloud\Request;
 
+use DateTimeInterface;
+
 class RequestComment implements \JsonSerializable
 {
-    /** @var string */
-    public $id;
+    public string $id;
 
-    /** @var string */
-    public $body;
+    public string $body;
 
-    /** @var bool */
-    public $public;
+    public bool $public;
 
-    /** @var \JiraCloud\Request\Author */
-    public $author;
+    public Author $author;
 
-    /** @var \DateTimeInterface */
-    public $created;
+    public ?DateTimeInterface $created;
 
-    /**
-     * @param string $body
-     *
-     * @return $this
-     */
-    public function setBody(string $body)
+    public function setBody(string $body) : static
     {
         $this->body = $body;
 
         return $this;
     }
 
-    /**
-     * @param bool $public True for is public, false otherwise
-     *
-     * @return $this
-     */
-    public function setIsPublic(bool $public)
+    public function setIsPublic(bool $public) : static
     {
         $this->public = $public;
 
@@ -44,7 +31,7 @@ class RequestComment implements \JsonSerializable
     }
 
     #[\ReturnTypeWillChange]
-    public function jsonSerialize()
+    public function jsonSerialize() : array
     {
         return array_filter(get_object_vars($this), function ($var) {
             return $var !== null;
