@@ -1,6 +1,6 @@
 {
     "name": "lesstif/jira-cloud-restapi",
-    "description": "JIRA REST API Client for PHP Users.",
+    "description": "JIRA Cloud REST API",
     "type": "library",
     "keywords": ["jira", "rest", "jira-php", "jira-rest", "jira-cloud"],
     "require": {
