@@ -1,4 +1,4 @@
-# PHP JIRA Rest Client
+# PHP JIRA Cloud REST-API
 
 [![StyleCI](https://styleci.io/repos/524112147/shield?branch=main&style=flat)](https://styleci.io/repos/524112147)
 
