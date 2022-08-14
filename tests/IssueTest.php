@@ -5,6 +5,7 @@ namespace JiraCloud\Test;
 use DateInterval;
 use DateTime;
 use Exception;
+use JiraCloud\ADF\ADFListItemTypes;
 use JiraCloud\ADF\ADFMarkType;
 use JiraCloud\ADF\AtlassianDocumentFormat;
 use PHPUnit\Framework\TestCase;
@@ -50,17 +51,29 @@ class IssueTest extends TestCase
 
             $descV3 = new AtlassianDocumentFormat();
 
-            $descV3->addParagraph('We support markdown ');
-            $descV3->addParagraph('bold ', ADFMarkType::strong);
-            $descV3->addParagraph('italic ', ADFMarkType::em);
+            $descV3->appendParagraphContent('We support markdown ');
+            $descV3->appendParagraphContent('bold ', ADFMarkType::strong);
+            $descV3->appendParagraphContent('italic ', ADFMarkType::em);
+
+            $descV3->createHeadingContent('subtitle h2 ', 2);
+
+            $descV3->createParagraphContent('Insert some ');
+            $descV3->appendParagraphContent('text ', ADFMarkType::strike);
+
+            $descV3->appendParagraphLink("search in the here", "https://google.com");
+
+            $descV3->createHeadingContent('subtitle h3 ', 3);
+
+            $descV3->createListItem('ordered item 1', ADFListItemTypes::ORDERED_LIST);
+            $descV3->appendListItem('ordered item 2', ADFListItemTypes::ORDERED_LIST);
 
             $issueField->setProjectKey('TEST')
                         ->setSummary("something's wrong")
                         ->setAssigneeNameAsString('lesstif')
-                        ->setPriorityNameAsString('Critical')
-                        ->setIssueTypeAsString('Bug')
+                        ->setPriorityNameAsString('Highest')
+                        ->setIssueTypeAsString('Story')
                         ->setDescription($descV3)
-                        ->addVersionAsArray(['1.0.1', '1.0.3'])
+//                        ->addVersionAsArray(['1.0.1', '1.0.3'])
                         //->addComponentsAsArray(['Component-1', 'Component-2'])
                         ->addComponentAsString('Component-1')
 //                        ->setDueDateAsDateTime(
@@ -120,31 +133,33 @@ class IssueTest extends TestCase
         try {
             $issueField = new IssueField(true);
 
-            $paraDesc =<<< DESC
-# heading 1
-
-This is a *shorthand* for a **set** operation on the summary field
-
-## heading 2
-
-```sh
-ls -l 
-```
-
-## other h2
-- sub order list 1
-- sub order list 1 
-DESC;
             $descV3 = new AtlassianDocumentFormat();
-            $descV3->addParagraph('text', ADFMarkType::em);
+
+            $descV3->createHeadingContent('title h1 ', 1);
+
+            $descV3->appendParagraphContent('We support markdown ');
+            $descV3->appendParagraphContent('bold ', ADFMarkType::strong);
+            $descV3->appendParagraphContent('italic ', ADFMarkType::em);
+
+            $descV3->createHeadingContent('subtitle h2 ', 2);
+
+            $descV3->createParagraphContent('Insert some ');
+            $descV3->appendParagraphContent('text ', ADFMarkType::strike);
+
+            $descV3->appendParagraphLink("search in the here", "https://google.com");
+
+            $descV3->createHeadingContent('subtitle h3 ', 3);
+
+            $descV3->createListItem('item 1', ADFListItemTypes::ORDERED_LIST);
+            $descV3->appendListItem('item 2', ADFListItemTypes::ORDERED_LIST);
 
             $issueField->setAssigneeNameAsString('lesstif')
                 //->setPriorityNameAsString('Major')
-                ->setIssueTypeAsString('Task')
+                ->setIssueTypeAsString('Story')
                 ->addLabelAsString('test-label-first')
                 ->addLabelAsString('test-label-second')
-                ->addVersionAsString('1.0.1')
-                ->addVersionAsArray(['1.0.2'])
+//                ->addVersionAsString('1.0.1')
+//                ->addVersionAsArray(['1.0.2'])
                 ->setDescription($descV3);
 
             $issueService = new IssueService();
@@ -169,15 +184,15 @@ DESC;
             $issueField = new IssueField();
 
             $descV3 = new AtlassianDocumentFormat();
-            $descV3->addParagraph('Subtask - Full description for issue');
+            $descV3->appendParagraphContent('Subtask - Full description for issue');
 
             $issueField->setProjectKey('TEST')
                 ->setSummary("Subtask - something's wrong")
                 ->setAssigneeNameAsString('lesstif')
                 //->setPriorityNameAsString('Critical')
                 ->setDescription($descV3)
-                ->addVersionAsString('1.0.1')
-                ->addVersionAsString('1.0.3')
+//                ->addVersionAsString('1.0.1')
+//                ->addVersionAsString('1.0.3')
                 ->setIssueTypeAsString('Sub-task')
                 ->setParentKeyOrId($issueKey);
 

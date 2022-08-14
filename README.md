@@ -591,6 +591,7 @@ use JiraCloud\Issue\IssueService;
 use JiraCloud\Issue\IssueField;
 use JiraCloud\JiraException;
 use JiraCloud\ADF\ADFMarkType;
+use JiraCloud\ADF\ADFListItemTypes;
 use JiraCloud\ADF\AtlassianDocumentFormat;
 
 try {
@@ -598,9 +599,25 @@ try {
     
     $descV3 = new AtlassianDocumentFormat();
 
-    $descV3->addParagraph('We support markdown ');
-    $descV3->addParagraph('bold ', ADFMarkType::strong);
-    $descV3->addParagraph('italic ', ADFMarkType::em);
+    $descV3 = new AtlassianDocumentFormat();
+
+    $descV3->createHeadingContent('title h1 ', 1);
+
+    $descV3->appendParagraphContent('We support markdown ');
+    $descV3->appendParagraphContent('bold ', ADFMarkType::strong);
+    $descV3->appendParagraphContent('italic ', ADFMarkType::em);
+
+    $descV3->createHeadingContent('subtitle h2 ', 2);
+
+    $descV3->createParagraphContent('Insert some ');
+    $descV3->appendParagraphContent('text ', ADFMarkType::strike);
+
+    $descV3->appendParagraphLink("search in the here", "https://google.com");
+
+    $descV3->createHeadingContent('subtitle h3 ', 3);
+
+    $descV3->createListItem('ordered item 1', ADFListItemTypes::ORDERED_LIST);
+    $descV3->appendListItem('ordered item 2', ADFListItemTypes::ORDERED_LIST);            
 
     $issueField->setProjectKey('TEST')
                 ->setSummary('something's wrong')
