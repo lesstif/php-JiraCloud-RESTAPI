@@ -22,7 +22,7 @@ If you want to interact with Jira On-premise(Server or Data Center) instead of C
 
 2. Next, run the Composer command to install the latest version of php jira rest client.
    ``` sh
-   php composer.phar require lesstif/php-jira-rest-client
+   php composer.phar require lesstif/jira-cloud-restapi:^1.0
    ```
     or add the following to your composer.json file.
    ```json
