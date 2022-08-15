@@ -21,7 +21,7 @@ enum ADFListItemTypes
     {
         return match ($this) {
             ADFListItemTypes::ORDERED_LIST      => 'orderedList',
-            ADFListItemTypes::BULLET_LIST    => 'bulletList',
+            ADFListItemTypes::BULLET_LIST       => 'bulletList',
         };
     }
 }

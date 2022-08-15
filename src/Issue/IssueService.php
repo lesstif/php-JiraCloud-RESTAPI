@@ -354,7 +354,7 @@ class IssueService extends \JiraCloud\JiraClient
      * Change a issue assignee.
      *
      * @param string|int  $issueIdOrKey
-     * @param string|null $accountId Assigns accountId
+     * @param string|null $accountId    Assigns accountId
      *                                  If the assigneeName is "-1" automatic assignee is used.
      *                                  A null name will remove the assignee.
      *

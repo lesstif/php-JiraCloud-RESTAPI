@@ -18,7 +18,7 @@ class AtlassianDocumentFormat implements \JsonSerializable
     }
 
     #[\ReturnTypeWillChange]
-    public function jsonSerialize() : array
+    public function jsonSerialize(): array
     {
         return $this->document->jsonSerialize();
     }
