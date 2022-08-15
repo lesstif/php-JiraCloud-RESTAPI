@@ -739,9 +739,12 @@ try {
 
     $issueFieldTwo = new IssueField();
 
-    $desc2 = new AtlassianDocumentFormat();
-
-    $desc2->addParagraph('Full description for second issue ');
+    $doc2 = (new Document())        
+        ->paragraph()           // paragraph, can have child blocks (needs to be closed with `->end()`)
+            ->text('Full description for second issue  ')    // simple unstyled text            
+        ->end()                 // closes `paragraph` node
+	
+    $desc2 = new AtlassianDocumentFormat(doc2);
     
     $issueFieldTwo->setProjectKey('TEST')
                 ->setSummary('something else is wrong')
@@ -786,9 +789,11 @@ use JiraCloud\ADF\AtlassianDocumentFormat;
 try {
     $issueField = new IssueField();
 
-    $descV3 = new AtlassianDocumentFormat();
-
-    $descV3->addParagraph('Full description for issue ');
+    $doc = (new Document())        
+        ->paragraph()           // paragraph, can have child blocks (needs to be closed with `->end()`)
+            ->text('Full description for sub-task issue  ')    // simple unstyled text            
+        ->end()                 // closes `paragraph` node
+    $descV3 = new AtlassianDocumentFormat(doc);
     
     $issueField->setProjectKey('TEST')
                 ->setSummary('something's wrong')
@@ -939,8 +944,13 @@ $issueKey = 'TEST-879';
 try {			
     $issueField = new IssueField(true);
 
-    $descV3 = new AtlassianDocumentFormat();
-    $descV3->addParagraph('This is a shorthand for a set operation on the summary field');
+    $doc = (new Document())        
+        ->paragraph()           // paragraph, can have child blocks (needs to be closed with `->end()`)
+            ->text('This is a shorthand for a set operation on the summary field ')    // simple unstyled text            
+        ->end()                 // closes `paragraph` node
+     ;
+    
+    $descV3 = new AtlassianDocumentFormat(doc);
             
     $issueField->setAssigneeNameAsString('admin')
                 ->setPriorityNameAsString('Blocker')
