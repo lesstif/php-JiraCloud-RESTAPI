@@ -725,9 +725,11 @@ use JiraCloud\ADF\AtlassianDocumentFormat;
 try {
     $issueFieldOne = new IssueField();
 
-    $descV3 = new AtlassianDocumentFormat();
-
-    $descV3->addParagraph('Full description for issue ');
+    $doc = (new Document())        
+        ->paragraph()           // paragraph, can have child blocks (needs to be closed with `->end()`)
+            ->text('Full description for issue  ')    // simple unstyled text            
+        ->end()                 // closes `paragraph` node
+    $descV3 = new AtlassianDocumentFormat($doc);
     
     $issueFieldOne->setProjectKey('TEST')
                 ->setSummary('something's wrong')
