@@ -10,6 +10,7 @@ If you want to interact with Jira On-premise(Server or Data Center) instead of C
 - PHP >= 8.1
 - [php JsonMapper](https://github.com/netresearch/jsonmapper)
 - [phpdotenv](https://github.com/vlucas/phpdotenv)
+- [adf-tools](https://github.com/DamienHarper/adf-tools)
 
 # Installation
 
@@ -582,6 +583,11 @@ You can access the custom field associated with issue through *$issue->fields->c
 
 #### Create Issue
 
+All Jira v3 API users must use the [Atlassian Document Format (ADF)](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/) for comment and description fields.
+It's represents rich text stored in Atlassian products, so very complicated.
+
+For that reason, I used the [amazing adf-tools](https://github.com/DamienHarper/adf-tools) create by [DamienHarper](https://github.com/DamienHarper).
+
 [See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-rest-api-3-issue-post)
 ```php
 <?php
@@ -590,41 +596,54 @@ require 'vendor/autoload.php';
 use JiraCloud\Issue\IssueService;
 use JiraCloud\Issue\IssueField;
 use JiraCloud\JiraException;
-use JiraCloud\ADF\ADFMarkType;
-use JiraCloud\ADF\ADFListItemTypes;
+use DH\Adf\Node\Block\Document;
 use JiraCloud\ADF\AtlassianDocumentFormat;
 
 try {
     $issueField = new IssueField();
     
-    $descV3 = new AtlassianDocumentFormat();
+    $code =<<<CODE
+<?php
+\$i = 123;
+\$a = ['hello', 'world', ];
+var_dump([\$i => \$a]);
+CODE;
 
-    $descV3 = new AtlassianDocumentFormat();
+    $doc = (new Document())
+        ->heading(1)            // header level 1, can have child blocks (needs to be closed with `->end()`)
+          ->text('h1')        // simple unstyled text, cannot have child blocks (no `->end()` needed)
+        ->end()                 // closes `heading` node
+        ->paragraph()           // paragraph, can have child blocks (needs to be closed with `->end()`)
+            ->text('we’re ')    // simple unstyled text
+            ->strong('support') // text node embedding a `strong` mark
+            ->text(' ')         // simple unstyled text
+            ->em('markdown')    // text node embedding a `em` mark
+            ->text('. ')        // simple unstyled text
+            ->underline('like') // text node embedding a `underline` mark
+            ->text(' this.')    // simple unstyled text
+        ->end()                 // closes `paragraph` node
+        ->heading(2)            // header level 2
+            ->text('h2')        // simple unstyled text
+        ->end()                 // closes `heading` node
+        ->heading(3)
+            ->text('heading 3')
+        ->end()
+        ->paragraph()           // paragraph
+            ->text('also support heading.') // simple unstyled text
+        ->end()                 // closes `paragraph` node
+        ->codeblock('php')
+           ->text($code)
+        ->end()
+    ;
 
-    $descV3->createHeadingContent('title h1 ', 1);
-
-    $descV3->appendParagraphContent('We support markdown ');
-    $descV3->appendParagraphContent('bold ', ADFMarkType::strong);
-    $descV3->appendParagraphContent('italic ', ADFMarkType::em);
-
-    $descV3->createHeadingContent('subtitle h2 ', 2);
-
-    $descV3->createParagraphContent('Insert some ');
-    $descV3->appendParagraphContent('text ', ADFMarkType::strike);
-
-    $descV3->appendParagraphLink("search in the here", "https://google.com");
-
-    $descV3->createHeadingContent('subtitle h3 ', 3);
-
-    $descV3->createListItem('ordered item 1', ADFListItemTypes::ORDERED_LIST);
-    $descV3->appendListItem('ordered item 2', ADFListItemTypes::ORDERED_LIST);            
+    $descV3 = new AtlassianDocumentFormat($doc);         
 
     $issueField->setProjectKey('TEST')
                 ->setSummary('something's wrong')
                 ->setAssigneeNameAsString('lesstif')
-                ->setPriorityNameAsString('Critical')
-                ->setIssueTypeAsString('Bug')
-                ->setDescription('Full description for issue')
+                ->setPriorityNameAsString('Highest')
+                ->setIssueTypeAsString('Story')
+                ->setDescription($descV3)
                 ->addVersionAsString('1.0.1')
                 ->addVersionAsArray(['1.0.2', '1.0.3'])
                 ->addComponentsAsArray(['Component-1', 'Component-2'])
@@ -654,16 +673,19 @@ If you want to set custom field, you can call the *addCustomField* function with
 try {
     $issueField = new IssueField();
 
-    $descV3 = new AtlassianDocumentFormat();
-
-    $descV3->addParagraph('Full description for issue ');
+    $doc = (new Document())        
+        ->paragraph()           // paragraph, can have child blocks (needs to be closed with `->end()`)
+            ->text('Full description for issue  ')    // simple unstyled text            
+        ->end()                 // closes `paragraph` node
+        
+    $descV3 = new AtlassianDocumentFormat($doc);
     
     $issueField->setProjectKey('TEST')
                 ->setSummary('something's wrong')
                 ->setAssigneeNameAsString('lesstif')
                 ->setPriorityNameAsString('Critical')
                 ->setIssueTypeAsString('Bug')
-                ->setDescription('Full description for issue')
+                ->setDescription($descV3)
                 ->addVersionAsString('1.0.1')
                 ->addVersionAsString('1.0.3')
                 ->addCustomField('customfield_10100', 'text area body text') // String type custom field
@@ -1099,7 +1121,9 @@ try {
 
 #### Add comment
 
-[See Jira API reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/issue-addComment)
+Not working at this time.!
+
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-comments/#api-rest-api-3-issue-issueidorkey-comment-post)
 
 ```php
 <?php

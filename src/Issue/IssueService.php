@@ -222,7 +222,7 @@ class IssueService extends \JiraCloud\JiraClient
      *
      * @return Comment Comment class
      */
-    public function addComment($issueIdOrKey, $comment): Comment
+    public function addComment(string $issueIdOrKey, Comment $comment): Comment
     {
         $this->log->info("addComment=\n");
 
@@ -354,7 +354,7 @@ class IssueService extends \JiraCloud\JiraClient
      * Change a issue assignee.
      *
      * @param string|int  $issueIdOrKey
-     * @param string|null $assigneeName Assigns an issue to a user.
+     * @param string|null $accountId Assigns accountId
      *                                  If the assigneeName is "-1" automatic assignee is used.
      *                                  A null name will remove the assignee.
      *
@@ -362,17 +362,17 @@ class IssueService extends \JiraCloud\JiraClient
      *
      * @return string|bool
      */
-    public function changeAssignee($issueIdOrKey, $assigneeName): string|bool
+    public function changeAssignee($issueIdOrKey, $accountId): string|bool
     {
         $this->log->info("changeAssignee=\n");
 
-        $ar = ['name' => $assigneeName];
+        $ar = ['accountId' => $accountId];
 
         $data = json_encode($ar);
 
         $ret = $this->exec($this->uri."/$issueIdOrKey/assignee", $data, 'PUT');
 
-        $this->log->info('change assignee of '.$issueIdOrKey.' to '.$assigneeName.' result='.var_export($ret, true));
+        $this->log->info('change assignee of '.$issueIdOrKey.' to '.$accountId.' result='.var_export($ret, true));
 
         return $ret;
     }

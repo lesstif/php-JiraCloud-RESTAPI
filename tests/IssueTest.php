@@ -4,12 +4,10 @@ namespace JiraCloud\Test;
 
 use DateInterval;
 use DateTime;
+use DH\Adf\Node\Block\Document;
 use Exception;
-use JiraCloud\ADF\ADFListItemTypes;
-use JiraCloud\ADF\ADFMarkType;
 use JiraCloud\ADF\AtlassianDocumentFormat;
 use PHPUnit\Framework\TestCase;
-use JiraCloud\Dumper;
 use JiraCloud\Issue\Comment;
 use JiraCloud\Issue\IssueField;
 use JiraCloud\Issue\IssueService;
@@ -49,23 +47,41 @@ class IssueTest extends TestCase
 
             $due = (new DateTime('NOW'))->add(DateInterval::createFromDateString('1 month 5 day'));
 
-            $descV3 = new AtlassianDocumentFormat();
+            $code =<<<CODE
+<?php
+\$i = 123;
+\$a = ['hello', 'world', ];
+var_dump([\$i => \$a]);
+CODE;
 
-            $descV3->appendParagraphContent('We support markdown ');
-            $descV3->appendParagraphContent('bold ', ADFMarkType::strong);
-            $descV3->appendParagraphContent('italic ', ADFMarkType::em);
+            $doc = (new Document())
+                ->heading(1)            // header level 1, can have child blocks (needs to be closed with `->end()`)
+                  ->text('h1')        // simple unstyled text, cannot have child blocks (no `->end()` needed)
+                ->end()                 // closes `heading` node
+                ->paragraph()           // paragraph, can have child blocks (needs to be closed with `->end()`)
+                    ->text('we’re ')    // simple unstyled text
+                    ->strong('support') // text node embedding a `strong` mark
+                    ->text(' ')         // simple unstyled text
+                    ->em('markdown')    // text node embedding a `em` mark
+                    ->text('. ')        // simple unstyled text
+                    ->underline('like') // text node embedding a `underline` mark
+                    ->text(' this.')    // simple unstyled text
+                ->end()                 // closes `paragraph` node
+                ->heading(2)            // header level 2
+                    ->text('h2')        // simple unstyled text
+                ->end()                 // closes `heading` node
+                ->heading(3)
+                    ->text('heading 3')
+                ->end()
+                ->paragraph()           // paragraph
+                    ->text('also support heading.') // simple unstyled text
+                ->end()                 // closes `paragraph` node
+                ->codeblock('php')
+                   ->text($code)
+                ->end()
+            ;
 
-            $descV3->createHeadingContent('subtitle h2 ', 2);
-
-            $descV3->createParagraphContent('Insert some ');
-            $descV3->appendParagraphContent('text ', ADFMarkType::strike);
-
-            $descV3->appendParagraphLink("search in the here", "https://google.com");
-
-            $descV3->createHeadingContent('subtitle h3 ', 3);
-
-            $descV3->createListItem('ordered item 1', ADFListItemTypes::ORDERED_LIST);
-            $descV3->appendListItem('ordered item 2', ADFListItemTypes::ORDERED_LIST);
+            $descV3 = new AtlassianDocumentFormat($doc);
 
             $issueField->setProjectKey('TEST')
                         ->setSummary("something's wrong")
@@ -132,26 +148,22 @@ class IssueTest extends TestCase
         //$this->markTestIncomplete();
         try {
             $issueField = new IssueField(true);
+            $doc = (new Document())
+                ->heading(1)            // header level 1, can have child blocks (needs to be closed with `->end()`)
+                    ->text('title 1')        // simple unstyled text, cannot have child blocks (no `->end()` needed)
+                ->end()                 // closes `heading` node
+                ->paragraph()           // paragraph, can have child blocks (needs to be closed with `->end()`)
+                    ->text('It\'s updated via REST API')    // simple unstyled text
+                    ->strong('support') // text node embedding a `strong` mark
+                    ->text(' ')         // simple unstyled text
+                    ->em('markdown')    // text node embedding a `em` mark
+                    ->text('. ')        // simple unstyled text
+                    ->underline('like') // text node embedding a `underline` mark
+                    ->text(' this.')    // simple unstyled text
+                ->end()                 // closes `paragraph` node
+            ;
 
-            $descV3 = new AtlassianDocumentFormat();
-
-            $descV3->createHeadingContent('title h1 ', 1);
-
-            $descV3->appendParagraphContent('We support markdown ');
-            $descV3->appendParagraphContent('bold ', ADFMarkType::strong);
-            $descV3->appendParagraphContent('italic ', ADFMarkType::em);
-
-            $descV3->createHeadingContent('subtitle h2 ', 2);
-
-            $descV3->createParagraphContent('Insert some ');
-            $descV3->appendParagraphContent('text ', ADFMarkType::strike);
-
-            $descV3->appendParagraphLink("search in the here", "https://google.com");
-
-            $descV3->createHeadingContent('subtitle h3 ', 3);
-
-            $descV3->createListItem('item 1', ADFListItemTypes::ORDERED_LIST);
-            $descV3->appendListItem('item 2', ADFListItemTypes::ORDERED_LIST);
+            $descV3 = new AtlassianDocumentFormat($doc);
 
             $issueField->setAssigneeNameAsString('lesstif')
                 //->setPriorityNameAsString('Major')
@@ -183,8 +195,14 @@ class IssueTest extends TestCase
         try {
             $issueField = new IssueField();
 
-            $descV3 = new AtlassianDocumentFormat();
-            $descV3->appendParagraphContent('Subtask - Full description for issue');
+            $doc = (new Document())
+                ->paragraph()           // paragraph, can have child blocks (needs to be closed with `->end()`)
+                    ->strong('Subtask') // text node embedding a `strong` mark
+                    ->text('- Full description for issue ')    // simple unstyled text
+                ->end()                 // closes `paragraph` node
+            ;
+
+            $descV3 = new AtlassianDocumentFormat($doc);
 
             $issueField->setProjectKey('TEST')
                 ->setSummary("Subtask - something's wrong")
@@ -269,7 +287,7 @@ class IssueTest extends TestCase
         try {
             $issueService = new IssueService();
 
-            $ret = $issueService->changeAssignee($subTaskIssueKey, 'lesstif');
+            $ret = $issueService->changeAssignee($subTaskIssueKey, '557058%3A5927b3d9-d258-473f-af86-16d3214d8496');
 
             print_r($ret);
 

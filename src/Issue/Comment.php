@@ -22,7 +22,7 @@ class Comment implements \JsonSerializable
 
     public ?DateTimeInterface $updated;
 
-    public Visibility $visibility;
+    public ?Visibility $visibility = null;
 
     public function setBody(string $body): static
     {
