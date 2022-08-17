@@ -96,8 +96,10 @@ class FieldService extends \JiraCloud\JiraClient
 
     /**
      * @param int $fieldId The custom field Id
-     * @return string|bool
+     *
      * @throws \JiraCloud\JiraException
+     *
+     * @return string|bool
      */
     public function getCustomFieldContexts(int $fieldId)
     {
@@ -110,12 +112,13 @@ class FieldService extends \JiraCloud\JiraClient
     }
 
     /**
-     * Get a custom fields options
+     * Get a custom fields options.
      *
-     * @param int $fieldId The custom field Id
+     * @param int $fieldId   The custom field Id
      * @param int $contextId Context ID related to the custom field
      *
      * @see https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options/#api-rest-api-3-field-fieldid-context-contextid-option-get
+     *
      * @throws \JiraCloud\JiraException
      *
      * @return string
@@ -131,13 +134,14 @@ class FieldService extends \JiraCloud\JiraClient
     }
 
     /**
-     * Create custom field options
+     * Create custom field options.
      *
-     * @param int $fieldId The custom field Id to add options to
-     * @param int $contextId Context ID related to the custom field
-     * @param array $options The options array
+     * @param int   $fieldId   The custom field Id to add options to
+     * @param int   $contextId Context ID related to the custom field
+     * @param array $options   The options array
      *
      * @see https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options/#api-rest-api-3-field-fieldid-context-contextid-option-post
+     *
      * @throws \JiraCloud\JiraException
      *
      * @return string
@@ -153,13 +157,14 @@ class FieldService extends \JiraCloud\JiraClient
     }
 
     /**
-     * Update a custom field options
+     * Update a custom field options.
      *
-     * @param int $fieldId The custom field Id
-     * @param int $contextId Context ID related to the custom field
-     * @param array $options The new options array
+     * @param int   $fieldId   The custom field Id
+     * @param int   $contextId Context ID related to the custom field
+     * @param array $options   The new options array
      *
      * @see https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options/#api-rest-api-3-field-fieldid-context-contextid-option-put
+     *
      * @throws \JiraCloud\JiraException
      *
      * @return string
@@ -173,5 +178,4 @@ class FieldService extends \JiraCloud\JiraClient
 
         return $ret;
     }
-
 }
