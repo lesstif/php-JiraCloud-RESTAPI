@@ -114,8 +114,8 @@ class FieldService extends \JiraCloud\JiraClient
     /**
      * Get a custom fields options.
      *
-     * @param int $fieldId   The custom field Id
-     * @param int $contextId Context ID related to the custom field
+     * @param int   $fieldId    The custom field Id
+     * @param int   $contextId  Context ID related to the custom field
      * @param array $paramArray Query parameters like 'startAt' and 'maxResults'
      *
      * @see https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options/#api-rest-api-3-field-fieldid-context-contextid-option-get
