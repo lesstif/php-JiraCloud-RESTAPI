@@ -2692,6 +2692,4 @@ try {
 Apache V2 License
 
 # JIRA Rest API Documents
-* 6.4 - https://docs.atlassian.com/jira/REST/6.4/
-* Jira Server latest - https://docs.atlassian.com/jira/REST/server/
-* Jira Cloud latest - https://docs.atlassian.com/jira/REST/latest/
+* https://developer.atlassian.com/cloud/jira/platform/rest/v3/

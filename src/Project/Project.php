@@ -106,7 +106,7 @@ class Project implements \JsonSerializable
             unset($params['leadName']);
         }
         if ($this->versions === null or count($this->versions) === 0) {
-            unset($params['version']);
+            unset($params['versions']);
         }
 
         return $params;

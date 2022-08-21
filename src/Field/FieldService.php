@@ -93,4 +93,90 @@ class FieldService extends \JiraCloud\JiraClient
 
         return $cf;
     }
+
+    /**
+     * @param int $fieldId The custom field Id
+     *
+     * @throws \JiraCloud\JiraException
+     *
+     * @return string|bool
+     */
+    public function getCustomFieldContexts(int $fieldId)
+    {
+        $url = sprintf('%s/customfield_%s/contexts', $this->uri, $fieldId);
+        $ret = $this->exec($url);
+
+        $this->log->debug("get custom Field Contexts=\n".$ret);
+
+        return $ret;
+    }
+
+    /**
+     * Get a custom fields options.
+     *
+     * @param int   $fieldId    The custom field Id
+     * @param int   $contextId  Context ID related to the custom field
+     * @param array $paramArray Query parameters like 'startAt' and 'maxResults'
+     *
+     * @see https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options/#api-rest-api-3-field-fieldid-context-contextid-option-get
+     *
+     * @throws \JiraCloud\JiraException
+     *
+     * @return string
+     */
+    public function getCustomFieldOptions(int $fieldId, int $contextId, array $paramArray = [])
+    {
+        $url = sprintf('%s/customfield_%s/context/%s/option%s', $this->uri, $fieldId, $contextId, $this->toHttpQueryParameter($paramArray));
+        $ret = $this->exec($url);
+
+        $this->log->debug("get custom Field Options=\n".$ret);
+
+        return $ret;
+    }
+
+    /**
+     * Create custom field options.
+     *
+     * @param int   $fieldId   The custom field Id to add options to
+     * @param int   $contextId Context ID related to the custom field
+     * @param array $options   The options array
+     *
+     * @see https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options/#api-rest-api-3-field-fieldid-context-contextid-option-post
+     *
+     * @throws \JiraCloud\JiraException
+     *
+     * @return string
+     */
+    public function createCustomFieldOptions(int $fieldId, int $contextId, array $options = [])
+    {
+        $url = sprintf('%s/customfield_%s/context/%s/option', $this->uri, $fieldId, $contextId);
+        $ret = $this->exec($url, json_encode($options), 'POST');
+
+        $this->log->debug("create custom Field Options=\n".$ret);
+
+        return $ret;
+    }
+
+    /**
+     * Update a custom field options.
+     *
+     * @param int   $fieldId   The custom field Id
+     * @param int   $contextId Context ID related to the custom field
+     * @param array $options   The new options array
+     *
+     * @see https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-custom-field-options/#api-rest-api-3-field-fieldid-context-contextid-option-put
+     *
+     * @throws \JiraCloud\JiraException
+     *
+     * @return string
+     */
+    public function updateCustomFieldOptions(int $fieldId, int $contextId, array $options = [])
+    {
+        $url = sprintf('%s/customfield_%s/context/%s/option', $this->uri, $fieldId, $contextId);
+        $ret = $this->exec($url, json_encode($options), 'PUT');
+
+        $this->log->debug("update custom Field Options=\n".$ret);
+
+        return $ret;
+    }
 }
