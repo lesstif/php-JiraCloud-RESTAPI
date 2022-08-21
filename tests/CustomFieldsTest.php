@@ -10,15 +10,18 @@ use JiraCloud\JiraException;
 
 class CustomFieldsTest extends TestCase
 {
-    public function testGetFields()
+    /**
+     * @test
+     * @return array
+     */
+    public function get_all_custom_fields() : array
     {
         try {
             $fieldService = new FieldService();
 
             $ret = $fieldService->getAllFields(Field::CUSTOM);
-            Dumper::dump($ret);
 
-            file_put_contents("custom-field.json", json_encode($ret, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT));
+            //file_put_contents("custom-field.json", json_encode($ret, JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT));
 
             $ids = array_map(function($cf) {
                 // extract custom field id
@@ -26,19 +29,22 @@ class CustomFieldsTest extends TestCase
                     return $matches[0];
                 }, $ret);
 
-            return $ids;
+            $this->assertNotNull($ids);
+            $this->assertIsArray($ids);
 
+            return $ids;
         } catch (JiraException $e) {
-            $this->assertTrue(false, 'testSearch Failed : '.$e->getMessage());
+            $this->fail('get_all_custom_fields Failed : '.$e->getMessage());
         }
     }
 
     /**
-     * @depends testGetFields
+     * @test
+     * @depends get_all_custom_fields
      *
-     * @param $ids
+     * @param array $ids
      */
-    public function testGetFieldOptions($ids)
+    public function get_customer_field_options(array $ids) :void
     {
         try {
             $fieldService = new FieldService();
@@ -46,15 +52,22 @@ class CustomFieldsTest extends TestCase
             foreach ($ids as $id) {
                 try {
                     $ret = $fieldService->getCustomFieldOption($id);
-                    Dumper::dump($ret);
+
+                    $this->assertNotNull($ret->self);
                 }catch (JiraException $e) {}
             }
         } catch (JiraException $e) {
-            $this->assertTrue(false, 'testGetFieldOptions Failed : '.$e->getMessage());
+            $this->fail('get_customer_field_options Failed : '.$e->getMessage());
         }
     }
 
-    public function testCreateFields()
+    /**
+     * @test
+     * @depends get_customer_field_options
+     * @return string
+     * @throws \JsonMapper_Exception
+     */
+    public function create_customer_field() : string
     {
         //$this->markTestSkipped();
         try {
@@ -69,9 +82,29 @@ class CustomFieldsTest extends TestCase
             $fieldService = new FieldService();
 
             $ret = $fieldService->create($field);
-            Dumper::dump($ret);
+
+            return $ret->id;
         } catch (JiraException $e) {
-            $this->assertTrue(false, 'Field Create Failed : '.$e->getMessage());
+            $this->fail('create_customer_field Failed : '.$e->getMessage());
+        }
+    }
+
+    /**
+     * @test
+     * @depends create_customer_field
+     * @param string $id
+     * @return \stdClass
+     */
+    public function get_created_customer_field_options(string $id) :\stdClass
+    {
+        try {
+            $fieldService = new FieldService();
+
+            $ret = $fieldService->getCustomFieldOption($id);
+
+            return $ret;
+        } catch (JiraException $e) {
+            $this->fail('get_created_customer_field_options Failed : '.$e->getMessage());
         }
     }
 }
