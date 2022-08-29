@@ -1,6 +1,14 @@
 # PHP JIRA Cloud REST-API
 
 [![StyleCI](https://styleci.io/repos/524112147/shield?branch=main&style=flat)](https://styleci.io/repos/524112147)
+[![Latest Stable Version](http://poser.pugx.org/lesstif/jira-cloud-restapi/v)](https://packagist.org/packages/lesstif/jira-cloud-restapi)
+[![Latest Unstable Version](http://poser.pugx.org/lesstif/jira-cloud-restapi/v/unstable)](https://packagist.org/packages/lesstif/jira-cloud-restapi)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/lesstif/php-JiraCloud-RESTAPI/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/lesstif/php-JiraCloud-RESTAPI/badges/quality-score.png?b=main)
+[![Total Downloads](http://poser.pugx.org/lesstif/jira-cloud-restapi/downloads)](https://packagist.org/packages/lesstif/jira-cloud-restapi)
+[![Monthly Downloads](http://poser.pugx.org/lesstif/jira-cloud-restapi/d/monthly)](https://packagist.org/packages/lesstif/jira-cloud-restapi)
+[![Daily Downloads](http://poser.pugx.org/lesstif/jira-cloud-restapi/d/daily)](https://packagist.org/packages/lesstif/jira-cloud-restapi) 
+[![License](http://poser.pugx.org/lesstif/jira-cloud-restapi/license)](https://packagist.org/packages/lesstif/jira-cloud-restapi) 
+[![PHP Version Require](http://poser.pugx.org/lesstif/jira-cloud-restapi/require/php)](https://packagist.org/packages/lesstif/jira-cloud-restapi)
 
 # Cloud only
 If you want to interact with Jira On-premise(Server or Data Center) instead of Cloud, [use this repository](https://github.com/lesstif/php-jira-rest-client).
