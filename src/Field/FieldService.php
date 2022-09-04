@@ -59,7 +59,7 @@ class FieldService extends \JiraCloud\JiraClient
      *
      * @return \stdClass
      */
-    public function getCustomFieldOption($id) : \stdClass
+    public function getCustomFieldOption($id): \stdClass
     {
         $ret = $this->exec('/customFieldOption/'.$id);
 
