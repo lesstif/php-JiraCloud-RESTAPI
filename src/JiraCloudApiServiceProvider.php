@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use JiraCloud\Configuration\ConfigurationInterface;
 use JiraCloud\Configuration\DotEnvConfiguration;
 
-class JiraCloudServiceProvider extends ServiceProvider
+class JiraCloudApiServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
