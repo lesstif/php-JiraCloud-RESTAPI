@@ -11,7 +11,7 @@ class Version implements \JsonSerializable
     public string $id;
 
     /** Version name: ex: 4.2.3 */
-    public string $name;
+    public ?string $name;
 
     /** version description: ex; improvement performance */
     public ?string $description;
@@ -20,13 +20,13 @@ class Version implements \JsonSerializable
 
     public bool $released;
 
-    public ?DateTimeInterface $releaseDate;
+    public DateTimeInterface|string $releaseDate;
 
     public bool $overdue;
 
     public ?string $userReleaseDate;
 
-    public int $projectId;
+    public string $projectId;
 
     public function __construct($name = null)
     {
@@ -39,7 +39,7 @@ class Version implements \JsonSerializable
         return array_filter(get_object_vars($this));
     }
 
-    public function setProjectId(int $id): static
+    public function setProjectId(string $id): static
     {
         $this->projectId = $id;
 

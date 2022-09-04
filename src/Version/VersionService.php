@@ -15,18 +15,14 @@ class VersionService extends \JiraCloud\JiraClient
     /**
      * Function to create a new project version.
      *
-     * @param Version|array $version
-     *
-     * @throws \JiraCloud\JiraException
-     * @throws \JsonMapper_Exception
-     *
-     * @return Version Version class
      */
-    public function create($version)
+    public function create(Version $version) : Version
     {
+        // to convert DateTimeInterface to string for payload
         if ($version->releaseDate instanceof \DateTimeInterface) {
             $version->releaseDate = $version->releaseDate->format('Y-m-d');
         }
+
         $data = json_encode($version);
 
         $this->log->info("Create Version=\n".$data);

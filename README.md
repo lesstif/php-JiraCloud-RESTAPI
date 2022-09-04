@@ -217,7 +217,7 @@ $iss = new IssueService(new ArrayConfiguration(
 
 Create a new project.
 
-[See Jira API reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/project-createProject)
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-projects/#api-rest-api-3-project-post)
 
 ```php
 <?php
@@ -254,18 +254,18 @@ try {
     // 10042 
     var_dump($pj->id);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 ```
 
 #### Update Project
 
 Update a project.
-Only non null values sent in JSON will be updated in the project.
+Only none null values sent in JSON will be updated in the project.
 
 Values available for the assigneeType field are: 'PROJECT_LEAD' and 'UNASSIGNED'.
 
-[See Jira API reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/project-updateProject)
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-projects/#api-rest-api-3-project-projectidorkey-put)
 
 ```php
 <?php
@@ -293,7 +293,7 @@ try {
    
     var_dump($pj);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 ```
 
@@ -301,7 +301,7 @@ try {
 
 Deletes a project.
 
-[See Jira API reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/project-deleteProject)
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-projects/#api-rest-api-3-project-projectidorkey-delete)
 
 ```php
 <?php
@@ -317,13 +317,13 @@ try {
    
     var_dump($pj);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 ```
 
 #### Get Project Info
 
-[See Jira API reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/project-getProject)
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-projects/#api-rest-api-3-project-projectidorkey-get)
 
 ```php
 <?php
@@ -339,13 +339,13 @@ try {
 	
     var_dump($p);			
 } catch (JiraCloud\JiraException $e) {
-	print('Error Occured! ' . $e->getMessage());
+	print('Error Occurred! ' . $e->getMessage());
 }
 ```
 
 #### Get All Project list
 
-[See Jira API reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/project-getAllProjects)
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-projects/#api-rest-api-3-project-search-get)
 
 ```php
 <?php
@@ -365,14 +365,14 @@ try {
         );			
     }			
 } catch (JiraCloud\JiraException $e) {
-	print('Error Occured! ' . $e->getMessage());
+	print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
 
 #### Get Project Components
 
-[See Jira API reference (Get project components)](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#project-getProjectComponents)
+[See Jira API reference (Get project components)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-components/#api-rest-api-3-component-id-get)
 
 ```php
 <?php
@@ -391,16 +391,16 @@ try {
         var_export($proj->getProjectComponents($p->id));
     }
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
 
 #### Get Project type
 
-[See Jira API reference (get all types)](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/project/type-getAllProjectTypes)
+[See Jira API reference (get all types)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-types/#api-rest-api-3-project-type-get)
 
-[See Jira API reference (get type)](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/project/type-getProjectTypeByKey)
+[See Jira API reference (get type)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-types/#api-rest-api-3-project-type-projecttypekey-get)
 
 ```php
 <?php
@@ -424,7 +424,7 @@ try {
     var_dump($pt);
 
 } catch (JiraCloud\JiraException $e) {
-	print('Error Occured! ' . $e->getMessage());
+	print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -433,7 +433,7 @@ try {
 
 get all project's versions.
 
-[See Jira API reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/project-getProjectVersions)
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-versions/#api-rest-api-3-project-projectidorkey-versions-get)
 
 ```php
 <?php
@@ -452,14 +452,14 @@ try {
         var_dump($v);
     }
 } catch (JiraCloud\JiraException $e) {
-	print('Error Occured! ' . $e->getMessage());
+	print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
 
-or get pagenated project's versions.
+or get paginated project's versions.
 
-[See Jira API reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/project-getProjectVersionsPaginated)
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-versions/#api-rest-api-3-project-projectidorkey-version-get)
 
 ```php
 <?php
@@ -485,7 +485,7 @@ try {
         var_dump($v);
     }
 } catch (JiraCloud\JiraException $e) {
-	print('Error Occured! ' . $e->getMessage());
+	print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -493,7 +493,7 @@ try {
 
 #### Get All Field List
 
-[See Jira API reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/field-getFields)
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-fields/#api-rest-api-3-field-get)
 
 ```php
 <?php
@@ -583,7 +583,7 @@ try {
 	
     var_dump($issue->fields);	
 } catch (JiraCloud\JiraException $e) {
-	print('Error Occured! ' . $e->getMessage());
+	print('Error Occurred! ' . $e->getMessage());
 }
 ```
 
@@ -671,7 +671,7 @@ CODE;
     //If success, Returns a link to the created issue.
     var_dump($ret);
 } catch (JiraCloud\JiraException $e) {
-	print('Error Occured! ' . $e->getMessage());
+	print('Error Occurred! ' . $e->getMessage());
 }
 ```
 
@@ -710,7 +710,7 @@ try {
     //If success, Returns a link to the created issue.
     var_dump($ret);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 ```
 
@@ -767,7 +767,7 @@ try {
     //If success, returns an array of the created issues
     var_dump($ret);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 ```
 
@@ -821,7 +821,7 @@ try {
     //If success, Returns a link to the created sub task.
     var_dump($ret);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 ```
 
@@ -867,7 +867,7 @@ DESC;
     //If success, Returns a link to the created issue.
     var_dump($ret);
 } catch (JiraCloud\JiraException $e) {
-	print('Error Occured! ' . $e->getMessage());
+	print('Error Occurred! ' . $e->getMessage());
 }
 ```
 
@@ -899,7 +899,7 @@ try {
     //If success, Returns a link to the created issue.
     var_dump($ret);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 ```
 
@@ -1381,7 +1381,7 @@ try {
 
     var_dump($ret);
 } catch (JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 // Searches for epics and subtasks. If the issue is not an epic, the search returns all subtasks for the issue. 
@@ -1394,7 +1394,7 @@ try {
 
     var_dump($ret);
 } catch (JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 ```
 
@@ -1849,7 +1849,7 @@ try {
     $ret = $ils->addIssueLink($il);
 
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 ```
 
@@ -1873,7 +1873,7 @@ try {
     
     var_dump($ret);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 ```
 
@@ -1904,7 +1904,7 @@ try {
 
     var_dump($user);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -1929,7 +1929,7 @@ try {
 
     var_dump($user);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -1961,7 +1961,7 @@ try {
     // get the user info.
     $users = $us->findUsers($paramArray);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -1993,7 +1993,7 @@ try {
 
     $users = $us->findAssignableUsers($paramArray);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2022,7 +2022,7 @@ try {
     $users = $us->findUsersByQuery($paramArray);
     var_dump($users);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2047,7 +2047,7 @@ try {
 
     $users = $us->deleteUser($paramArray);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2083,7 +2083,7 @@ try {
     var_dump($updatedUser);
 
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2112,7 +2112,7 @@ try {
 
     var_dump($ret);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2147,7 +2147,7 @@ try {
         print_r($user);
     }
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2177,7 +2177,7 @@ try {
     print_r($ret);
 
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2204,7 +2204,7 @@ try {
     $gs->removeUserFromGroup($groupName, $userName);
 
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2227,7 +2227,7 @@ try {
 	
     var_dump($p);
 } catch (JiraCloud\JiraException $e) {
-	print('Error Occured! ' . $e->getMessage());
+	print('Error Occurred! ' . $e->getMessage());
 }
 ```
 
@@ -2249,7 +2249,7 @@ try {
 	
     var_dump($p);
 } catch (JiraCloud\JiraException $e) {
-	print('Error Occured! ' . $e->getMessage());
+	print('Error Occurred! ' . $e->getMessage());
 }
 ```
 
@@ -2272,7 +2272,7 @@ try {
 
     var_dump($att);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 ```
 
@@ -2296,7 +2296,7 @@ try {
 
     var_dump($att);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 ```
 
@@ -2319,7 +2319,7 @@ try {
 
     $atts->remove($attachmentId);
 } catch (JiraCloud\JiraException $e) {
-	print('Error Occured! ' . $e->getMessage());
+	print('Error Occurred! ' . $e->getMessage());
 }
 ```
 
@@ -2354,7 +2354,7 @@ try {
 
     var_dump($res);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2389,7 +2389,7 @@ try {
 
     var_dump($res);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2416,7 +2416,7 @@ try {
 
     var_dump($res);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2443,7 +2443,7 @@ try {
 
     var_dump($res);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2470,7 +2470,7 @@ try {
 
     var_dump($res);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2500,7 +2500,7 @@ try {
 
     var_dump($res);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2530,7 +2530,7 @@ try {
 
     var_dump($res);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2557,7 +2557,7 @@ try {
 
     var_dump($res);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2578,7 +2578,7 @@ try {
   
   var_dump($board);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2598,7 +2598,7 @@ try {
   
   var_dump($board);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2624,7 +2624,7 @@ try {
     var_dump($issue);
   }
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2647,7 +2647,7 @@ try {
     var_dump($epic);
   }
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2666,7 +2666,7 @@ try {
   
   var_dump($epic);
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
@@ -2690,7 +2690,7 @@ try {
     var_dump($issue);
   }
 } catch (JiraCloud\JiraException $e) {
-    print('Error Occured! ' . $e->getMessage());
+    print('Error Occurred! ' . $e->getMessage());
 }
 
 ```
