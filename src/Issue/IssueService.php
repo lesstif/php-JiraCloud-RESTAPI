@@ -353,12 +353,14 @@ class IssueService extends \JiraCloud\JiraClient
     /**
      * Change issue assignee for REST API V3.
      *
-     * @param string|int $issueIdOrKey
-     * @param string|null $accountId assignee Account Id
-     *                               <li>"-1", the issue is assigned to the default assignee for the project.</li>
-     *                               <li>null, the issue is set to unassigned.</li>
-     * @return string
+     * @param string|int  $issueIdOrKey
+     * @param string|null $accountId    assignee Account Id
+     *                                  <li>"-1", the issue is assigned to the default assignee for the project.</li>
+     *                                  <li>null, the issue is set to unassigned.</li>
+     *
      * @throws JiraException
+     *
+     * @return string
      */
     public function changeAssigneeByAccountId(string|int $issueIdOrKey, ?string $accountId): string
     {
@@ -582,7 +584,7 @@ class IssueService extends \JiraCloud\JiraClient
      * get getWorklog.
      *
      * @param string|int $issueIdOrKey
-     * @param array  $paramArray   Possible keys for $paramArray: 'startAt', 'maxResults', 'startedAfter', 'expand'
+     * @param array      $paramArray   Possible keys for $paramArray: 'startAt', 'maxResults', 'startedAfter', 'expand'
      *
      * @throws \JsonMapper_Exception
      * @throws JiraException
@@ -605,7 +607,7 @@ class IssueService extends \JiraCloud\JiraClient
      * get getWorklog by Id.
      *
      * @param string|int $issueIdOrKey
-     * @param int    $workLogId
+     * @param int        $workLogId
      *
      * @throws \JsonMapper_Exception
      * @throws JiraException
@@ -683,7 +685,7 @@ class IssueService extends \JiraCloud\JiraClient
      * delete worklog.
      *
      * @param string|int $issueIdOrKey
-     * @param int    $worklogId
+     * @param int        $worklogId
      *
      * @throws JiraException
      *
@@ -794,7 +796,7 @@ class IssueService extends \JiraCloud\JiraClient
      * add watcher to issue.
      *
      * @param string|int $issueIdOrKey
-     * @param string $watcher      watcher id
+     * @param string     $watcher      watcher id
      *
      * @throws JiraException
      *
@@ -817,7 +819,7 @@ class IssueService extends \JiraCloud\JiraClient
      * remove watcher from issue.
      *
      * @param string|int $issueIdOrKey
-     * @param string $watcher      watcher id
+     * @param string     $watcher      watcher id
      *
      * @throws JiraException
      *
@@ -838,7 +840,7 @@ class IssueService extends \JiraCloud\JiraClient
      * remove watcher from issue by watcher account id.
      *
      * @param string|int $issueIdOrKey
-     * @param string $accountId    Watcher account id.
+     * @param string     $accountId    Watcher account id.
      *
      * @throws JiraException
      *
@@ -918,7 +920,7 @@ class IssueService extends \JiraCloud\JiraClient
      * Sends a notification (email) to the list or recipients defined in the request.
      *
      * @param string|int $issueIdOrKey Issue id Or Key
-     * @param Notify $notify
+     * @param Notify     $notify
      *
      * @throws JiraException
      *
@@ -1003,7 +1005,7 @@ class IssueService extends \JiraCloud\JiraClient
 
     /**
      * @param string|int $issueIdOrKey
-     * @param string $globalId
+     * @param string     $globalId
      *
      * @throws JiraException
      *
@@ -1085,9 +1087,9 @@ class IssueService extends \JiraCloud\JiraClient
      * convenient wrapper function for add or remove labels.
      *
      * @param string|int $issueIdOrKey
-     * @param array  $addLablesParam
-     * @param array  $removeLabelsParam
-     * @param bool   $notifyUsers
+     * @param array      $addLablesParam
+     * @param array      $removeLabelsParam
+     * @param bool       $notifyUsers
      *
      * @throws JiraException
      *
@@ -1130,9 +1132,9 @@ class IssueService extends \JiraCloud\JiraClient
      * convenient wrapper function for add or remove fix versions.
      *
      * @param string|int $issueIdOrKey
-     * @param array  $addFixVersionsParam
-     * @param array  $removeFixVersionsParam
-     * @param bool   $notifyUsers
+     * @param array      $addFixVersionsParam
+     * @param array      $removeFixVersionsParam
+     * @param bool       $notifyUsers
      *
      * @throws JiraException
      *
@@ -1172,7 +1174,7 @@ class IssueService extends \JiraCloud\JiraClient
      * find transition id by transition's untranslatedName.
      *
      * @param string|int $issueIdOrKey
-     * @param string $untranslatedName
+     * @param string     $untranslatedName
      *
      * @throws JiraException
      *
