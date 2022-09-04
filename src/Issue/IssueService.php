@@ -222,7 +222,7 @@ class IssueService extends \JiraCloud\JiraClient
      *
      * @return Comment Comment class
      */
-    public function addComment(string $issueIdOrKey, Comment $comment): Comment
+    public function addComment(string|int $issueIdOrKey, Comment $comment): Comment
     {
         $this->log->info("addComment=\n");
 
@@ -351,49 +351,20 @@ class IssueService extends \JiraCloud\JiraClient
     }
 
     /**
-     * Change a issue assignee.
+     * Change issue assignee for REST API V3.
      *
-     * @param string|int  $issueIdOrKey
-     * @param string|null $accountId    Assigns accountId
-     *                                  If the assigneeName is "-1" automatic assignee is used.
-     *                                  A null name will remove the assignee.
-     *
-     * @throws JiraException
-     *
-     * @return string|bool
-     */
-    public function changeAssignee($issueIdOrKey, $accountId): string|bool
-    {
-        $this->log->info("changeAssignee=\n");
-
-        $ar = ['accountId' => $accountId];
-
-        $data = json_encode($ar);
-
-        $ret = $this->exec($this->uri."/$issueIdOrKey/assignee", $data, 'PUT');
-
-        $this->log->info('change assignee of '.$issueIdOrKey.' to '.$accountId.' result='.var_export($ret, true));
-
-        return $ret;
-    }
-
-    /**
-     * Change a issue assignee for REST API V3.
-     *
-     * @param string|int  $issueIdOrKey
-     * @param string|null $accountId    Assigns an issue to a user.
-     *
-     * @throws JiraException
-     *
+     * @param string|int $issueIdOrKey
+     * @param string|null $accountId assignee Account Id
+     *                               <li>"-1", the issue is assigned to the default assignee for the project.</li>
+     *                               <li>null, the issue is set to unassigned.</li>
      * @return string
+     * @throws JiraException
      */
-    public function changeAssigneeByAccountId($issueIdOrKey, $accountId): string
+    public function changeAssigneeByAccountId(string|int $issueIdOrKey, ?string $accountId): string
     {
         $this->log->info("changeAssigneeByAccountId=\n");
 
-        $ar = ['accountId' => $accountId];
-
-        $data = json_encode($ar);
+        $data = json_encode(['accountId' => $accountId]);
 
         $ret = $this->exec($this->uri."/$issueIdOrKey/assignee", $data, 'PUT');
 
@@ -412,7 +383,7 @@ class IssueService extends \JiraCloud\JiraClient
      *
      * @return string|bool
      */
-    public function deleteIssue($issueIdOrKey, $paramArray = []): string|bool
+    public function deleteIssue(string|int $issueIdOrKey, array $paramArray = []): string|bool
     {
         $this->log->info("deleteIssue=\n");
 
@@ -435,7 +406,7 @@ class IssueService extends \JiraCloud\JiraClient
      *
      * @return Transition[] array of Transition class
      */
-    public function getTransition($issueIdOrKey, $paramArray = []): ArrayObject
+    public function getTransition(string|int $issueIdOrKey, array $paramArray = []): ArrayObject
     {
         $queryParam = '?'.http_build_query($paramArray);
 
@@ -464,7 +435,7 @@ class IssueService extends \JiraCloud\JiraClient
      *
      * @return string
      */
-    public function findTransitonId($issueIdOrKey, $transitionToName): string
+    public function findTransitonId(string|int $issueIdOrKey, string $transitionToName): string
     {
         $this->log->debug('findTransitonId=');
 
@@ -494,7 +465,7 @@ class IssueService extends \JiraCloud\JiraClient
      *
      * @return string|null nothing - if transition was successful return http 204(no contents)
      */
-    public function transition($issueIdOrKey, $transition): ?string
+    public function transition(string|int $issueIdOrKey, string $transition): ?string
     {
         $this->log->debug('transition='.var_export($transition, true));
 
@@ -559,14 +530,14 @@ class IssueService extends \JiraCloud\JiraClient
     /**
      * get TimeTracking info.
      *
-     * @param string $issueIdOrKey
+     * @param string|int $issueIdOrKey
      *
      * @throws JiraException
      * @throws \JsonMapper_Exception
      *
      * @return TimeTracking
      */
-    public function getTimeTracking(string $issueIdOrKey): TimeTracking
+    public function getTimeTracking(string|int $issueIdOrKey): TimeTracking
     {
         $ret = $this->exec($this->uri."/$issueIdOrKey", null);
         $this->log->debug("getTimeTracking res=$ret\n");
@@ -589,7 +560,7 @@ class IssueService extends \JiraCloud\JiraClient
      *
      * @return string
      */
-    public function timeTracking(string $issueIdOrKey, TimeTracking $timeTracking): string
+    public function timeTracking(string|int $issueIdOrKey, TimeTracking $timeTracking): string
     {
         $array = [
             'update' => [
@@ -610,7 +581,7 @@ class IssueService extends \JiraCloud\JiraClient
     /**
      * get getWorklog.
      *
-     * @param string $issueIdOrKey
+     * @param string|int $issueIdOrKey
      * @param array  $paramArray   Possible keys for $paramArray: 'startAt', 'maxResults', 'startedAfter', 'expand'
      *
      * @throws \JsonMapper_Exception
@@ -618,7 +589,7 @@ class IssueService extends \JiraCloud\JiraClient
      *
      * @return PaginatedWorklog
      */
-    public function getWorklog(string $issueIdOrKey, array $paramArray = []): PaginatedWorklog
+    public function getWorklog(string|int $issueIdOrKey, array $paramArray = []): PaginatedWorklog
     {
         $ret = $this->exec($this->uri."/$issueIdOrKey/worklog".$this->toHttpQueryParameter($paramArray));
 
@@ -633,7 +604,7 @@ class IssueService extends \JiraCloud\JiraClient
     /**
      * get getWorklog by Id.
      *
-     * @param string $issueIdOrKey
+     * @param string|int $issueIdOrKey
      * @param int    $workLogId
      *
      * @throws \JsonMapper_Exception
@@ -641,7 +612,7 @@ class IssueService extends \JiraCloud\JiraClient
      *
      * @return Worklog PaginatedWorklog object
      */
-    public function getWorklogById(string $issueIdOrKey, int $workLogId): Worklog
+    public function getWorklogById(string|int $issueIdOrKey, int $workLogId): Worklog
     {
         $ret = $this->exec($this->uri."/$issueIdOrKey/worklog/$workLogId");
 
@@ -664,7 +635,7 @@ class IssueService extends \JiraCloud\JiraClient
      *
      * @return Worklog Worklog Object
      */
-    public function addWorklog(string $issueIdOrKey, Worklog $worklog)
+    public function addWorklog(string|int $issueIdOrKey, Worklog $worklog)
     {
         $this->log->info("addWorklog=\n");
 
@@ -692,7 +663,7 @@ class IssueService extends \JiraCloud\JiraClient
      *
      * @return Worklog
      */
-    public function editWorklog(string $issueIdOrKey, Worklog $worklog, int $worklogId): Worklog
+    public function editWorklog(string|int $issueIdOrKey, Worklog $worklog, int $worklogId): Worklog
     {
         $this->log->info("editWorklog=\n");
 
@@ -711,14 +682,14 @@ class IssueService extends \JiraCloud\JiraClient
     /**
      * delete worklog.
      *
-     * @param string $issueIdOrKey
+     * @param string|int $issueIdOrKey
      * @param int    $worklogId
      *
      * @throws JiraException
      *
      * @return bool
      */
-    public function deleteWorklog(string $issueIdOrKey, int $worklogId): bool
+    public function deleteWorklog(string|int $issueIdOrKey, int $worklogId): bool
     {
         $this->log->info("deleteWorklog=\n");
 
@@ -797,14 +768,14 @@ class IssueService extends \JiraCloud\JiraClient
     /**
      * get watchers.
      *
-     * @param string $issueIdOrKey
+     * @param string|int $issueIdOrKey
      *
      * @throws JiraException
      * @throws \JsonMapper_Exception
      *
      * @return Reporter[]
      */
-    public function getWatchers(string $issueIdOrKey): ArrayObject
+    public function getWatchers(string|int $issueIdOrKey): ArrayObject
     {
         $this->log->info("getWatchers=\n");
 
@@ -822,14 +793,14 @@ class IssueService extends \JiraCloud\JiraClient
     /**
      * add watcher to issue.
      *
-     * @param string $issueIdOrKey
+     * @param string|int $issueIdOrKey
      * @param string $watcher      watcher id
      *
      * @throws JiraException
      *
      * @return bool
      */
-    public function addWatcher(string $issueIdOrKey, string $watcher): bool
+    public function addWatcher(string|int $issueIdOrKey, string $watcher): bool
     {
         $this->log->info("addWatcher=\n");
 
@@ -845,14 +816,14 @@ class IssueService extends \JiraCloud\JiraClient
     /**
      * remove watcher from issue.
      *
-     * @param string $issueIdOrKey
+     * @param string|int $issueIdOrKey
      * @param string $watcher      watcher id
      *
      * @throws JiraException
      *
      * @return bool
      */
-    public function removeWatcher(string $issueIdOrKey, string $watcher): bool
+    public function removeWatcher(string|int $issueIdOrKey, string $watcher): bool
     {
         $this->log->debug("removeWatcher=\n");
 
@@ -866,14 +837,14 @@ class IssueService extends \JiraCloud\JiraClient
     /**
      * remove watcher from issue by watcher account id.
      *
-     * @param string $issueIdOrKey
+     * @param string|int $issueIdOrKey
      * @param string $accountId    Watcher account id.
      *
      * @throws JiraException
      *
      * @return bool
      */
-    public function removeWatcherByAccountId(string $issueIdOrKey, string $accountId): bool
+    public function removeWatcherByAccountId(string|int $issueIdOrKey, string $accountId): bool
     {
         $this->log->debug("removeWatcher=\n");
 
@@ -946,14 +917,14 @@ class IssueService extends \JiraCloud\JiraClient
     /**
      * Sends a notification (email) to the list or recipients defined in the request.
      *
-     * @param string $issueIdOrKey Issue id Or Key
+     * @param string|int $issueIdOrKey Issue id Or Key
      * @param Notify $notify
      *
      * @throws JiraException
      *
      * @see https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/issue-notify
      */
-    public function notify(string $issueIdOrKey, Notify $notify)
+    public function notify(string|int $issueIdOrKey, Notify $notify)
     {
         $full_uri = $this->uri."/$issueIdOrKey/notify";
 
@@ -979,7 +950,7 @@ class IssueService extends \JiraCloud\JiraClient
     /**
      * Get all remote issue links on the issue.
      *
-     * @param string $issueIdOrKey Issue id Or Key
+     * @param string|int $issueIdOrKey Issue id Or Key
      *
      * @throws JiraException
      *
@@ -988,7 +959,7 @@ class IssueService extends \JiraCloud\JiraClient
      * @see https://developer.atlassian.com/server/jira/platform/jira-rest-api-for-remote-issue-links/
      * @see https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/issue-getRemoteIssueLinks
      */
-    public function getRemoteIssueLink(string $issueIdOrKey): ArrayObject
+    public function getRemoteIssueLink(string|int $issueIdOrKey): ArrayObject
     {
         $full_uri = $this->uri."/$issueIdOrKey/remotelink";
 
@@ -1012,7 +983,7 @@ class IssueService extends \JiraCloud\JiraClient
      *
      * @return RemoteIssueLink
      */
-    public function createOrUpdateRemoteIssueLink(string $issueIdOrKey, RemoteIssueLink $ril): RemoteIssueLink
+    public function createOrUpdateRemoteIssueLink(string|int $issueIdOrKey, RemoteIssueLink $ril): RemoteIssueLink
     {
         $full_uri = $this->uri."/$issueIdOrKey/remotelink";
 
@@ -1031,14 +1002,14 @@ class IssueService extends \JiraCloud\JiraClient
     }
 
     /**
-     * @param string $issueIdOrKey
+     * @param string|int $issueIdOrKey
      * @param string $globalId
      *
      * @throws JiraException
      *
      * @return string|bool
      */
-    public function removeRemoteIssueLink(string $issueIdOrKey, string $globalId): string|bool
+    public function removeRemoteIssueLink(string|int $issueIdOrKey, string $globalId): string|bool
     {
         $query = http_build_query(['globalId' => $globalId]);
 
@@ -1113,7 +1084,7 @@ class IssueService extends \JiraCloud\JiraClient
     /**
      * convenient wrapper function for add or remove labels.
      *
-     * @param string $issueIdOrKey
+     * @param string|int $issueIdOrKey
      * @param array  $addLablesParam
      * @param array  $removeLabelsParam
      * @param bool   $notifyUsers
@@ -1122,7 +1093,7 @@ class IssueService extends \JiraCloud\JiraClient
      *
      * @return bool
      */
-    public function updateLabels(string $issueIdOrKey, array $addLablesParam = [], array $removeLabelsParam = [], bool $notifyUsers = true): bool
+    public function updateLabels(string|int $issueIdOrKey, array $addLablesParam = [], array $removeLabelsParam = [], bool $notifyUsers = true): bool
     {
         $labels = [];
         if (count($addLablesParam) > 0) {
@@ -1158,7 +1129,7 @@ class IssueService extends \JiraCloud\JiraClient
     /**
      * convenient wrapper function for add or remove fix versions.
      *
-     * @param string $issueIdOrKey
+     * @param string|int $issueIdOrKey
      * @param array  $addFixVersionsParam
      * @param array  $removeFixVersionsParam
      * @param bool   $notifyUsers
@@ -1167,7 +1138,7 @@ class IssueService extends \JiraCloud\JiraClient
      *
      * @return bool
      */
-    public function updateFixVersions(string $issueIdOrKey, array $addFixVersionsParam, array $removeFixVersionsParam, bool $notifyUsers = true): bool
+    public function updateFixVersions(string|int $issueIdOrKey, array $addFixVersionsParam, array $removeFixVersionsParam, bool $notifyUsers = true): bool
     {
         $fixVersions = [];
         if (count($addFixVersionsParam) > 0) {
@@ -1200,14 +1171,14 @@ class IssueService extends \JiraCloud\JiraClient
     /**
      * find transition id by transition's untranslatedName.
      *
-     * @param string $issueIdOrKey
+     * @param string|int $issueIdOrKey
      * @param string $untranslatedName
      *
      * @throws JiraException
      *
      * @return string
      */
-    public function findTransitonIdByUntranslatedName(string $issueIdOrKey, string $untranslatedName): string
+    public function findTransitonIdByUntranslatedName(string|int $issueIdOrKey, string $untranslatedName): string
     {
         $this->log->debug('findTransitonIdByUntranslatedName=');
 

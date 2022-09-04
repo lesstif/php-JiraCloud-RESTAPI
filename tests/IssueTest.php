@@ -287,7 +287,7 @@ CODE;
         try {
             $issueService = new IssueService();
 
-            $ret = $issueService->changeAssignee($subTaskIssueKey, '557058%3A5927b3d9-d258-473f-af86-16d3214d8496');
+            $ret = $issueService->changeAssigneeByAccountId($subTaskIssueKey, '557058%3A5927b3d9-d258-473f-af86-16d3214d8496');
 
             print_r($ret);
 

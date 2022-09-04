@@ -1063,7 +1063,7 @@ try {
 
 #### Change Assignee
 
-[See Jira API reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/issue-assign)
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-rest-api-3-issue-issueidorkey-assignee-put)
 
 ```php
 <?php
@@ -1079,9 +1079,9 @@ try {
 
     // if assignee is -1, automatic assignee used.
     // A null assignee will remove the assignee.
-    $assignee = 'newAssigneeName';
+    $accountId = 'replace-to-user-account-id';
 
-    $ret = $issueService->changeAssignee($issueKey, $assignee);
+    $ret = $issueService->changeAssigneeByAccountId($issueKey, $accountId);
 
     var_dump($ret);
 } catch (JiraCloud\JiraException $e) {
