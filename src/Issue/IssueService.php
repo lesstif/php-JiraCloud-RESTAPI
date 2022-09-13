@@ -3,7 +3,6 @@
 namespace JiraCloud\Issue;
 
 use ArrayObject;
-use JiraCloud\Dumper;
 use JiraCloud\JiraException;
 use JiraCloud\Project\ProjectService;
 
@@ -464,8 +463,9 @@ class IssueService extends \JiraCloud\JiraClient
      * @param string|int $issueIdOrKey Issue id or key
      * @param Transition $transition
      *
-     * @return string|null nothing - if transition was successful return http 204(no contents)
      * @throws JiraException
+     *
+     * @return string|null nothing - if transition was successful return http 204(no contents)
      */
     public function transition(string|int $issueIdOrKey, Transition $transition): ?string
     {
