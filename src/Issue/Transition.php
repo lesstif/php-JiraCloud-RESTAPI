@@ -2,6 +2,8 @@
 
 namespace JiraCloud\Issue;
 
+use JiraCloud\ADF\AtlassianDocumentFormat;
+
 /**
  * Issue Transition mapping class.
  */
@@ -17,9 +19,9 @@ class Transition implements \JsonSerializable
 
     public IssueField $issueFields;
 
-    public ?array $transition;
+    public ?array $transition = null;
 
-    public ?array $update;
+    public ?array $update = null;
 
     public function setTransitionName($name): void
     {
@@ -51,7 +53,7 @@ class Transition implements \JsonSerializable
         $this->transition['id'] = $id;
     }
 
-    public function setCommentBody(string $commentBody): void
+    public function setCommentBody(AtlassianDocumentFormat $commentBody): void
     {
         if (is_null($this->update)) {
             $this->update = [];
@@ -59,7 +61,8 @@ class Transition implements \JsonSerializable
         }
 
         $ar = [];
-        $ar['add']['body'] = $commentBody;
+        $ar['add']['body'] = $commentBody->jsonSerialize();
+
         array_push($this->update['comment'], $ar);
     }
 

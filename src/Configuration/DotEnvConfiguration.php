@@ -18,32 +18,32 @@ class DotEnvConfiguration extends AbstractConfiguration
     {
         $this->loadDotEnv($path);
 
-        $this->jiraHost = $this->env('JIRA_HOST');
-        $this->jiraUser = $this->env('JIRA_USER');
+        $this->jiraHost = $this->env('JIRAAPI_V3_HOST');
+        $this->jiraUser = $this->env('JIRAAPI_V3_USER');
 
-        $this->oauthAccessToken = $this->env('OAUTH_ACCESS_TOKEN');
-        $this->cookieAuthEnabled = $this->env('COOKIE_AUTH_ENABLED', false);
-        $this->cookieFile = $this->env('COOKIE_FILE', 'jira-cookie.txt');
-        $this->jiraLogEnabled = $this->env('JIRA_LOG_ENABLED', true);
-        $this->jiraLogFile = $this->env('JIRA_LOG_FILE', 'jira-rest-client.log');
-        $this->jiraLogLevel = $this->env('JIRA_LOG_LEVEL', 'WARNING');
-        $this->curlOptSslVerifyHost = $this->env('CURLOPT_SSL_VERIFYHOST', false);
-        $this->curlOptSslVerifyPeer = $this->env('CURLOPT_SSL_VERIFYPEER', false);
-        $this->curlOptSslCert = $this->env('CURLOPT_SSL_CERT');
-        $this->curlOptSslCertPassword = $this->env('CURLOPT_SSL_CERT_PASSWORD');
-        $this->curlOptSslKey = $this->env('CURLOPT_SSL_KEY');
-        $this->curlOptSslKeyPassword = $this->env('CURLOPT_SSL_KEY_PASSWORD');
-        $this->curlOptUserAgent = $this->env('CURLOPT_USERAGENT', $this->getDefaultUserAgentString());
-        $this->curlOptVerbose = $this->env('CURLOPT_VERBOSE', false);
-        $this->proxyServer = $this->env('PROXY_SERVER');
-        $this->proxyPort = $this->env('PROXY_PORT');
-        $this->proxyUser = $this->env('PROXY_USER');
-        $this->proxyPassword = $this->env('PROXY_PASSWORD');
+        $this->oauthAccessToken = $this->env('JIRAAPI_V3_OAUTH_ACCESS_TOKEN');
+        $this->cookieAuthEnabled = $this->env('JIRAAPI_V3_COOKIE_AUTH_ENABLED', false);
+        $this->cookieFile = $this->env('JIRAAPI_V3_COOKIE_FILE', 'jira-cookie.txt');
+        $this->jiraLogEnabled = $this->env('JIRAAPI_V3_LOG_ENABLED', true);
+        $this->jiraLogFile = $this->env('JIRAAPI_V3_LOG_FILE', 'jira-rest-client.log');
+        $this->jiraLogLevel = $this->env('JIRAAPI_V3_LOG_LEVEL', 'WARNING');
+        $this->curlOptSslVerifyHost = $this->env('JIRAAPI_V3_CURLOPT_SSL_VERIFYHOST', false);
+        $this->curlOptSslVerifyPeer = $this->env('JIRAAPI_V3_CURLOPT_SSL_VERIFYPEER', false);
+        $this->curlOptSslCert = $this->env('JIRAAPI_V3_CURLOPT_SSL_CERT');
+        $this->curlOptSslCertPassword = $this->env('JIRAAPI_V3_CURLOPT_SSL_CERT_PASSWORD');
+        $this->curlOptSslKey = $this->env('JIRAAPI_V3_CURLOPT_SSL_KEY');
+        $this->curlOptSslKeyPassword = $this->env('JIRAAPI_V3_CURLOPT_SSL_KEY_PASSWORD');
+        $this->curlOptUserAgent = $this->env('JIRAAPI_V3_CURLOPT_USERAGENT', $this->getDefaultUserAgentString());
+        $this->curlOptVerbose = $this->env('JIRAAPI_V3_CURLOPT_VERBOSE', false);
+        $this->proxyServer = $this->env('JIRAAPI_V3_PROXY_SERVER');
+        $this->proxyPort = $this->env('JIRAAPI_V3_PROXY_PORT');
+        $this->proxyUser = $this->env('JIRAAPI_V3_PROXY_USER');
+        $this->proxyPassword = $this->env('JIRAAPI_V3_PROXY_PASSWORD');
 
-        $this->timeout = $this->env('JIRA_TIMEOUT', 30);
+        $this->timeout = $this->env('JIRAAPI_V3_TIMEOUT', 30);
 
-        $this->personalAccessToken = $this->env('PERSONAL_ACCESS_TOKEN', false);
-        $this->serviceDeskId = $this->env('JIRA_SERVICE_DESK_ID', null);
+        $this->personalAccessToken = $this->env('JIRAAPI_V3_PERSONAL_ACCESS_TOKEN', false);
+        $this->serviceDeskId = $this->env('JIRAAPI_V3_SERVICE_DESK_ID', null);
     }
 
     /**
@@ -116,7 +116,7 @@ class DotEnvConfiguration extends AbstractConfiguration
     private function loadDotEnv(string $path)
     {
         $requireParam = [
-            'JIRA_HOST', 'JIRA_USER', 'PERSONAL_ACCESS_TOKEN',
+            'JIRAAPI_V3_HOST', 'JIRAAPI_V3_USER', 'JIRAAPI_V3_PERSONAL_ACCESS_TOKEN',
         ];
 
         // support for dotenv 1.x and 2.x. see also https://github.com/lesstif/php-jira-rest-client/issues/102

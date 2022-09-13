@@ -3,6 +3,7 @@
 namespace JiraCloud\Issue;
 
 use ArrayObject;
+use JiraCloud\Dumper;
 use JiraCloud\JiraException;
 use JiraCloud\Project\ProjectService;
 
@@ -461,14 +462,11 @@ class IssueService extends \JiraCloud\JiraClient
      * @param string|int $issueIdOrKey Issue id or key
      * @param Transition $transition
      *
-     * @throws JiraException
-     *
      * @return string|null nothing - if transition was successful return http 204(no contents)
+     * @throws JiraException
      */
-    public function transition(string|int $issueIdOrKey, string $transition): ?string
+    public function transition(string|int $issueIdOrKey, Transition $transition): ?string
     {
-        $this->log->debug('transition='.var_export($transition, true));
-
         if (!isset($transition->transition['id'])) {
             if (isset($transition->transition['untranslatedName'])) {
                 $transition->transition['id'] = $this->findTransitonIdByUntranslatedName($issueIdOrKey, $transition->transition['untranslatedName']);

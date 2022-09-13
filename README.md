@@ -65,17 +65,17 @@ you can choose loads environment variables either 'dotenv' or 'array'.
 copy .env.example file to .env on your project root.	
 
 ```sh
-JIRA_HOST='https://your-jira.atlassian.net'
-JIRA_USER='jira-username'
+JIRAAPI_V3_HOST='https://your-jira.atlassian.net'
+JIRAAPI_V3_USER='jira-username'
 PERSONAL_ACCESS_TOKEN='your-access-token-here'
-# to enable session cookie authorization
-# COOKIE_AUTH_ENABLED=true
-# COOKIE_FILE=storage/jira-cookie.txt
-# if you are behind a proxy, add proxy settings
-PROXY_SERVER='your-proxy-server'
-PROXY_PORT='proxy-port'
-PROXY_USER='proxy-username'
-PROXY_PASSWORD='proxy-password'
+## to enable session cookie authorization
+# JIRAAPI_V3_COOKIE_AUTH_ENABLED=true
+# JIRAAPI_V3_COOKIE_FILE=storage/jira-cookie.txt
+## if you are behind a proxy, add proxy settings
+JIRAAPI_V3_PROXY_SERVER='your-proxy-server'
+JIRAAPI_V3_PROXY_PORT='proxy-port'
+JIRAAPI_V3_PROXY_USER='proxy-username'
+JIRAAPI_V3_PROXY_PASSWORD='proxy-password'
 ```
 **CAUTION**
 this library not fully supported JIRA REST API V3 yet. 
@@ -647,7 +647,7 @@ CODE;
     $descV3 = new AtlassianDocumentFormat($doc);         
 
     $issueField->setProjectKey('TEST')
-                ->setSummary('something's wrong')
+                ->setSummary('something\'s wrong')
                 ->setAssigneeNameAsString('lesstif')
                 ->setPriorityNameAsString('Highest')
                 ->setIssueTypeAsString('Story')
@@ -689,7 +689,7 @@ try {
     $descV3 = new AtlassianDocumentFormat($doc);
     
     $issueField->setProjectKey('TEST')
-                ->setSummary('something's wrong')
+                ->setSummary('something\'s wrong')
                 ->setAssigneeNameAsString('lesstif')
                 ->setPriorityNameAsString('Critical')
                 ->setIssueTypeAsString('Bug')
@@ -740,7 +740,7 @@ try {
     $descV3 = new AtlassianDocumentFormat($doc);
     
     $issueFieldOne->setProjectKey('TEST')
-                ->setSummary('something's wrong')
+                ->setSummary('something\'s wrong')
                 ->setPriorityNameAsString('Critical')
                 ->setIssueTypeAsString('Bug')
                 ->setDescription($descV3);
@@ -804,7 +804,7 @@ try {
     $descV3 = new AtlassianDocumentFormat(doc);
     
     $issueField->setProjectKey('TEST')
-                ->setSummary('something's wrong')
+                ->setSummary('something\'s wrong')
                 ->setAssigneeNameAsString('lesstif')
                 ->setPriorityNameAsString('Critical')
                 ->setDescription($descV3)
@@ -878,7 +878,7 @@ try {
     $issueField = new IssueField();
 
     $issueField->setProjectKey('TEST')
-                ->setSummary('something's wrong')
+                ->setSummary('something\'s wrong')
                 ->setAssigneeNameAsString('lesstif')
                 ->setPriorityNameAsString('Critical')
                 ->setIssueTypeAsString('Bug')
@@ -1305,7 +1305,7 @@ you should pass that status name to `setTransitionName`
 
 i.e. `$transition->setTransitionName('Some Status')`
 
-[See Jira API reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/issue-doTransition)
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-rest-api-3-issue-issueidorkey-transitions-post)
 
 ```php
 <?php
@@ -1319,7 +1319,7 @@ $issueKey = 'TEST-879';
 
 try {			
     $transition = new Transition();
-    $transition->setTransitionName('Resolved');
+    $transition->setTransitionName('In Progress');
     $transition->setCommentBody('performing the transition via REST API.');
 
     $issueService = new IssueService();
@@ -1627,7 +1627,7 @@ try {
 <?php
 require 'vendor/autoload.php';
 
-// Worklog example for API V3 assumes JIRA_REST_API_V3=true is configured in
+// Worklog example for API V3 assumes JIRAAPI_V3_REST_API_V3=true is configured in
 // your .env file.
 
 use JiraCloud\Issue\ContentField;
