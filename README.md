@@ -67,7 +67,7 @@ copy .env.example file to .env on your project root.
 ```sh
 JIRAAPI_V3_HOST='https://your-jira.atlassian.net'
 JIRAAPI_V3_USER='jira-username'
-PERSONAL_ACCESS_TOKEN='your-access-token-here'
+JIRAAPI_V3_PERSONAL_ACCESS_TOKEN='your-access-token-here'
 ## to enable session cookie authorization
 # JIRAAPI_V3_COOKIE_AUTH_ENABLED=true
 # JIRAAPI_V3_COOKIE_FILE=storage/jira-cookie.txt
