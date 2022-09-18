@@ -26,7 +26,7 @@ class IssueField implements \JsonSerializable
 
     public ?DateTimeInterface $updated = null;
 
-    public AtlassianDocumentFormat $description;
+    public ?AtlassianDocumentFormat $description;
 
     public ?Priority $priority = null;
 
@@ -269,7 +269,7 @@ class IssueField implements \JsonSerializable
      *
      * REST API V3 must use addDescriptionXXXX
      */
-    public function setDescription(AtlassianDocumentFormat $description): static
+    public function setDescription(?AtlassianDocumentFormat $description): static
     {
         if (!empty($description)) {
             $this->description = $description;
