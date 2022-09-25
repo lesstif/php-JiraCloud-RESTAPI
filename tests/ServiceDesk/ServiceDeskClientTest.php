@@ -22,7 +22,7 @@ class ServiceDeskClientTest extends TestCase
     {
         $configuration = $this->createMock(ConfigurationInterface::class);
         $configuration->method('getJiraLogEnabled')->willReturn(true);
-        $configuration->method('getUseV3RestApi')->willReturn(true);
+        //$configuration->method('getJiraHost')->willReturn(\Hamcrest\Type\IsString::stringValue());
 
         $this->logger = $this->createMock(LoggerInterface::class);
 
