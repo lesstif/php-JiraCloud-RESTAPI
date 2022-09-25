@@ -54,17 +54,17 @@ class Worklog
         return $this;
     }
 
-    // Note that in the docblock below, you cannot replace `mixed` by `\DateTimeInterface|string` because JsonMapper doesn't support that,
-    // see <https://github.com/cweiske/jsonmapper/issues/64#issuecomment-269545585>.
-
     /**
+     * Note that in the docblock below, you cannot replace `mixed` by `\DateTimeInterface|string` because JsonMapper doesn't support that,
+     * see <https://github.com/cweiske/jsonmapper/issues/64#issuecomment-269545585>.
+     *
      * @param DateTimeInterface|string $started started time value(\DateTimeInterface|string)  e.g. -  new \DateTime("2016-03-17 11:15:34") or "2016-03-17 11:15:34"
      *
      * @throws JiraException
      *
      * @return $this
      */
-    public function setStarted(DateTimeInterface|string $started): static
+    public function setStarted(mixed $started): static
     {
         if (is_string($started)) {
             $dt = new \DateTime($started);
