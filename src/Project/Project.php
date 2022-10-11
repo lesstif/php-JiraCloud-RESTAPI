@@ -95,6 +95,14 @@ class Project implements \JsonSerializable
 
     public int $categoryId;
 
+    public int $workflowScheme;
+
+    public int $issueTypeScreenScheme;
+
+    public int $issueTypeScheme;
+
+    public int $fieldConfigurationScheme;
+
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
@@ -241,6 +249,34 @@ class Project implements \JsonSerializable
     public function setAssigneeTypeAsEnum(AssigneeTypeEnum $assigneeType): static
     {
         $this->assigneeType = $assigneeType->type();
+
+        return $this;
+    }
+
+    public function setWorkflowScheme(int $workflowScheme): static
+    {
+        $this->workflowScheme = $workflowScheme;
+
+        return $this;
+    }
+
+    public function setIssueTypeScreenScheme(int $issueTypeScreenScheme): static
+    {
+        $this->issueTypeScreenScheme = $issueTypeScreenScheme;
+
+        return $this;
+    }
+
+    public function setIssueTypeScheme(int $issueTypeScheme): static
+    {
+        $this->issueTypeScheme = $issueTypeScheme;
+
+        return $this;
+    }
+
+    public function setFieldConfigurationScheme(int $fieldConfigurationScheme): static
+    {
+        $this->fieldConfigurationScheme = $fieldConfigurationScheme;
 
         return $this;
     }
