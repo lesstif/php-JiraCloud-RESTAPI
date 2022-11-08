@@ -5,8 +5,6 @@ namespace JiraCloud\Issue;
 use DateTimeInterface;
 use DH\Adf\Node\Block\Document;
 use DH\Adf\Node\Node;
-use JiraCloud\ADF\AtlassianDocumentFormat;
-use JiraCloud\JiraException;
 
 class Comment implements \JsonSerializable
 {
@@ -31,11 +29,13 @@ class Comment implements \JsonSerializable
     public bool $jsdPublic;
 
     /**
-     * mapping function for json_mapper
+     * mapping function for json_mapper.
+     *
      * @param \stdClass $body
+     *
      * @return $this
      */
-    public function setBody(\stdClass $body) : static
+    public function setBody(\stdClass $body): static
     {
         $this->body = json_decode(json_encode($body), true);
 
