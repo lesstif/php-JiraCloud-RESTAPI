@@ -31,13 +31,13 @@ class IssueService extends \JiraCloud\JiraClient
      *  get all project list.
      *
      * @param int|string $issueIdOrKey
-     * @param array $paramArray   Query Parameter key-value Array.
+     * @param array      $paramArray   Query Parameter key-value Array.
      * @param Issue|null $issueObject
      *
-     * @return Issue class
      *@throws \JsonMapper_Exception
-     *
      * @throws JiraException
+     *
+     * @return Issue class
      */
     public function get(int|string $issueIdOrKey, array $paramArray = [], Issue $issueObject = null): Issue
     {
@@ -58,10 +58,10 @@ class IssueService extends \JiraCloud\JiraClient
      *
      * @param IssueField $issueField
      *
-     * @return Issue created issue key
      * @throws \JsonMapper_Exception
-     *
      * @throws JiraException
+     *
+     * @return Issue created issue key
      */
     public function create(IssueField $issueField): Issue
     {
@@ -83,12 +83,12 @@ class IssueService extends \JiraCloud\JiraClient
      * Create multiple issues using bulk insert.
      *
      * @param IssueField[] $issueFields Array of IssueField objects
-     * @param int $batchSize   Maximum number of issues to send in each request
+     * @param int          $batchSize   Maximum number of issues to send in each request
+     *
+     *@throws \JsonMapper_Exception
+     * @throws JiraException
      *
      * @return Issue[] Array of results, where each result represents one batch of insertions
-     *@throws \JsonMapper_Exception
-     *
-     * @throws JiraException
      */
     public function createMultiple(array $issueFields, int $batchSize = 50): array
     {
@@ -138,13 +138,13 @@ class IssueService extends \JiraCloud\JiraClient
     /**
      * Add one or more file to an issue.
      *
-     * @param int|string $issueIdOrKey  Issue id or key
+     * @param int|string   $issueIdOrKey  Issue id or key
      * @param array|string $filePathArray attachment file path.
      *
-     * @return Attachment[]
      *@throws \JsonMapper_Exception
-     *
      * @throws JiraException
+     *
+     * @return Attachment[]
      */
     public function addAttachments(int|string $issueIdOrKey, array|string $filePathArray): array
     {
@@ -183,9 +183,9 @@ class IssueService extends \JiraCloud\JiraClient
     /**
      * update issue.
      *
-     * @return string created issue key
      * @throws JiraException
      *
+     * @return string created issue key
      */
     public function update(int|string $issueIdOrKey, IssueField $issueField, array $paramArray = []): string
     {
