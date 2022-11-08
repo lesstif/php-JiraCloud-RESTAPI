@@ -1149,30 +1149,56 @@ Not working at this time.!
 <?php
 require 'vendor/autoload.php';
 
-use JiraCloud\Issue\IssueService;
+use DH\Adf\Node\Block\Document;
+use JiraCloud\ADF\AtlassianDocumentFormat;
 use JiraCloud\Issue\Comment;
-use JiraCloud\JiraException;
+use JiraCloud\Issue\IssueService;
 
 $issueKey = 'TEST-879';
 
 try {			
     $comment = new Comment();
 
-    $body = <<<COMMENT
-Adds a new comment to an issue.
-* Bullet 1
-* Bullet 2
-** sub Bullet 1
-** sub Bullet 2
-* Bullet 3
-COMMENT;
+    $code =<<<CODE
+<?php
+\$i = 123;
+\$a = ['hello', 'world', ];
+var_dump([\$i => \$a]);
+CODE;
 
-    $comment->setBody($body)
-        ->setVisibilityAsString('role', 'Users');
+    $doc = (new Document())
+        ->heading(1)            // header level 1, can have child blocks (needs to be closed with `->end()`)
+            ->text('h1')        // simple unstyled text, cannot have child blocks (no `->end()` needed)
+        ->end()                 // closes `heading` node
+        ->paragraph()           // paragraph, can have child blocks (needs to be closed with `->end()`)
+            ->text('we’re ')    // simple unstyled text
+            ->strong('support') // text node embedding a `strong` mark
+            ->text(' ')         // simple unstyled text
+            ->em('markdown')    // text node embedding a `em` mark
+            ->text('. ')        // simple unstyled text
+            ->underline('like') // text node embedding a `underline` mark
+            ->text(' this.')    // simple unstyled text
+            ->text(' date=' . date("Y-m-d H:i:s"))
+        ->end()                 // closes `paragraph` node
+        ->heading(2)            // header level 2
+          ->text('h2')        // simple unstyled text
+        ->end()                 // closes `heading` node
+        ->heading(3)
+            ->text('heading 3')
+        ->end()
+        ->paragraph()           // paragraph
+          ->text('also support heading.') // simple unstyled text
+        ->end()                 // closes `paragraph` node
+        ->codeblock('php')
+         ->text($code)
+        ->end()
     ;
 
+    $comment->setBodyByAtlassianDocumentFormat($doc);
+
     $issueService = new IssueService();
-    $ret = $issueService->addComment($issueKey, $comment);
+    $ret = $issueService->addComment($subTaskIssueKey, $comment);
+            
     print_r($ret);
 } catch (JiraCloud\JiraException $e) {
     $this->assertTrue(FALSE, 'add Comment Failed : ' . $e->getMessage());
@@ -1182,7 +1208,7 @@ COMMENT;
 
 #### Get comment
 
-[See Jira API reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/issue-getComments)
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-comments/#api-rest-api-3-issue-issueidorkey-comment-get)
 
 ```php
 <?php
@@ -1204,8 +1230,11 @@ try {
    
     $comments = $issueService->getComments($issueKey, $param);
 
-    var_dump($comments);
-
+    // $comments->comments is a real array of comment
+    foreach ($comments->comments as $comment){
+        var_dump(["id" => comment->id, "self" => $comment->self]);
+    }  
+    
 } catch (JiraCloud\JiraException $e) {
     $this->assertTrue(false, 'get Comment Failed : '.$e->getMessage());
 }
@@ -1243,7 +1272,7 @@ try {
 
 #### Delete comment
 
-[See Jira API reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/issue-deleteComment)
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-comments/#api-rest-api-3-issue-issueidorkey-comment-id-delete)
 
 ```php
 <?php
@@ -1269,7 +1298,7 @@ try {
 
 #### Update comment
 
-[See Jira API reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/issue-updateComment)
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-comments/#api-rest-api-3-issue-issueidorkey-comment-id-put)
 
 ```php
 <?php
@@ -1287,9 +1316,51 @@ try {
     $issueService = new IssueService();
         
     $comment = new Comment();
-    $comment->setBody('Updated comments');
-    
-    $issueService->updateComment($issueKey, $commentId, $comment);
+
+    $code =<<<CODE
+# This program adds two numbers
+num1 = 1.5
+num2 = 6.3
+
+# Add two numbers
+sum = num1 + num2
+
+# Display the sum
+print('The sum of {0} and {1} is {2}'.format(num1, num2, sum))
+CODE;
+
+    $doc = (new Document())
+        ->heading(2)            // header level 1, can have child blocks (needs to be closed with `->end()`)
+            ->text('h2')        // simple unstyled text, cannot have child blocks (no `->end()` needed)
+        ->end()                 // closes `heading` node
+        ->heading(3)            // header level 2
+            ->text('h3')        // simple unstyled text
+        ->end()                 // closes `heading` node
+        ->heading(4)
+            ->text('heading 4')
+        ->end()
+        ->paragraph()           // paragraph
+            ->text('also support heading.') // simple unstyled text
+        ->end()                 // closes `paragraph` node
+        ->codeblock('python')
+            ->text($code)
+        ->end()
+        ->paragraph()           // paragraph, can have child blocks (needs to be closed with `->end()`)
+            ->text('we’re ')    // simple unstyled text
+            ->strong('support') // text node embedding a `strong` mark
+            ->text(' ')         // simple unstyled text
+            ->em('markdown')    // text node embedding a `em` mark
+            ->text('. ')        // simple unstyled text
+            ->underline('like') // text node embedding a `underline` mark
+            ->text(' this.')    // simple unstyled text
+            ->text(' date=' . date("Y-m-d H:i:s"))
+        ->end()                 // closes `paragraph` node
+    ;
+
+    $comment->setBodyByAtlassianDocumentFormat($doc);
+
+    $issueService = new IssueService();
+    $ret = $issueService->updateComment($issueKey, $comment_id, $comment);
 
 } catch (JiraCloud\JiraException $e) {
     $this->assertTrue(false, 'Update comment Failed : '.$e->getMessage());

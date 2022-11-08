@@ -3,6 +3,10 @@
 namespace JiraCloud\Issue;
 
 use DateTimeInterface;
+use DH\Adf\Node\Block\Document;
+use DH\Adf\Node\Node;
+use JiraCloud\ADF\AtlassianDocumentFormat;
+use JiraCloud\JiraException;
 
 class Comment implements \JsonSerializable
 {
@@ -14,7 +18,7 @@ class Comment implements \JsonSerializable
 
     public Reporter $author;
 
-    public string $body;
+    public array $body;
 
     public Reporter $updateAuthor;
 
@@ -24,9 +28,23 @@ class Comment implements \JsonSerializable
 
     public ?Visibility $visibility = null;
 
-    public function setBody(string $body): static
+    public bool $jsdPublic;
+
+    /**
+     * mapping function for json_mapper
+     * @param \stdClass $body
+     * @return $this
+     */
+    public function setBody(\stdClass $body) : static
     {
-        $this->body = $body;
+        $this->body = json_decode(json_encode($body), true);
+
+        return $this;
+    }
+
+    public function setBodyByAtlassianDocumentFormat(Document|Node $body): static
+    {
+        $this->body = $body->jsonSerialize();
 
         return $this;
     }
@@ -34,6 +52,8 @@ class Comment implements \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize(): array
     {
-        return array_filter(get_object_vars($this));
+        return array_filter(get_object_vars($this), function ($var) {
+            return !is_null($var);
+        });
     }
 }
