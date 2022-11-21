@@ -1660,12 +1660,17 @@ try {
 
 #### Add worklog in issue
 
-[See Jira API V2 reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/issue-addWorklog)
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-worklogs/#api-rest-api-3-issue-issueidorkey-worklog-post)
 
 ```php
 <?php
 require 'vendor/autoload.php';
 
+use DateInterval;
+use DateTime;
+use DH\Adf\Node\Block\Document;
+use JiraCloud\ADF\AtlassianDocumentFormat;
+use PHPUnit\Framework\TestCase;
 use JiraCloud\Issue\IssueService;
 use JiraCloud\Issue\Worklog;
 use JiraCloud\JiraException;
@@ -1674,58 +1679,42 @@ $issueKey = 'TEST-961';
 
 try {
     $workLog = new Worklog();
+    
+    $doc = (new Document())
+                ->heading(1)            // header level 1, can have child blocks (needs to be closed with `->end()`)
+                    ->text('h1')        // simple unstyled text, cannot have child blocks (no `->end()` needed)
+                ->end()                 // closes `heading` node
+                ->paragraph()           // paragraph, can have child blocks (needs to be closed with `->end()`)
+                    ->text('we’re ')    // simple unstyled text
+                    ->strong('support') // text node embedding a `strong` mark
+                    ->text(' ')         // simple unstyled text
+                    ->em('markdown')    // text node embedding a `em` mark
+                    ->text('. ')        // simple unstyled text
+                    ->underline('like') // text node embedding a `underline` mark
+                    ->text(' this.')    // simple unstyled text
+                ->end()                 // closes `paragraph` node
+                ->heading(2)            // header level 2
+                    ->text('h2')        // simple unstyled text
+                ->end()                 // closes `heading` node
+                ->heading(3)
+                    ->text('heading 3')
+                ->end()
+                ->paragraph()           // paragraph
+                    ->text('also support heading.') // simple unstyled text
+                ->end()                 // closes `paragraph` node
+                ->codeblock('php')
+                    ->text($code)
+                ->end()
+            ;
 
-    $workLog->setComment('I did some work here.')
-            ->setStarted('2016-05-28 12:35:54')
-            ->setTimeSpent('1d 2h 3m');
+    $comment = new AtlassianDocumentFormat($doc);
 
-    $issueService = new IssueService();
-
-    $ret = $issueService->addWorklog($issueKey, $workLog);
-
-    $workLogid = $ret->{'id'};
-
-    var_dump($ret);
-} catch (JiraCloud\JiraException $e) {
-    $this->assertTrue(false, 'Create Failed : '.$e->getMessage());
-}
-
-```
-
-[See Jira API V3 reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/#api-rest-api-3-issue-issueIdOrKey-worklog-post)
-
-```php
-<?php
-require 'vendor/autoload.php';
-
-// Worklog example for API V3 assumes JIRAAPI_V3_REST_API_V3=true is configured in
-// your .env file.
-
-use JiraCloud\Issue\ContentField;
-use JiraCloud\Issue\IssueService;
-use JiraCloud\Issue\Worklog;
-use JiraCloud\JiraException;
-
-$issueKey = 'TEST-961';
-
-try {
-    $workLog = new Worklog();
-
-    $paragraph = new ContentField();
-    $paragraph->type = 'paragraph';
-    $paragraph->content[] = [
-        'text' => 'I did some work here.',
-        'type' => 'text',
-    ];
-
-    $comment = new ContentField();
-    $comment->type = 'doc';
-    $comment->version = 1;
-    $comment->content[] = $paragraph;
+    $startedAt = (new DateTime('NOW'))
+        ->add(DateInterval::createFromDateString('-1 hour -27 minute'));
 
     $workLog->setComment($comment)
-            ->setStarted('2016-05-28 12:35:54')
-            ->setTimeSpent('1d 2h 3m');
+        ->setStarted($startedAt)
+        ->setTimeSpent('1d 2h 3m');
 
     $issueService = new IssueService();
 
@@ -1739,16 +1728,20 @@ try {
 }
 
 ```
-
 
 #### edit worklog in issue
 
-[See Jira API reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/issue-updateWorklog)
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-worklogs/#api-rest-api-3-issue-issueidorkey-worklog-id-put)
 
 ```php
 <?php
 require 'vendor/autoload.php';
 
+use DateInterval;
+use DateTime;
+use DH\Adf\Node\Block\Document;
+use JiraCloud\ADF\AtlassianDocumentFormat;
+use PHPUnit\Framework\TestCase;
 use JiraCloud\Issue\IssueService;
 use JiraCloud\Issue\Worklog;
 use JiraCloud\JiraException;
@@ -1759,9 +1752,34 @@ $workLogid = '12345';
 try {
     $workLog = new Worklog();
 
-    $workLog->setComment('I did edit previous worklog here.')
-            ->setStarted('2016-05-29 13:15:34')
-            ->setTimeSpent('3d 4h 5m');
+    $doc = (new Document())
+                ->heading(1)            // header level 1, can have child blocks (needs to be closed with `->end()`)
+                ->text('h1')        // simple unstyled text, cannot have child blocks (no `->end()` needed)
+                ->end()                 // closes `heading` node
+                ->paragraph()           // paragraph, can have child blocks (needs to be closed with `->end()`)
+                    ->text('I’did ')    // simple unstyled text
+                    ->strong('edit') // text node embedding a `strong` mark
+                    ->text(' ')         // simple unstyled text
+                    ->em('previous')    // text node embedding a `em` mark
+                    ->text(' ')        // simple unstyled text
+                    ->underline('worklog') // text node embedding a `underline` mark
+                    ->text(' here.')    // simple unstyled text
+                ->end()                 // closes `paragraph` node
+                ->heading(2)            // header level 2
+                 ->text('h2')        // simple unstyled text
+                ->end()                 // closes `heading` node
+                ->heading(3)
+                 ->text('heading 3')
+                ->end()
+                ->paragraph()           // paragraph
+                 ->text('also support heading.') // simple unstyled text
+                ->end()                 // closes `paragraph` node
+            ;
+
+    $comment = new AtlassianDocumentFormat($doc);
+
+    $workLog->setComment($comment)
+        ->setTimeSpent('2d 7h 5m');
 
     $issueService = new IssueService();
 
@@ -1776,9 +1794,9 @@ try {
 
 #### Get issue worklog
 
-[See Jira API reference (get full issue worklog)](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/issue-getIssueWorklog)
+[See Jira API reference (get full issue worklog)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-worklogs/#api-rest-api-3-issue-issueidorkey-worklog-get)
 
-[See Jira API reference (get worklog by id)](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/issue-getWorklog)
+[See Jira API reference (get worklog by id)](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-worklogs/#api-rest-api-3-worklog-list-post)
 
 ```php
 <?php
