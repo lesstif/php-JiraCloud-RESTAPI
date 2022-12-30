@@ -5,7 +5,7 @@ namespace JiraCloud\Issue;
 class Comments implements \JsonSerializable
 {
     public string $self;
-    
+
     public int $startAt;
 
     public int $maxResults;
