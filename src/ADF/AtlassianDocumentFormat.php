@@ -10,6 +10,12 @@ use DH\Adf\Node\Node;
  */
 class AtlassianDocumentFormat implements \JsonSerializable
 {
+    public array $type;
+
+    public array $content;
+
+    public string $version;
+
     private Document $document;
 
     public function __construct(Document|Node $document)

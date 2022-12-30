@@ -28,6 +28,8 @@ class Comment implements \JsonSerializable
 
     public bool $jsdPublic;
 
+    public string $renderedBody;
+
     /**
      * mapping function for json_mapper.
      *

@@ -2,12 +2,15 @@
 
 namespace JiraCloud\Issue;
 
+use AllowDynamicProperties;
 use DateTimeInterface;
 use JiraCloud\ADF\ADFMarkType;
 use JiraCloud\ADF\AtlassianDocumentFormat;
 use JiraCloud\ClassSerialize;
 use JiraCloud\Project\Project;
 
+
+#[AllowDynamicProperties]
 class IssueField implements \JsonSerializable
 {
     use ClassSerialize;

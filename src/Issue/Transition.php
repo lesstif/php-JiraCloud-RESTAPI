@@ -23,6 +23,13 @@ class Transition implements \JsonSerializable
 
     public ?array $update = null;
 
+    public bool $hasScreen;
+    public bool $isGlobal;
+    public bool $isInitial;
+    public bool $isAvailable;
+    public bool $isConditional;
+    public bool $isLooped;
+
     public function setTransitionName($name): void
     {
         if (is_null($this->transition)) {

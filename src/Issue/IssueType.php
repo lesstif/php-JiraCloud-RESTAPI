@@ -16,6 +16,8 @@ class IssueType implements \JsonSerializable
 
     public bool $subtask;
 
+    public string $hierarchyLevel;
+
     /** @var \JiraCloud\Issue\IssueStatus[] */
     public $statuses;
 

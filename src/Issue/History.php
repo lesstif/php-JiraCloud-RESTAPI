@@ -9,17 +9,13 @@ namespace JiraCloud\Issue;
  */
 class History implements \JsonSerializable
 {
-    /** @var int */
-    public $id;
+    public int $id;
 
-    /** @var \JiraCloud\Issue\Reporter */
-    public $author;
+    public Reporter $author;
 
-    /** @var string */
-    public $created;
+    public string $created;
 
-    /** @var array|null */
-    public $items;
+    public ?array $items;
 
     #[\ReturnTypeWillChange]
     public function jsonSerialize()

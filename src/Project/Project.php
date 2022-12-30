@@ -103,6 +103,8 @@ class Project implements \JsonSerializable
 
     public int $fieldConfigurationScheme;
 
+    public string $simplified;
+
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {

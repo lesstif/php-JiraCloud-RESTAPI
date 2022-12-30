@@ -1391,11 +1391,26 @@ $issueKey = 'TEST-879';
 try {			
     $transition = new Transition();
     $transition->setTransitionName('In Progress');
-    $transition->setCommentBody('performing the transition via REST API.');
+    
+    $doc = (new Document())
+                ->paragraph()           // paragraph, can have child blocks (needs to be closed with `->end()`)
+                    ->text('Issue ')    // simple unstyled text
+                    ->strong(' status') // text node embedding a `strong` mark
+                    ->text(' ')         // simple unstyled text
+                    ->text(' changed ')    // text node embedding a `em` mark
+                    ->text('. ')        // simple unstyled text
+                    ->underline('by') // text node embedding a `underline` mark
+                    ->em(' REST API.')    // simple unstyled text
+                ->end()                 // closes `paragraph` node
+            ;
+
+    $comment = new AtlassianDocumentFormat($doc);
+    
+    $transition->setCommentBody($comment);
 
     $issueService = new IssueService();
-
     $issueService->transition($issueKey, $transition);
+    
 } catch (JiraCloud\JiraException $e) {
     $this->assertTrue(FALSE, 'add Comment Failed : ' . $e->getMessage());
 }

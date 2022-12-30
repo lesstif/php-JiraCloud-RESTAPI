@@ -4,14 +4,13 @@ namespace JiraCloud\Issue;
 
 class Comments implements \JsonSerializable
 {
-    /** @var int */
-    public $startAt;
+    public string $self;
+    
+    public int $startAt;
 
-    /** @var int */
-    public $maxResults;
+    public int $maxResults;
 
-    /** @var int */
-    public $total;
+    public int $total;
 
     /** @var \JiraCloud\Issue\Comment[] */
     public $comments;

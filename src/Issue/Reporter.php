@@ -20,6 +20,10 @@ class Reporter implements \JsonSerializable
 
     public string $active;
 
+    public string $timezone;
+
+    public string $accountType;
+
     private bool $wantUnassigned = false;
 
     public string $accountId;

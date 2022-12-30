@@ -287,7 +287,7 @@ CODE;
         try {
             $issueService = new IssueService();
 
-            $ret = $issueService->changeAssigneeByAccountId($subTaskIssueKey, '557058%3A5927b3d9-d258-473f-af86-16d3214d8496');
+            $ret = $issueService->changeAssigneeByAccountId($subTaskIssueKey, 'replace:by_account_id');
 
             print_r($ret);
 
@@ -330,19 +330,50 @@ CODE;
         try {
             $comment = new Comment();
 
-            $body = <<<'COMMENT'
-Adds a new comment to an issue.
-* Bullet 1
-* Bullet 2
-** sub Bullet 1
-** sub Bullet 2
-COMMENT;
+            $comment = new Comment();
 
-            $comment->setBody($body)
-                ->setVisibilityAsString('role', 'Users');
+            $code =<<<CODE
+<?php
+\$i = 123;
+\$a = ['hello', 'world', ];
+var_dump([\$i => \$a]);
+CODE;
+
+            $doc = (new Document())
+                ->heading(1)            // header level 1, can have child blocks (needs to be closed with `->end()`)
+                ->text('h1')        // simple unstyled text, cannot have child blocks (no `->end()` needed)
+                ->end()                 // closes `heading` node
+                ->paragraph()           // paragraph, can have child blocks (needs to be closed with `->end()`)
+                ->text('we’re ')    // simple unstyled text
+                ->strong('support') // text node embedding a `strong` mark
+                ->text(' ')         // simple unstyled text
+                ->em('markdown')    // text node embedding a `em` mark
+                ->text('. ')        // simple unstyled text
+                ->underline('like') // text node embedding a `underline` mark
+                ->text(' this.')    // simple unstyled text
+                ->text(' date=' . date("Y-m-d H:i:s"))
+                ->end()                 // closes `paragraph` node
+                ->heading(2)            // header level 2
+                ->text('h2')        // simple unstyled text
+                ->end()                 // closes `heading` node
+                ->heading(3)
+                ->text('heading 3')
+                ->end()
+                ->paragraph()           // paragraph
+                ->text('also support heading.') // simple unstyled text
+                ->end()                 // closes `paragraph` node
+                ->codeblock('php')
+                ->text($code)
+                ->end()
+            ;
+
+            $comment->setBodyByAtlassianDocumentFormat($doc)
+                //    ->setVisibilityAsString('role', 'Users')
+            ;
 
             $issueService = new IssueService();
             $ret = $issueService->addComment($subTaskIssueKey, $comment);
+
             print_r($ret);
             $this->assertNotNull($ret);
 
@@ -356,14 +387,30 @@ COMMENT;
      * @test
      * @depends add_comments
      */
-    public function testTransition(string $subTaskIssueKey) : string
+    public function transition_issue(string $subTaskIssueKey) : string
     {
         try {
             $transition = new Transition();
-            $transition->setTransitionName('Resolved');
-            $transition->setCommentBody('Issue close by REST API.');
+            $transition->setTransitionName('In Progress');
+
+            $doc = (new Document())
+                ->paragraph()           // paragraph, can have child blocks (needs to be closed with `->end()`)
+                    ->text('Issue ')    // simple unstyled text
+                    ->strong(' status') // text node embedding a `strong` mark
+                    ->text(' ')         // simple unstyled text
+                    ->text(' changed ')    // text node embedding a `em` mark
+                    ->text('. ')        // simple unstyled text
+                    ->underline('by') // text node embedding a `underline` mark
+                    ->em(' REST API.')    // simple unstyled text
+                ->end()                 // closes `paragraph` node
+            ;
+
+            $comment = new AtlassianDocumentFormat($doc);
+
+            $transition->setCommentBody($comment);
 
             $issueService = new IssueService();
+
             $ret = $issueService->transition($subTaskIssueKey, $transition);
 
             $this->assertNotNull($ret);
@@ -376,7 +423,7 @@ COMMENT;
 
     /**
      * @test
-     * @depends add_comments
+     * @depends transition_issue
      */
     public function issue_search()
     {
