@@ -95,7 +95,7 @@ class JiraClient
 
             // Monolog 3.x has a breaking change, so I have to add this dirty code.
             $ver = \Composer\InstalledVersions::getVersion('monolog/monolog');
-            $major = intval(explode(".", $ver)[0]);
+            $major = intval(explode('.', $ver)[0]);
 
             if ($major === 2) {
                 $this->log->pushHandler(new NoOperationMonologHandler());
