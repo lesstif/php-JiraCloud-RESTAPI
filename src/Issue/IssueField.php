@@ -38,7 +38,7 @@ class IssueField implements \JsonSerializable
 
     public Project $project;
 
-    public ?string $environment;
+    public ?array $environment;
 
     /* @var \JiraCloud\Issue\Component[] This property must don't describe the type feature for JSON deserialized. */
     public $components;
