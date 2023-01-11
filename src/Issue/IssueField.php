@@ -28,7 +28,7 @@ class IssueField implements \JsonSerializable
 
     public ?DateTimeInterface $updated = null;
 
-    public ?AtlassianDocumentFormat $description;
+    public ?AtlassianDocumentFormat $description = null;
 
     public ?Priority $priority = null;
 

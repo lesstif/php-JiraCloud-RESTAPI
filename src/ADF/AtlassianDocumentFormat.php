@@ -16,7 +16,7 @@ class AtlassianDocumentFormat implements \JsonSerializable
 
     public string $version;
 
-    private Document $document;
+    private ?Document $document = null;
 
     public function __construct(Document|Node $document)
     {
