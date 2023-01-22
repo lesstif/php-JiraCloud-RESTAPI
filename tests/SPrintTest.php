@@ -4,6 +4,7 @@ namespace JiraCloud\Test;
 
 use DateInterval;
 use DateTime;
+use Exception;
 use JiraCloud\Sprint\Sprint;
 use JiraCloud\Sprint\SprintService;
 use PHPUnit\Framework\TestCase;
@@ -39,8 +40,8 @@ class SPrintTest extends TestCase
 
             return $sprint->id;
 
-        } catch (JiraException $e) {
-            $this->assertTrue(false, 'testSearch Failed : '.$e->getMessage());
+        } catch (Exception $e) {
+            $this->fail( 'testSearch Failed : '.$e->getMessage());
         }
     }
 
@@ -59,11 +60,10 @@ class SPrintTest extends TestCase
             $sprint = $sps->getSprint($sprintId);
 
             $this->assertNotNull($sprint->name);
-            Dumper::dump($sprint);
 
             return $sprintId;
-        } catch (JiraException $e) {
-            $this->assertTrue(false, 'testSearch Failed : '.$e->getMessage());
+        } catch (Exception $e) {
+            $this->fail('testSearch Failed : '.$e->getMessage());
         }
     }
 
@@ -82,9 +82,8 @@ class SPrintTest extends TestCase
             $sprint = $sps->getSprintIssues($sprintId);
 
             $this->assertNotNull($sprint);
-            Dumper::dump($sprint);
-        } catch (JiraException $e) {
-            $this->assertTrue(false, 'testSearch Failed : '.$e->getMessage());
+        } catch (Exception $e) {
+            $this->fail('testSearch Failed : '.$e->getMessage());
         }
     }
 }
