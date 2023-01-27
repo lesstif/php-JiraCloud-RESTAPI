@@ -4,6 +4,7 @@ namespace JiraCloud\Issue;
 
 use AllowDynamicProperties;
 use DateTimeInterface;
+use DH\Adf\Node\Block\Document;
 use JiraCloud\ADF\ADFMarkType;
 use JiraCloud\ADF\AtlassianDocumentFormat;
 use JiraCloud\ClassSerialize;
@@ -154,7 +155,7 @@ class IssueField implements \JsonSerializable
         return $this->customFields;
     }
 
-    public function addCustomField(string $key, string|int|float $value): static
+    public function addCustomField(string $key, string|int|float|array|Document $value): static
     {
         $this->customFields[$key] = $value;
 
