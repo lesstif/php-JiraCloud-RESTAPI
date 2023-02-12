@@ -21,12 +21,12 @@ class AttachmentService extends \JiraCloud\JiraClient
      * @mode int outDir creation mode.
      * @recursive boolean Allows the creation of nested directories specified in the pathname.
      *
-     *@return Attachment
      *@throws JiraException
-     *
      * @throws \JsonMapper_Exception
+     *
+     *@return Attachment
      */
-    public function get(int|string $id, string $outDir = null, bool $overwrite = false, int $mode = 0777, bool $recursive = true) : Attachment
+    public function get(int|string $id, string $outDir = null, bool $overwrite = false, int $mode = 0777, bool $recursive = true): Attachment
     {
         $ret = $this->exec($this->uri.$id, null);
 
@@ -63,11 +63,11 @@ class AttachmentService extends \JiraCloud\JiraClient
      *
      * @param int|string $id attachment id
      *
-     * @return string
      *@throws JiraException
      *
+     * @return string
      */
-    public function remove(int|string $id) : string
+    public function remove(int|string $id): string
     {
         $ret = $this->exec($this->uri.$id, null, 'DELETE');
 
