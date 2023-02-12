@@ -2,7 +2,6 @@
 
 namespace JiraCloud\User;
 
-use JiraCloud\ClassSerialize;
 use JiraCloud\Issue\Reporter;
 
 /**
@@ -12,5 +11,4 @@ use JiraCloud\Issue\Reporter;
  */
 class User extends Reporter
 {
-
 }

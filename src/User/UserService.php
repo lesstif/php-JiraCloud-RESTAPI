@@ -18,10 +18,10 @@ class UserService extends \JiraCloud\JiraClient
      *
      * @param array|User $user
      *
-     * @return User User class
      *@throws \JsonMapper_Exception
-     *
      * @throws \JiraCloud\JiraException
+     *
+     * @return User User class
      */
     public function create(User|array $user): User
     {
@@ -43,10 +43,10 @@ class UserService extends \JiraCloud\JiraClient
      * @param array $paramArray Possible values for $paramArray 'accountId', 'key'.
      *                          "Either the 'username' or the 'key' query parameters need to be provided".
      *
-     * @return User User class
      *@throws \JsonMapper_Exception
-     *
      * @throws \JiraCloud\JiraException
+     *
+     * @return User User class
      */
     public function get(array $paramArray): User
     {
@@ -67,10 +67,10 @@ class UserService extends \JiraCloud\JiraClient
      *
      * @param array $paramArray
      *
-     * @return User[]
      *@throws \JsonMapper_Exception
-     *
      * @throws \JiraCloud\JiraException
+     *
+     * @return User[]
      */
     public function findUsers(array $paramArray): array
     {
@@ -99,11 +99,11 @@ class UserService extends \JiraCloud\JiraClient
      *
      * @param array $paramArray
      *
+     * @throws \JsonMapper_Exception
+     * @throws \JiraCloud\JiraException
+     *
      * @return User[]
      *
-     * @throws \JsonMapper_Exception
-     *
-     * @throws \JiraCloud\JiraException
      * @see https://docs.atlassian.com/jira/REST/cloud/#api/2/user-findAssignableUsers
      */
     public function findAssignableUsers(array $paramArray): array
@@ -132,11 +132,11 @@ class UserService extends \JiraCloud\JiraClient
      *
      * @param array $paramArray
      *
+     * @throws \JsonMapper_Exception
+     * @throws \JiraCloud\JiraException
+     *
      * @return User[]
      *
-     * @throws \JsonMapper_Exception
-     *
-     * @throws \JiraCloud\JiraException
      * @see https://developer.atlassian.com/cloud/jira/platform/rest/v2/#api-rest-api-2-user-search-query-get
      */
     public function findUsersByQuery(array $paramArray): array
@@ -200,10 +200,10 @@ class UserService extends \JiraCloud\JiraClient
     /**
      * @param array $paramArray
      *
-     * @return User[]
      *@throws \JsonMapper_Exception
-     *
      * @throws \JiraCloud\JiraException
+     *
+     * @return User[]
      */
     public function getUsers(array $paramArray): array
     {
@@ -226,13 +226,13 @@ class UserService extends \JiraCloud\JiraClient
     /**
      * Function to update an existing user.
      *
-     * @param array $paramArray
+     * @param array      $paramArray
      * @param array|User $user
      *
-     * @return User User class
      *@throws \JsonMapper_Exception
-     *
      * @throws \JiraCloud\JiraException
+     *
+     * @return User User class
      */
     public function update(array $paramArray, User|array $user): User
     {
