@@ -21,7 +21,7 @@ class VersionTest extends TestCase
      */
     public function create_version() :string
     {
-        $versionName = '2.3.4';
+        $versionName = '2.3.5';
         try {
             $projectService = new ProjectService();
             $project = $projectService->get($this->project);
@@ -44,6 +44,8 @@ class VersionTest extends TestCase
         } catch (JiraException $e) {
             print("Error Occurred! " . $e->getMessage());
         }
+
+        return $versionName;
     }
 
     /**

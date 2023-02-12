@@ -58,7 +58,7 @@ class VersionService extends \JiraCloud\JiraClient
      *
      * @see ProjectService::getVersions()
      */
-    public function get(string $id)
+    public function get(string $id) : Version
     {
         $ret = $this->exec($this->uri.'/'.$id);
 
@@ -79,7 +79,7 @@ class VersionService extends \JiraCloud\JiraClient
      *
      * @return Version
      */
-    public function update(Version $version)
+    public function update(Version $version) : Version
     {
         if (!$version->id || !is_numeric($version->id)) {
             throw new JiraException($version->id.' is not a valid version id.');
@@ -112,7 +112,7 @@ class VersionService extends \JiraCloud\JiraClient
      *
      * @return string
      */
-    public function delete(Version $version, $moveAffectedIssuesTo = false, $moveFixIssuesTo = false)
+    public function delete(Version $version, $moveAffectedIssuesTo = false, $moveFixIssuesTo = false) : string
     {
         if (!$version->id || !is_numeric($version->id)) {
             throw new JiraException($version->id.' is not a valid version id.');
@@ -147,7 +147,7 @@ class VersionService extends \JiraCloud\JiraClient
      *
      * @see https://docs.atlassian.com/jira/REST/server/#api/2/version-getVersionRelatedIssues
      */
-    public function getRelatedIssues(Version $version)
+    public function getRelatedIssues(Version $version) : VersionIssueCounts
     {
         if (!$version->id || !is_numeric($version->id)) {
             throw new JiraException($version->id.' is not a valid version id.');
@@ -172,7 +172,7 @@ class VersionService extends \JiraCloud\JiraClient
      *
      * @return VersionUnresolvedCount
      */
-    public function getUnresolvedIssues(Version $version)
+    public function getUnresolvedIssues(Version $version) : VersionUnresolvedCount
     {
         if (!$version->id || !is_numeric($version->id)) {
             throw new JiraException($version->id.' is not a valid version id.');

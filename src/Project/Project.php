@@ -105,6 +105,16 @@ class Project implements \JsonSerializable
 
     public string $simplified;
 
+    public string $style;
+
+    public bool $isPrivate;
+
+    public array $properties;
+
+    public string $entityId;
+
+    public string $uuid;
+
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
