@@ -17,11 +17,6 @@ class VersionService extends \JiraCloud\JiraClient
      */
     public function create(Version $version): Version
     {
-        // to convert DateTimeInterface to string for payload
-        if ($version->releaseDate instanceof \DateTimeInterface) {
-            $version->releaseDate = $version->releaseDate->format('Y-m-d');
-        }
-
         $data = json_encode($version);
 
         $this->log->info("Create Version=\n".$data);
@@ -85,12 +80,9 @@ class VersionService extends \JiraCloud\JiraClient
             throw new JiraException($version->id.' is not a valid version id.');
         }
 
-        if ($version->releaseDate instanceof \DateTimeInterface) {
-            $version->releaseDate = $version->releaseDate->format('Y-m-d');
-        }
-
         //Only one of 'releaseDate' and 'userReleaseDate' can be specified when editing a version."
         $version->userReleaseDate = null;
+        $version->userStartDate = null;
 
         $data = json_encode($version);
         $ret = $this->exec($this->uri.'/'.$version->id, $data, 'PUT');
