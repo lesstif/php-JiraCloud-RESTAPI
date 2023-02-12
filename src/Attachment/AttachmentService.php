@@ -2,7 +2,7 @@
 
 namespace JiraCloud\Attachment;
 
-use JiraCloud\ADF\Attachment;
+use JiraCloud\Issue\Attachment;
 
 /**
  * Class AttachmentService.
