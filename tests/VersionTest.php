@@ -21,7 +21,7 @@ class VersionTest extends TestCase
      */
     public function create_version() :string
     {
-        $versionName = '2.3.5';
+        $versionName = '2.3.4';
         try {
             $projectService = new ProjectService();
             $project = $projectService->get($this->project);
@@ -55,6 +55,7 @@ class VersionTest extends TestCase
      */
     public function update_project_version(string $versionName) : string
     {
+        $newVersionName = null;
         try {
             $versionService = new VersionService();
             $projectService = new ProjectService();
@@ -75,10 +76,11 @@ class VersionTest extends TestCase
 
             $this->assertEquals($res->name, $ver->name);
 
-            return $newVersionName;
         } catch (JiraException $e) {
             print("Error Occurred! " . $e->getMessage());
         }
+
+        return $newVersionName;
     }
 
     /**

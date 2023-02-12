@@ -150,7 +150,7 @@ class ProjectTest extends TestCase
 
             $prjs = $proj->getVersions($projKey);
 
-            $this->assertNull($prjs);
+            $this->assertIsObject($prjs);
             $this->assertTrue($prjs instanceof \ArrayObject);
             $this->assertLessThan($prjs->count(), 2);
 
@@ -163,7 +163,29 @@ class ProjectTest extends TestCase
 
     /**
      * @test
-     * @depends get_project_accessible
+     * @depends get_project_version
+     */
+    public function get_project_assignable(string $projKey) : string
+    {
+        try {
+            $proj = new ProjectService();
+
+            $reporters = $proj->getAssignable($projKey);
+
+            $this->assertIsArray($reporters);
+            //$this->assertTrue($reporters instanceof \ArrayObject);
+            $this->assertLessThan(count($reporters), 2);
+
+        } catch (\Exception $e) {
+            $this->fail('get_project_version ' . $e->getMessage());
+        }
+
+        return $projKey;
+    }
+
+    /**
+     * @test
+     * @depends get_project_assignable
      *
      */
     public function get_unknown_project_type_expect_to_JiraException(string $projKey) : string
