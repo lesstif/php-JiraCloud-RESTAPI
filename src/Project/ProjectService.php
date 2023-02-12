@@ -42,9 +42,8 @@ class ProjectService extends \JiraCloud\JiraClient
      *
      * @throws \JiraCloud\JiraException
      * @throws \JsonMapper_Exception
-     *
      */
-    public function get(string|int $projectIdOrKey) : Project
+    public function get(string|int $projectIdOrKey): Project
     {
         $ret = $this->exec($this->uri."/$projectIdOrKey", null);
 
@@ -64,11 +63,11 @@ class ProjectService extends \JiraCloud\JiraClient
      *
      * @param string|int $projectIdOrKey Project Key
      *
-     * @return Reporter[]
      * @throws \JiraCloud\JiraException
      *
+     * @return Reporter[]
      */
-    public function getAssignable(string|int $projectIdOrKey) : array
+    public function getAssignable(string|int $projectIdOrKey): array
     {
         $ret = $this->exec("/user/assignable/search?project=$projectIdOrKey", null);
         $json = json_decode($ret);
