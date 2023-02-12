@@ -16,14 +16,14 @@ class UserService extends \JiraCloud\JiraClient
     /**
      * Function to create a new user.
      *
-     * @param User|array $user
-     *
-     * @throws \JiraCloud\JiraException
-     * @throws \JsonMapper_Exception
+     * @param array|User $user
      *
      * @return User User class
+     *@throws \JsonMapper_Exception
+     *
+     * @throws \JiraCloud\JiraException
      */
-    public function create($user)
+    public function create(User|array $user): User
     {
         $data = json_encode($user);
 
@@ -40,15 +40,15 @@ class UserService extends \JiraCloud\JiraClient
     /**
      * Function to get user.
      *
-     * @param array $paramArray Possible values for $paramArray 'username', 'key'.
+     * @param array $paramArray Possible values for $paramArray 'accountId', 'key'.
      *                          "Either the 'username' or the 'key' query parameters need to be provided".
      *
-     * @throws \JiraCloud\JiraException
-     * @throws \JsonMapper_Exception
-     *
      * @return User User class
+     *@throws \JsonMapper_Exception
+     *
+     * @throws \JiraCloud\JiraException
      */
-    public function get($paramArray)
+    public function get(array $paramArray): User
     {
         $queryParam = '?'.http_build_query($paramArray);
 
@@ -67,12 +67,12 @@ class UserService extends \JiraCloud\JiraClient
      *
      * @param array $paramArray
      *
-     * @throws \JiraCloud\JiraException
-     * @throws \JsonMapper_Exception
-     *
      * @return User[]
+     *@throws \JsonMapper_Exception
+     *
+     * @throws \JiraCloud\JiraException
      */
-    public function findUsers($paramArray)
+    public function findUsers(array $paramArray): array
     {
         $queryParam = '?'.http_build_query($paramArray);
 
@@ -99,14 +99,14 @@ class UserService extends \JiraCloud\JiraClient
      *
      * @param array $paramArray
      *
-     * @throws \JiraCloud\JiraException
-     * @throws \JsonMapper_Exception
-     *
      * @return User[]
      *
+     * @throws \JsonMapper_Exception
+     *
+     * @throws \JiraCloud\JiraException
      * @see https://docs.atlassian.com/jira/REST/cloud/#api/2/user-findAssignableUsers
      */
-    public function findAssignableUsers($paramArray)
+    public function findAssignableUsers(array $paramArray): array
     {
         $queryParam = '?'.http_build_query($paramArray);
 
@@ -132,14 +132,14 @@ class UserService extends \JiraCloud\JiraClient
      *
      * @param array $paramArray
      *
-     * @throws \JiraCloud\JiraException
-     * @throws \JsonMapper_Exception
-     *
      * @return User[]
      *
+     * @throws \JsonMapper_Exception
+     *
+     * @throws \JiraCloud\JiraException
      * @see https://developer.atlassian.com/cloud/jira/platform/rest/v2/#api-rest-api-2-user-search-query-get
      */
-    public function findUsersByQuery($paramArray)
+    public function findUsersByQuery(array $paramArray): array
     {
         $queryParam = '?'.http_build_query($paramArray);
 
@@ -169,7 +169,7 @@ class UserService extends \JiraCloud\JiraClient
      *
      * @return string
      */
-    public function deleteUser(array $paramArray)
+    public function deleteUser(array $paramArray): string
     {
         $queryParam = '?'.http_build_query($paramArray);
 
@@ -200,12 +200,12 @@ class UserService extends \JiraCloud\JiraClient
     /**
      * @param array $paramArray
      *
-     * @throws \JiraCloud\JiraException
-     * @throws \JsonMapper_Exception
-     *
      * @return User[]
+     *@throws \JsonMapper_Exception
+     *
+     * @throws \JiraCloud\JiraException
      */
-    public function getUsers($paramArray)
+    public function getUsers(array $paramArray): array
     {
         $queryParam = '?'.http_build_query($paramArray);
 
@@ -226,15 +226,15 @@ class UserService extends \JiraCloud\JiraClient
     /**
      * Function to update an existing user.
      *
-     * @param array      $paramArray
-     * @param User|array $user
-     *
-     * @throws \JiraCloud\JiraException
-     * @throws \JsonMapper_Exception
+     * @param array $paramArray
+     * @param array|User $user
      *
      * @return User User class
+     *@throws \JsonMapper_Exception
+     *
+     * @throws \JiraCloud\JiraException
      */
-    public function update($paramArray, $user)
+    public function update(array $paramArray, User|array $user): User
     {
         $queryParam = '?'.http_build_query($paramArray);
 
