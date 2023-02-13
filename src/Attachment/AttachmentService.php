@@ -2,7 +2,8 @@
 
 namespace JiraCloud\Attachment;
 
-use JiraCloud\ADF\Attachment;
+use JiraCloud\Issue\Attachment;
+use JiraCloud\JiraException;
 
 /**
  * Class AttachmentService.
@@ -14,18 +15,18 @@ class AttachmentService extends \JiraCloud\JiraClient
     /**
      * Returns the meta-data for an attachment, including the URI of the actual attached file.
      *
-     * @param string|int $id attachment Id
+     * @param int|string $id attachment Id
      * @outDir string downloads the content and store into outDir
      * @overwrite boolean determines whether to overwrite the file if it already exists.
      * @mode int outDir creation mode.
      * @recursive boolean Allows the creation of nested directories specified in the pathname.
      *
-     *@throws \JsonMapper_Exception
-     * @throws \JiraCloud\JiraException
+     *@throws JiraException
+     * @throws \JsonMapper_Exception
      *
-     * @return \JiraCloud\ADF\Attachment
+     *@return Attachment
      */
-    public function get($id, $outDir = null, $overwrite = false, $mode = 0777, $recursive = true)
+    public function get(int|string $id, string $outDir = null, bool $overwrite = false, int $mode = 0777, bool $recursive = true): Attachment
     {
         $ret = $this->exec($this->uri.$id, null);
 
@@ -60,13 +61,13 @@ class AttachmentService extends \JiraCloud\JiraClient
     /**
      * Remove an attachment from an issue.
      *
-     * @param string|int $id attachment id
+     * @param int|string $id attachment id
      *
-     * @throws \JiraCloud\JiraException
+     *@throws JiraException
      *
      * @return string
      */
-    public function remove($id)
+    public function remove(int|string $id): string
     {
         $ret = $this->exec($this->uri.$id, null, 'DELETE');
 

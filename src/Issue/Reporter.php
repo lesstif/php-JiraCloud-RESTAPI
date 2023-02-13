@@ -10,7 +10,7 @@ class Reporter implements \JsonSerializable
 
     public string $self;
 
-    public ?string $name;
+    public ?string $name = null;
 
     public string $emailAddress;
 
@@ -27,6 +27,13 @@ class Reporter implements \JsonSerializable
     private bool $wantUnassigned = false;
 
     public string $accountId;
+
+    public string $locale;
+
+    public string $expand;
+    public array $applicationRoles;
+
+    public array $groups;
 
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
