@@ -66,6 +66,11 @@ interface ConfigurationInterface
     public function getCurlOptUserAgent(): ?string;
 
     /**
+     * Get the actual value for Curl's CURLOPT_SSL_VERIFYHOST.
+     */
+    public function getCurlOptSslVerifyHostValue(): int;
+
+    /**
      * HTTP header 'Authorization: Bearer {token}' for OAuth.
      */
     public function getOAuthAccessToken(): ?string;

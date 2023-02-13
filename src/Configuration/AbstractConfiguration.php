@@ -161,6 +161,15 @@ abstract class AbstractConfiguration implements ConfigurationInterface
         return $this->curlOptUserAgent;
     }
 
+    public function getCurlOptSslVerifyHostValue(): int
+    {
+        return [
+            false => 0,
+            // See https://www.php.net/manual/en/function.curl-setopt.php for information why 2 needs to be here.
+            true => 2,
+        ][$this->isCurlOptSslVerifyHost()];
+    }
+
     public function getOAuthAccessToken(): string
     {
         return $this->oauthAccessToken;

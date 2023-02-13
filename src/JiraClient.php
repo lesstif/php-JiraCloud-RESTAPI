@@ -132,7 +132,7 @@ class JiraClient
     {
         $this->authorization($ch, $curl_http_headers, $cookieFile);
 
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, $this->getConfiguration()->isCurlOptSslVerifyHost());
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, $this->getConfiguration()->getCurlOptSslVerifyHostValue());
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $this->getConfiguration()->isCurlOptSslVerifyPeer());
         if ($this->getConfiguration()->isCurlOptSslCert()) {
             curl_setopt($ch, CURLOPT_SSLCERT, $this->getConfiguration()->isCurlOptSslCert());
