@@ -45,7 +45,8 @@ class IssueLink implements \JsonSerializable
      */
     public function setInwardIssue(string $issueKey): static
     {
-        $this->inwardIssue['key'] = $issueKey;
+        $this->inwardIssue = new Issue();
+        $this->inwardIssue->key = $issueKey;
 
         return $this;
     }
@@ -57,7 +58,8 @@ class IssueLink implements \JsonSerializable
      */
     public function setOutwardIssue(string $issueKey): static
     {
-        $this->outwardIssue['key'] = $issueKey;
+        $this->outwardIssue = new Issue();
+        $this->outwardIssue->key = $issueKey;
 
         return $this;
     }
