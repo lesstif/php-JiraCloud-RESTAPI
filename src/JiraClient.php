@@ -132,7 +132,7 @@ class JiraClient
     {
         $this->authorization($ch, $curl_http_headers, $cookieFile);
 
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, $this->getConfiguration()->isCurlOptSslVerifyHost());
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, $this->getConfiguration()->getCurlOptSslVerifyHostValue());
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $this->getConfiguration()->isCurlOptSslVerifyPeer());
         if ($this->getConfiguration()->isCurlOptSslCert()) {
             curl_setopt($ch, CURLOPT_SSLCERT, $this->getConfiguration()->isCurlOptSslCert());
@@ -327,26 +327,7 @@ class JiraClient
             $this->log->debug('using CURLFile='.var_export($attachments, true));
         }
 
-        $this->authorization($ch, $curl_http_headers);
-
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, $this->getConfiguration()->isCurlOptSslVerifyHost());
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $this->getConfiguration()->isCurlOptSslVerifyPeer());
-
-        if ($this->getConfiguration()->isCurlOptSslCert()) {
-            curl_setopt($ch, CURLOPT_SSLCERT, $this->getConfiguration()->isCurlOptSslCert());
-        }
-        if ($this->getConfiguration()->isCurlOptSslCertPassword()) {
-            curl_setopt($ch, CURLOPT_SSLCERTPASSWD, $this->getConfiguration()->isCurlOptSslCertPassword());
-        }
-        if ($this->getConfiguration()->isCurlOptSslKey()) {
-            curl_setopt($ch, CURLOPT_SSLKEY, $this->getConfiguration()->isCurlOptSslKey());
-        }
-        if ($this->getConfiguration()->isCurlOptSslKeyPassword()) {
-            curl_setopt($ch, CURLOPT_SSLKEYPASSWD, $this->getConfiguration()->isCurlOptSslKeyPassword());
-        }
-        if ($this->getConfiguration()->getTimeout()) {
-            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->getConfiguration()->getTimeout());
-        }
+        $curl_http_headers = $this->curlPrepare($ch, $curl_http_headers);
 
         $this->proxyConfigCurlHandle($ch);
 
