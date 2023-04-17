@@ -57,9 +57,11 @@ class IssueLinkService extends \JiraCloud\JiraClient
 
     /**
      * @param string $linkId
-     * @return IssueLink
+     *
      * @throws \JiraCloud\JiraException
      * @throws \JsonMapper_Exception
+     *
+     * @return IssueLink
      */
     public function getIssueLink(string $linkId): IssueLink
     {
@@ -75,7 +77,7 @@ class IssueLinkService extends \JiraCloud\JiraClient
         );
     }
 
-    public function deleteIssueLink(string $linkId) : bool
+    public function deleteIssueLink(string $linkId): bool
     {
         $this->log->info("deleteIssueLink=\n");
 
@@ -85,5 +87,4 @@ class IssueLinkService extends \JiraCloud\JiraClient
 
         return $ret;
     }
-
 }

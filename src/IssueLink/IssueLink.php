@@ -50,7 +50,7 @@ class IssueLink implements \JsonSerializable
         if ($this->inwardIssue === null) {
             $this->inwardIssue = new LinkedIssue();
         }
-        $this->inwardIssue->key= $issueKey;
+        $this->inwardIssue->key = $issueKey;
 
         return $this;
     }
