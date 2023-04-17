@@ -38,7 +38,7 @@ class Reporter implements \JsonSerializable
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
-        $vars = (get_object_vars($this));
+        $vars = get_object_vars($this);
 
         foreach ($vars as $key => $value) {
             if ($key === 'name' && ($this->isWantUnassigned() === true)) {
