@@ -2,6 +2,8 @@
 
 namespace JiraCloud\IssueLink;
 
+use ArrayObject;
+
 class IssueLinkService extends \JiraCloud\JiraClient
 {
     private $uri = '';
@@ -13,7 +15,7 @@ class IssueLinkService extends \JiraCloud\JiraClient
      *
      * @return bool
      */
-    public function addIssueLink($issueLink)
+    public function addIssueLink(IssueLink $issueLink): bool
     {
         $this->log->info("addIssueLink=\n");
 
@@ -24,7 +26,9 @@ class IssueLinkService extends \JiraCloud\JiraClient
         $url = $this->uri.'/issueLink';
         $type = 'POST';
 
-        return $this->exec($url, $data, $type);
+        $ret = $this->exec($url, $data, $type);
+
+        return $ret;
     }
 
     /**
@@ -32,7 +36,7 @@ class IssueLinkService extends \JiraCloud\JiraClient
      *
      * @return IssueLinkType[]
      */
-    public function getIssueLinkTypes()
+    public function getIssueLinkTypes(): ArrayObject
     {
         $this->log->info("getIssueLinkTYpes=\n");
 
@@ -45,9 +49,41 @@ class IssueLinkService extends \JiraCloud\JiraClient
         $linkTypes = $this->json_mapper->mapArray(
             json_decode($data, false),
             new \ArrayObject(),
-            '\JiraCloud\IssueLink\IssueLinkType'
+            \JiraCloud\IssueLink\IssueLinkType::class
         );
 
         return $linkTypes;
     }
+
+    /**
+     * @param string $linkId
+     * @return IssueLink
+     * @throws \JiraCloud\JiraException
+     * @throws \JsonMapper_Exception
+     */
+    public function getIssueLink(string $linkId): IssueLink
+    {
+        $this->log->info("getIssueLink=\n");
+
+        $url = $this->uri.'/issueLink/'.$linkId;
+
+        $ret = $this->exec($url);
+
+        return $this->json_mapper->map(
+            json_decode($ret),
+            new IssueLink()
+        );
+    }
+
+    public function deleteIssueLink(string $linkId) : bool
+    {
+        $this->log->info("deleteIssueLink=\n");
+
+        $url = $this->uri.'/issueLink/'.$linkId;
+
+        $ret = $this->exec($url, '', 'DELETE');
+
+        return $ret;
+    }
+
 }

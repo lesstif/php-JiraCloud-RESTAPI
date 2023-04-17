@@ -1576,7 +1576,7 @@ try {
 
 ##### get remote issue link
 
-* [See Jira API reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/issue-getRemoteIssueLinks)
+* [See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-remote-links/#api-rest-api-3-issue-issueidorkey-remotelink-get)
 
 ```php
 <?php
@@ -1602,7 +1602,7 @@ try {
 
 ##### create remote issue link
 
-* [See Jira API reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/issue-getRemoteIssueLinks)
+* [See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-remote-links/#api-rest-api-3-issue-issueidorkey-remotelink-post)
 
 ```php
 <?php
@@ -1928,7 +1928,7 @@ try {
 ```
 #### Create Issue Link
 
-[See Jira API reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/issueLink-linkIssues)
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-links/#api-rest-api-3-issuelink-post)
 
 The Link Issue Resource provides functionality to manage issue links.
 
@@ -1941,17 +1941,35 @@ use JiraCloud\IssueLink\IssueLinkService;
 use JiraCloud\JiraException;
 
 try {
+    $doc = (new Document())
+                ->heading(1)            // header level 1, can have child blocks (needs to be closed with `->end()`)
+                    ->text('h1')        // simple unstyled text, cannot have child blocks (no `->end()` needed)
+                ->end()                 // closes `heading` node
+                ->paragraph()           // paragraph, can have child blocks (needs to be closed with `->end()`)
+                    ->text('Issue Link ')    // simple unstyled text
+                    ->strong('By ') // text node embedding a `strong` mark
+                    ->text(' REST ')         // simple unstyled text
+                    ->em('API')
+                ->end()                 // closes `paragraph` node
+             ;
+
+    $comment = new AtlassianDocumentFormat($doc);
+
     $il = new IssueLink();
 
-    $il->setInwardIssue('TEST-258')
-        ->setOutwardIssue('TEST-249')
-        ->setLinkTypeName('Relates' )
-        ->setComment('Linked related issue via REST API.');
-            
+    $inwardKey = 'TEST-162';
+    $outwardKey = 'ST-3';
+    
+    $il->setInwardIssueByKey($inwardKey)
+        ->setOutwardIssueByKey($outwardKey)
+        ->setLinkTypeName('Duplicate' )
+        ->setCommentAsADF($comment)
+    ;
+
     $ils = new IssueLinkService();
 
     $ret = $ils->addIssueLink($il);
-
+    
 } catch (JiraCloud\JiraException $e) {
     print('Error Occurred! ' . $e->getMessage());
 }
@@ -1959,7 +1977,7 @@ try {
 
 #### Get Issue LinkType
 
-[See Jira API reference](https://docs.atlassian.com/software/jira/docs/api/REST/latest/#api/2/issueLinkType-getIssueLinkTypes)
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issue-link-types/#api-group-issue-link-types)
 
 Rest resource to retrieve a list of issue link types.
 

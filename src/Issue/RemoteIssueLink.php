@@ -4,23 +4,17 @@ namespace JiraCloud\Issue;
 
 class RemoteIssueLink implements \JsonSerializable
 {
-    /** @var int */
-    public $id;
+    public int $id;
 
-    /** @var string */
-    public $self;
+    public string $self;
 
-    /** @var string */
-    public $globalId;
+    public string $globalId;
 
-    /** @var array|null */
-    public $application;
+    public ?array $application;
 
-    /** @var string|null */
-    public $relationship;
+    public ?string $relationship;
 
-    /** @var \JiraCloud\Issue\RemoteIssueLinkObject|null */
-    public $object;
+    public ?RemoteObject $object;
 
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
@@ -28,37 +22,33 @@ class RemoteIssueLink implements \JsonSerializable
         return array_filter(get_object_vars($this));
     }
 
-    /**
-     * @param string $url
-     *
-     * @return $this
-     */
-    public function setUrl(string $url)
-    {
-        if (is_null($this->object)) {
-            $this->object = new self();
-        }
+    function __construct() {
+        $this->object = new RemoteObject();
+    }
 
+    public function setUrl(string $url): static
+    {
+        $this->globalId = $url;
         $this->object->url = $url;
 
         return $this;
     }
 
-    public function setTitle($title)
+    public function setTitle($title): static
     {
         $this->object->title = $title;
 
         return $this;
     }
 
-    public function setSummary($summary)
+    public function setSummary($summary): static
     {
         $this->object->summary = $summary;
 
         return $this;
     }
 
-    public function setRelationship($relationship)
+    public function setRelationship($relationship): static
     {
         $this->relationship = $relationship;
 

@@ -2,19 +2,15 @@
 
 namespace JiraCloud\Issue;
 
-class RemoteIssueLinkObject
+class RemoteObject
 {
-    /** @var string */
-    public $url;
+    public string $url;
 
-    /** @var string */
-    public $title;
+    public string $title;
 
-    /** @var string|null */
-    public $summary;
+    public ?string $summary;
 
-    /** @var array|null */
-    public $icon;
+    public ?array $icon;
 
     /**
      * @var array|null
@@ -30,5 +26,5 @@ class RemoteIssueLinkObject
      *  }
      * ```
      */
-    public $status;
+    public ?array $status;
 }

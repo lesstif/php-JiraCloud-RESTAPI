@@ -2,21 +2,23 @@
 
 namespace JiraCloud\IssueLink;
 
+use JiraCloud\ADF\AtlassianDocumentFormat;
 use JiraCloud\ClassSerialize;
-use JiraCloud\Issue\Comment;
-use JiraCloud\Issue\Issue;
 
 class IssueLink implements \JsonSerializable
 {
     use ClassSerialize;
 
+    public string $id;
+    public string $self;
+
     public array $type;
 
-    public Issue $inwardIssue;
+    public ?LinkedIssue $inwardIssue = null;
 
-    public Issue $outwardIssue;
+    public ?LinkedIssue $outwardIssue = null;
 
-    public Comment $comment;
+    public array $comment = [];
 
     #[\ReturnTypeWillChange]
     public function jsonSerialize(): array
@@ -39,41 +41,45 @@ class IssueLink implements \JsonSerializable
     }
 
     /**
-     * @param string|int $issueKey inward issue key or id
+     * @param string $issueKey inward issue key or id
      *
      * @return $this
      */
-    public function setInwardIssue(string $issueKey): static
+    public function setInwardIssueByKey(string $issueKey): static
     {
-        $this->inwardIssue['key'] = $issueKey;
+        if ($this->inwardIssue === null) {
+            $this->inwardIssue = new LinkedIssue();
+        }
+        $this->inwardIssue->key= $issueKey;
 
         return $this;
     }
 
     /**
-     * @param string|int $issueKey out ward issue key or id
+     * @param string $issueKey out ward issue key or id
      *
      * @return $this
      */
-    public function setOutwardIssue(string $issueKey): static
+    public function setOutwardIssueByKey(string $issueKey): static
     {
-        $this->outwardIssue['key'] = $issueKey;
+        if ($this->outwardIssue === null) {
+            $this->outwardIssue = new LinkedIssue();
+        }
+
+        $this->outwardIssue->key = $issueKey;
 
         return $this;
     }
 
     /**
-     * @param string|Comment $comment string or \JiraCloud\Issue\Comment instance
+     * @param AtlassianDocumentFormat $comment string or \JiraCloud\Issue\Comment instance
      *
      * @return $this
      */
-    public function setComment(string|Comment $comment): static
+    public function setCommentAsADF(?AtlassianDocumentFormat $comment): static
     {
-        if (is_string($comment)) {
-            $this->comment = new Comment();
-            $this->comment->setBody($comment);
-        } elseif ($comment instanceof Comment) {
-            $this->comment = $comment;
+        if (!empty($comment)) {
+            $this->comment['body'] = $comment;
         }
 
         return $this;
