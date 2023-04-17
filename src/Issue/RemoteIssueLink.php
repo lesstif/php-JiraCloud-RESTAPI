@@ -22,7 +22,8 @@ class RemoteIssueLink implements \JsonSerializable
         return array_filter(get_object_vars($this));
     }
 
-    function __construct() {
+    public function __construct()
+    {
         $this->object = new RemoteObject();
     }
 
