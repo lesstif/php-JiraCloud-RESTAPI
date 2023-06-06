@@ -302,32 +302,20 @@ class JiraClient
         // send file
         curl_setopt($ch, CURLOPT_POST, true);
 
-        if (PHP_MAJOR_VERSION == 5 && PHP_MINOR_VERSION < 5) {
-            $attachments = realpath($upload_file);
-            $filename = basename($upload_file);
+        // CURLFile require PHP > 5.5
+        //$attachments = new \CURLFile(realpath($upload_file));
+        $attachments = new \CURLFile(realpath($upload_file));
+        $attachments->setPostFilename(basename($upload_file));
 
-            curl_setopt(
-                $ch,
-                CURLOPT_POSTFIELDS,
-                ['file' => '@'.$attachments.';filename='.$filename]
-            );
+        curl_setopt(
+            $ch,
+            CURLOPT_POSTFIELDS,
+            ['file' => $attachments]
+        );
 
-            $this->log->debug('using legacy file upload');
-        } else {
-            // CURLFile require PHP > 5.5
-            $attachments = new \CURLFile(realpath($upload_file));
-            $attachments->setPostFilename(basename($upload_file));
+        $this->log->debug('using CURLFile='.var_export($attachments, true));
 
-            curl_setopt(
-                $ch,
-                CURLOPT_POSTFIELDS,
-                ['file' => $attachments]
-            );
-
-            $this->log->debug('using CURLFile='.var_export($attachments, true));
-        }
-
-        $curl_http_headers = $this->curlPrepare($ch, $curl_http_headers);
+        $curl_http_headers = $this->curlPrepare($ch, $curl_http_headers, null);
 
         $this->proxyConfigCurlHandle($ch);
 
