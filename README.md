@@ -53,7 +53,7 @@ If you want to interact with Jira On-premise(Server or Data Center) instead of C
    require 'vendor/autoload.php';
    ```
 
-**Laravel:** Once installed, if you are not using automatic package discovery, then you need to register the `JiraCloud\JiraCloudServiceProvider` service provider in your `config/app.php`.
+**Laravel:** Once installed, if you are not using automatic package discovery, then you need to register the `JiraCloud\JiraCloudApiServiceProvider` service provider in your `config/app.php`.
 
 # Configuration
 
