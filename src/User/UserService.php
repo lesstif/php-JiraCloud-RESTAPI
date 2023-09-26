@@ -18,7 +18,7 @@ class UserService extends \JiraCloud\JiraClient
      *
      * @param array|User $user
      *
-     *@throws \JsonMapper_Exception
+     * @throws \JsonMapper_Exception
      * @throws \JiraCloud\JiraException
      *
      * @return User User class
@@ -43,7 +43,7 @@ class UserService extends \JiraCloud\JiraClient
      * @param array $paramArray Possible values for $paramArray 'accountId', 'key'.
      *                          "Either the 'username' or the 'key' query parameters need to be provided".
      *
-     *@throws \JsonMapper_Exception
+     * @throws \JsonMapper_Exception
      * @throws \JiraCloud\JiraException
      *
      * @return User User class
@@ -67,7 +67,7 @@ class UserService extends \JiraCloud\JiraClient
      *
      * @param array $paramArray
      *
-     *@throws \JsonMapper_Exception
+     * @throws \JsonMapper_Exception
      * @throws \JiraCloud\JiraException
      *
      * @return User[]
@@ -200,7 +200,7 @@ class UserService extends \JiraCloud\JiraClient
     /**
      * @param array $paramArray
      *
-     *@throws \JsonMapper_Exception
+     * @throws \JsonMapper_Exception
      * @throws \JiraCloud\JiraException
      *
      * @return User[]
@@ -229,7 +229,7 @@ class UserService extends \JiraCloud\JiraClient
      * @param array      $paramArray
      * @param array|User $user
      *
-     *@throws \JsonMapper_Exception
+     * @throws \JsonMapper_Exception
      * @throws \JiraCloud\JiraException
      *
      * @return User User class

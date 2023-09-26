@@ -25,10 +25,10 @@ class AttachmentService extends \JiraCloud\JiraClient
      *
      * @recursive boolean Allows the creation of nested directories specified in the pathname.
      *
-     *@throws JiraException
+     * @throws JiraException
      * @throws \JsonMapper_Exception
      *
-     *@return Attachment
+     * @return Attachment
      */
     public function get(int|string $id, string $outDir = null, bool $overwrite = false, int $mode = 0777, bool $recursive = true): Attachment
     {
@@ -67,7 +67,7 @@ class AttachmentService extends \JiraCloud\JiraClient
      *
      * @param int|string $id attachment id
      *
-     *@throws JiraException
+     * @throws JiraException
      *
      * @return string
      */

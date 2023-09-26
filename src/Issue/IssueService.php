@@ -34,7 +34,7 @@ class IssueService extends \JiraCloud\JiraClient
      * @param array      $paramArray   Query Parameter key-value Array.
      * @param Issue|null $issueObject
      *
-     *@throws \JsonMapper_Exception
+     * @throws \JsonMapper_Exception
      * @throws JiraException
      *
      * @return Issue class
@@ -85,7 +85,7 @@ class IssueService extends \JiraCloud\JiraClient
      * @param IssueField[] $issueFields Array of IssueField objects
      * @param int          $batchSize   Maximum number of issues to send in each request
      *
-     *@throws \JsonMapper_Exception
+     * @throws \JsonMapper_Exception
      * @throws JiraException
      *
      * @return Issue[] Array of results, where each result represents one batch of insertions
@@ -141,7 +141,7 @@ class IssueService extends \JiraCloud\JiraClient
      * @param int|string   $issueIdOrKey  Issue id or key
      * @param array|string $filePathArray attachment file path.
      *
-     *@throws \JsonMapper_Exception
+     * @throws \JsonMapper_Exception
      * @throws JiraException
      *
      * @return Attachment[]
