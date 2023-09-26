@@ -497,7 +497,7 @@ class JqlQuery
      *
      * @return string
      */
-    public function getQuery()
+    public function getQuery(): string
     {
         return $this->query;
     }
@@ -511,7 +511,7 @@ class JqlQuery
      *
      * @return static $this
      */
-    public function addAnyExpression($expression)
+    public function addAnyExpression(string $expression): self
     {
         $this->query .= " $expression";
 
@@ -537,10 +537,44 @@ class JqlQuery
      *
      * @return JqlQuery
      */
-    public function addExpression($field, $operator, $value, $logicLinkKeyword = self::KEYWORD_AND)
+    public function addExpression(string $field, string $operator, string $value, string $logicLinkKeyword = self::KEYWORD_AND) : self
     {
         $this->joinExpression(
             self::quoteField($field)." $operator ".self::quote($value),
+            $logicLinkKeyword
+        );
+
+        return $this;
+    }
+
+    /**
+     * Adds 'in' or 'not in' expression with any field to query.
+     *
+     * Example: $query->addInExpression({@see JqlQuery::FIELD_ASSIGNEE}, ['user1', 'user2'])
+     *
+     * @param string   $field            field name
+     * @param string[] $values           field values array
+     * @param string   $logicLinkKeyword use {@see JqlQuery::KEYWORD_AND} or {@see JqlQuery::KEYWORD_OR}
+     *                                   to set join logical operation. Default {@see JqlQuery::KEYWORD_AND}.
+     * @param bool      $needQuote       if set to false, don't add quote to values param
+     *
+     * @param bool      $notIn
+     * @return JqlQuery
+     */
+    private function _addExpression(string $field, array $values, string $logicLinkKeyword = self::KEYWORD_AND, bool $needQuote = true, bool $notIn=true): self
+    {
+        $valuesQuoted = [];
+        foreach ($values as $value) {
+            if ($needQuote) {
+                $valuesQuoted[] = self::quote($value);
+            } else {
+                $valuesQuoted[] = $value;
+            }
+        }
+        $conStr = $notIn == true ? ' not in ' : ' in ';
+
+        $this->joinExpression(
+            sprintf(self::quoteField($field).' %s ('.implode(', ', $valuesQuoted).')', $conStr),
             $logicLinkKeyword
         );
 
@@ -556,21 +590,13 @@ class JqlQuery
      * @param string[] $values           field values array
      * @param string   $logicLinkKeyword use {@see JqlQuery::KEYWORD_AND} or {@see JqlQuery::KEYWORD_OR}
      *                                   to set join logical operation. Default {@see JqlQuery::KEYWORD_AND}.
+     * @param bool      $needQuote       if set to false, don't add quote to values param
      *
      * @return JqlQuery
      */
-    public function addInExpression($field, $values, $logicLinkKeyword = self::KEYWORD_AND)
+    public function addInExpression(string $field, array $values, string $logicLinkKeyword = self::KEYWORD_AND, bool $needQuote = true): self
     {
-        $valuesQuoted = [];
-        foreach ($values as $value) {
-            $valuesQuoted[] = self::quote($value);
-        }
-        $this->joinExpression(
-            self::quoteField($field).' in ('.implode(', ', $valuesQuoted).')',
-            $logicLinkKeyword
-        );
-
-        return $this;
+        return $this->_addExpression($field, $values, $logicLinkKeyword, $needQuote, false);
     }
 
     /**
@@ -578,25 +604,17 @@ class JqlQuery
      *
      * Example: $query->addNotInExpression({@see JqlQuery::FIELD_ASSIGNEE}, ['user1', 'user2'])
      *
-     * @param string   $field            field name
+     * @param string $field            field name
      * @param string[] $values           field values array
-     * @param string   $logicLinkKeyword use {@see JqlQuery::KEYWORD_AND} or {@see JqlQuery::KEYWORD_OR}
+     * @param string $logicLinkKeyword use {@see JqlQuery::KEYWORD_AND} or {@see JqlQuery::KEYWORD_OR}
      *                                   to set join logical operation. Default {@see JqlQuery::KEYWORD_AND}.
+     * @param bool      $needQuote       if set to false, don't add quote to values param
      *
      * @return JqlQuery
      */
-    public function addNotInExpression($field, $values, $logicLinkKeyword = self::KEYWORD_AND)
+    public function addNotInExpression(string $field, array $values, string $logicLinkKeyword = self::KEYWORD_AND, bool $needQuote = true)
     {
-        $valuesQuoted = [];
-        foreach ($values as $value) {
-            $valuesQuoted[] = self::quote($value);
-        }
-        $this->joinExpression(
-            self::quoteField($field).' not in ('.implode(', ', $valuesQuoted).')',
-            $logicLinkKeyword
-        );
-
-        return $this;
+        return $this->_addExpression($field, $values, $logicLinkKeyword, $needQuote, true);
     }
 
     /**
