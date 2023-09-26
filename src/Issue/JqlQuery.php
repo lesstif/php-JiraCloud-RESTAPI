@@ -537,7 +537,7 @@ class JqlQuery
      *
      * @return JqlQuery
      */
-    public function addExpression(string $field, string $operator, string $value, string $logicLinkKeyword = self::KEYWORD_AND) : self
+    public function addExpression(string $field, string $operator, string $value, string $logicLinkKeyword = self::KEYWORD_AND): self
     {
         $this->joinExpression(
             self::quoteField($field)." $operator ".self::quote($value),
@@ -556,12 +556,12 @@ class JqlQuery
      * @param string[] $values           field values array
      * @param string   $logicLinkKeyword use {@see JqlQuery::KEYWORD_AND} or {@see JqlQuery::KEYWORD_OR}
      *                                   to set join logical operation. Default {@see JqlQuery::KEYWORD_AND}.
-     * @param bool      $needQuote       if set to false, don't add quote to values param
+     * @param bool     $needQuote        if set to false, don't add quote to values param
+     * @param bool     $notIn
      *
-     * @param bool      $notIn
      * @return JqlQuery
      */
-    private function _addExpression(string $field, array $values, string $logicLinkKeyword = self::KEYWORD_AND, bool $needQuote = true, bool $notIn=true): self
+    private function _addExpression(string $field, array $values, string $logicLinkKeyword = self::KEYWORD_AND, bool $needQuote = true, bool $notIn = true): self
     {
         $valuesQuoted = [];
         foreach ($values as $value) {
@@ -590,7 +590,7 @@ class JqlQuery
      * @param string[] $values           field values array
      * @param string   $logicLinkKeyword use {@see JqlQuery::KEYWORD_AND} or {@see JqlQuery::KEYWORD_OR}
      *                                   to set join logical operation. Default {@see JqlQuery::KEYWORD_AND}.
-     * @param bool      $needQuote       if set to false, don't add quote to values param
+     * @param bool     $needQuote        if set to false, don't add quote to values param
      *
      * @return JqlQuery
      */
@@ -604,11 +604,11 @@ class JqlQuery
      *
      * Example: $query->addNotInExpression({@see JqlQuery::FIELD_ASSIGNEE}, ['user1', 'user2'])
      *
-     * @param string $field            field name
+     * @param string   $field            field name
      * @param string[] $values           field values array
-     * @param string $logicLinkKeyword use {@see JqlQuery::KEYWORD_AND} or {@see JqlQuery::KEYWORD_OR}
+     * @param string   $logicLinkKeyword use {@see JqlQuery::KEYWORD_AND} or {@see JqlQuery::KEYWORD_OR}
      *                                   to set join logical operation. Default {@see JqlQuery::KEYWORD_AND}.
-     * @param bool      $needQuote       if set to false, don't add quote to values param
+     * @param bool     $needQuote        if set to false, don't add quote to values param
      *
      * @return JqlQuery
      */
