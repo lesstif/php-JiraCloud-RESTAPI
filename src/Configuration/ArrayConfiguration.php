@@ -24,7 +24,6 @@ class ArrayConfiguration extends AbstractConfiguration
         $this->curlOptUserAgent = $this->getDefaultUserAgentString();
         $this->serviceDeskId = null;
 
-        $this->useTokenBasedAuth = false;
         $this->personalAccessToken = '';
 
         foreach ($configuration as $key => $value) {
