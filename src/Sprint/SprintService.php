@@ -88,10 +88,13 @@ class SprintService extends JiraClient
     }
 
     /**
-     * @param int $sprintId
+     * @param int    $sprintId
      * @param Sprint $sprint
-     * @return bool
+     *
      * @throws JiraException
+     *
+     * @return bool
+     *
      * @see https://developer.atlassian.com/cloud/jira/software/rest/api-group-sprint/#api-rest-agile-1-0-sprint-sprintid-issue-post
      */
     public function moveIssues2Sprint(int $sprintId, Sprint $sprint): bool
