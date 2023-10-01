@@ -54,6 +54,8 @@ class SprintService extends JiraClient
      * @throws \JsonMapper_Exception
      *
      * @return Issue[] array of Issue
+     *
+     * @see https://developer.atlassian.com/cloud/jira/software/rest/api-group-sprint/#api-rest-agile-1-0-sprint-sprintid-get
      */
     public function getSprintIssues(string|int $sprintId, array $paramArray = [])
     {
@@ -68,6 +70,9 @@ class SprintService extends JiraClient
         return $issues;
     }
 
+    /**
+     * @see https://developer.atlassian.com/cloud/jira/software/rest/api-group-sprint/#api-rest-agile-1-0-sprint-post
+     */
     public function createSprint(Sprint $sprint): Sprint
     {
         $data = json_encode($sprint);
@@ -80,5 +85,23 @@ class SprintService extends JiraClient
             json_decode($ret),
             new Sprint()
         );
+    }
+
+    /**
+     * @param int $sprintId
+     * @param Sprint $sprint
+     * @return bool
+     * @throws JiraException
+     * @see https://developer.atlassian.com/cloud/jira/software/rest/api-group-sprint/#api-rest-agile-1-0-sprint-sprintid-issue-post
+     */
+    public function moveIssues2Sprint(int $sprintId, Sprint $sprint): bool
+    {
+        $data = json_encode($sprint);
+
+        $ret = $this->exec($this->uri.'/'.$sprintId.'/issue', $data);
+
+        $this->log->debug('moveIssues2Sprint result='.var_export($ret, true));
+
+        return $ret;
     }
 }

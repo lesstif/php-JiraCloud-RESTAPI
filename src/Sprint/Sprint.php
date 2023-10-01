@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace JiraCloud\Sprint;
 
-use DateTimeInterface;
 use JiraCloud\JsonSerializableTrait;
 
 class Sprint implements \JsonSerializable
@@ -30,6 +29,12 @@ class Sprint implements \JsonSerializable
 
     public string $goal;
 
+    public ?string $rankBeforeIssue;
+    public ?string $rankAfterIssue;
+    public int $rankCustomFieldId;
+
+    public array $issues;
+
     public function setNameAsString(string $sprintName): self
     {
         $this->name = $sprintName;
@@ -51,16 +56,37 @@ class Sprint implements \JsonSerializable
         return $this;
     }
 
-    public function setStartDateAsDateTime(DateTimeInterface $startDate, $format = 'Y-m-d'): static
+    public function setStartDateAsDateTime(\DateTimeInterface $startDate, string $format = 'Y-m-d'): static
     {
         $this->startDate = $startDate->format($format);
 
         return $this;
     }
 
-    public function setEndDateAsDateTime(DateTimeInterface $endDate, $format = 'Y-m-d'): static
+    public function setStartDateAsString(string $startDate): static
+    {
+        $this->startDate = $startDate;
+
+        return $this;
+    }
+
+    public function setEndDateAsDateTime(\DateTimeInterface $endDate, string $format = 'Y-m-d'): static
     {
         $this->endDate = $endDate->format($format);
+
+        return $this;
+    }
+
+    public function setEndDateAsString(string $endDate): static
+    {
+        $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    public function setMoveIssues(array $issues): static
+    {
+        $this->issues = $issues;
 
         return $this;
     }

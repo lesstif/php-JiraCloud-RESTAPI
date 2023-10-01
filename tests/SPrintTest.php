@@ -21,14 +21,16 @@ class SPrintTest extends TestCase
     */
     public function create_sprint() : int
     {
-        $start = (new DateTime('NOW'))->add(DateInterval::createFromDateString('1 month 5 day'));
+        $sprintStartDate = (new DateTime('NOW'))->add(DateInterval::createFromDateString('1 month 5 day'));
+
+        $sprintBoardId = 2;
 
         $sp = (new Sprint())
+                ->setOriginBoardIdAsStringOrInt($sprintBoardId)
                 ->setNameAsString("My Sprint 1")
-                ->setGoalAsString("goal")
-                ->setOriginBoardIdAsStringOrInt(2)
-                ->setStartDateAsDateTime($start)
-                ->setEndDateAsDateTime($start->add(DateInterval::createFromDateString('3 week')))
+                ->setGoalAsString("Sprint 1 Goal")
+                ->setStartDateAsDateTime($sprintStartDate)
+                ->setEndDateAsDateTime($sprintStartDate->add(DateInterval::createFromDateString('3 week')))
         ;
 
         try {
@@ -41,7 +43,7 @@ class SPrintTest extends TestCase
             return $sprint->id;
 
         } catch (Exception $e) {
-            $this->fail( 'testSearch Failed : '.$e->getMessage());
+            $this->fail( 'create_sprint Failed : '.$e->getMessage());
         }
     }
 
@@ -63,7 +65,7 @@ class SPrintTest extends TestCase
 
             return $sprintId;
         } catch (Exception $e) {
-            $this->fail('testSearch Failed : '.$e->getMessage());
+            $this->fail('get_sprints Failed : '.$e->getMessage());
         }
     }
 
@@ -72,9 +74,9 @@ class SPrintTest extends TestCase
      * @depends get_sprints
      *
      * @param int $sprintId
-     * @return void
+     * @return int
      */
-    public function get_issues_in_sprints(int $sprintId)
+    public function get_issues_in_sprints(int $sprintId) : int
     {
         try {
             $sps = new SprintService();
@@ -82,8 +84,40 @@ class SPrintTest extends TestCase
             $sprint = $sps->getSprintIssues($sprintId);
 
             $this->assertNotNull($sprint);
+
+            return $sprintId;
         } catch (Exception $e) {
-            $this->fail('testSearch Failed : '.$e->getMessage());
+            $this->fail('get_issues_in_sprints Failed : '.$e->getMessage());
+        }
+    }
+
+    /**
+     * @test
+     * @depends get_issues_in_sprints
+     *
+     * @param int $sprintId
+     * @return int
+     */
+    public function move_issues_to_sprints(int $sprintId) : int
+    {
+        try {
+            $sp = (new Sprint())
+                ->setMoveIssues([
+                    "MOBL-1",
+                    "MOBL-5",
+                ])
+
+            ;
+
+            $sps = new SprintService();
+
+            $sprint = $sps->moveIssues2Sprint($sprintId, $sp);
+
+            $this->assertNotNull($sprint);
+
+            return $sprintId;
+        } catch (Exception $e) {
+            $this->fail('move_issues_to_sprints Failed : '.$e->getMessage());
         }
     }
 }
