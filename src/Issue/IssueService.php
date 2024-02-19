@@ -392,6 +392,7 @@ class IssueService extends \JiraCloud\JiraClient
      * @throws JiraException
      *
      * @return Transition[] array of Transition class
+     *
      * @phpstan-return ArrayObject<int, Transition>
      */
     public function getTransition(string|int $issueIdOrKey, array $paramArray = []): ArrayObject
@@ -693,6 +694,7 @@ class IssueService extends \JiraCloud\JiraClient
      * @throws JiraException
      *
      * @return Priority[] array of priority class
+     *
      * @phpstan-return ArrayObject<int, Priority>
      */
     public function getAllPriorities(): ArrayObject
@@ -761,6 +763,7 @@ class IssueService extends \JiraCloud\JiraClient
      * @throws \JsonMapper_Exception
      *
      * @return Reporter[]
+     *
      * @phpstan-return ArrayObject<int, Reporter>
      */
     public function getWatchers(string|int $issueIdOrKey): ArrayObject
@@ -943,6 +946,7 @@ class IssueService extends \JiraCloud\JiraClient
      * @throws JiraException
      *
      * @return RemoteIssueLink[]
+     *
      * @phpstan-return ArrayObject<int, RemoteIssueLink>
      *
      * @see https://developer.atlassian.com/server/jira/platform/jira-rest-api-for-remote-issue-links/
@@ -1025,6 +1029,7 @@ class IssueService extends \JiraCloud\JiraClient
      * @throws \JsonMapper_Exception
      *
      * @return SecurityScheme[] array of SecurityScheme class
+     *
      * @phpstan-return ArrayObject<int, SecurityScheme>
      */
     public function getAllIssueSecuritySchemes(): ArrayObject
