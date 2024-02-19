@@ -36,7 +36,7 @@ class JqlFunction
      * @see https://confluence.atlassian.com/jiracoreserver073/advanced-searching-functions-reference-861257222.html#Advancedsearching-functionsreference-approverapprover()
      *      jql function reference
      *
-     * @param string,... $users
+     * @param string ...$users
      *
      * @return JqlFunction
      */
@@ -346,7 +346,7 @@ class JqlFunction
      * @see https://confluence.atlassian.com/jiracoreserver073/advanced-searching-functions-reference-861257222.html#Advancedsearching-functionsreference-approvedpendingBy()
      *      jql function reference
      *
-     * @param string,... $users
+     * @param string ...$users
      *
      * @return JqlFunction
      */
