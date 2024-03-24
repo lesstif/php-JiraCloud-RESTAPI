@@ -35,6 +35,8 @@ class IssueLinkService extends \JiraCloud\JiraClient
      * @throws \JiraCloud\JiraException
      *
      * @return IssueLinkType[]
+     *
+     * @phpstan-return ArrayObject<int, IssueLinkType>
      */
     public function getIssueLinkTypes(): ArrayObject
     {
