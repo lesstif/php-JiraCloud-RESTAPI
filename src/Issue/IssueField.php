@@ -35,7 +35,7 @@ class IssueField implements \JsonSerializable
 
     public ?IssueStatus $status = null;
 
-    public array $labels;
+    public ?array $labels = null;
 
     public Project $project;
 
@@ -102,8 +102,6 @@ class IssueField implements \JsonSerializable
 
     public function __construct($updateIssue = false)
     {
-        $this->labels = [];
-
         if ($updateIssue !== true) {
             $this->project = new \JiraCloud\Project\Project();
 
