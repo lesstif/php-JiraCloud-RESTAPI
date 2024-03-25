@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 
 class OrganisationServiceTest extends TestCase
 {
-    private string $uri = '/servicedeskapi/organization';
+    private string $uri = '/organization';
 
     public function testCreate(): void
     {
@@ -73,6 +73,7 @@ class OrganisationServiceTest extends TestCase
         $item = [
             'id' => $id,
             'name' => 'Test organisation',
+            '_links' => ['self' => 'http://example.com/rest/servicedeskapi/organization/' . $id],
         ];
         $url = 'https://example.com/organisation/get';
 
@@ -205,6 +206,8 @@ class OrganisationServiceTest extends TestCase
     private function createClient(): MockObject|ServiceDeskClient
     {
         $mapper = new JsonMapper();
+        // Turned off as per ServiceDeskClient.
+        $mapper->bEnforceMapType = false;
 
         $client = $this->createMock(ServiceDeskClient::class);
         $client->method('getMapper')->willReturn($mapper);
