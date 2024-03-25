@@ -198,7 +198,7 @@ class OrganisationService
     private function createOrganisation(string $data): Organisation
     {
         return $this->jsonMapper->map(
-            json_decode($data, false, 512, JSON_THROW_ON_ERROR),
+            json_decode($data, true, 512, JSON_THROW_ON_ERROR),
             new Organisation()
         );
     }
