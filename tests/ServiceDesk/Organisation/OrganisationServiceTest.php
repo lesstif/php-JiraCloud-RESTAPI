@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 
 class OrganisationServiceTest extends TestCase
 {
-    private string $uri = '/servicedeskapi/organization';
+    private string $uri = '/organization';
 
     public function testCreate(): void
     {

@@ -16,7 +16,7 @@ use Psr\Log\LoggerInterface;
 class OrganisationService
 {
     private ServiceDeskClient $client;
-    private string $uri = '/servicedeskapi/organization';
+    private string $uri = '/organization';
     private LoggerInterface $logger;
     private JsonMapper $jsonMapper;
 
