@@ -16,7 +16,7 @@ use Psr\Log\LoggerInterface;
 class OrganisationService
 {
     private ServiceDeskClient $client;
-    private string $uri = '/servicedeskapi/organization';
+    private string $uri = '/organization';
     private LoggerInterface $logger;
     private JsonMapper $jsonMapper;
 
@@ -198,7 +198,7 @@ class OrganisationService
     private function createOrganisation(string $data): Organisation
     {
         return $this->jsonMapper->map(
-            json_decode($data, false, 512, JSON_THROW_ON_ERROR),
+            json_decode($data, true, 512, JSON_THROW_ON_ERROR),
             new Organisation()
         );
     }
