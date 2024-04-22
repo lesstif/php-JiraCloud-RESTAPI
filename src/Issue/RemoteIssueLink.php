@@ -8,7 +8,7 @@ class RemoteIssueLink implements \JsonSerializable
 
     public string $self;
 
-    public string $globalId;
+    public ?string $globalId = null;
 
     public ?array $application;
 

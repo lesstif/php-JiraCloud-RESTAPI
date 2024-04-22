@@ -50,7 +50,7 @@ class IssueField implements \JsonSerializable
 
     public ?object $resolution;
 
-    public array $fixVersions;
+    public ?array $fixVersions = null;
 
     public ?Reporter $creator;
 
@@ -60,8 +60,8 @@ class IssueField implements \JsonSerializable
 
     public ?Reporter $assignee = null;
 
-    /** @var \JiraCloud\Issue\Version[] */
-    public $versions;
+    /** @var \JiraCloud\Issue\Version[]|null */
+    public array|null $versions = null;
 
     /** @var \JiraCloud\Issue\Attachment[] */
     public $attachment;
