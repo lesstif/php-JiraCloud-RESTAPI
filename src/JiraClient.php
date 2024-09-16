@@ -236,10 +236,8 @@ class JiraClient
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         }
 
-        if (\PHP_VERSION_ID < 80307) {
-            // See https://github.com/php/php-src/issues/14184
-            curl_setopt($ch, CURLOPT_ENCODING, '');
-        }
+       // See https://github.com/php/php-src/issues/14184
+       // curl_setopt($ch, CURLOPT_ENCODING, '');
 
         curl_setopt(
             $ch,
