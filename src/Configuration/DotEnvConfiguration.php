@@ -128,4 +128,9 @@ class DotEnvConfiguration extends AbstractConfiguration
         $dotenv->required($requireParam);
         //}
     }
+
+    public function getJiraDefaultApiUri(): string
+    {
+        return $this->jiraDefaultApiUri;
+    }
 }
