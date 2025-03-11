@@ -114,4 +114,9 @@ class CommentBuilder
             $this->renderedBody
         );
     }
+
+    public static function new(): CommentBuilder
+    {
+        return new CommentBuilder();
+    }
 }
