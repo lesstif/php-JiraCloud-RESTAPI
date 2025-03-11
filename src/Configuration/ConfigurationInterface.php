@@ -18,6 +18,11 @@ interface ConfigurationInterface
     public function getJiraUser(): string;
 
     /**
+     * Jira Api Uri.
+     */
+    public function getJiraDefaultApiUri(): string;
+
+    /**
      * Jira password.
      */
     public function getJiraPassword(): string;

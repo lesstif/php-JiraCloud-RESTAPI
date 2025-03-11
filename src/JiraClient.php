@@ -28,7 +28,7 @@ class JiraClient
     /**
      * JIRA REST API URI.
      */
-    private string $api_uri = '/rest/api/3';
+    private ?string $api_uri = null;
 
     /**
      * CURL instance.
@@ -54,15 +54,15 @@ class JiraClient
      * Constructor.
      *
      * @param ConfigurationInterface|null $configuration
-     * @param LoggerInterface|null        $logger
-     * @param string                      $path
+     * @param LoggerInterface|null $logger
+     * @param string $path
      *
      * @throws JiraException
      */
     public function __construct(ConfigurationInterface $configuration = null, LoggerInterface $logger = null, string $path = './')
     {
         if ($configuration === null) {
-            if (!file_exists($path.'.env')) {
+            if (!file_exists($path . '.env')) {
                 // If calling the getcwd() on laravel it will returning the 'public' directory.
                 $path = '../';
             }
@@ -77,7 +77,7 @@ class JiraClient
         $this->json_mapper->undefinedPropertyHandler = [new \JiraCloud\JsonMapperHelper(), 'setUndefinedProperty'];
 
         // Properties that are annotated with `@var \DateTimeInterface` should result in \DateTime objects being created.
-        $this->json_mapper->classMap['\\'.\DateTimeInterface::class] = \DateTime::class;
+        $this->json_mapper->classMap['\\' . \DateTimeInterface::class] = \DateTime::class;
 
         // create logger
         if ($this->configuration->getJiraLogEnabled()) {
@@ -94,12 +94,12 @@ class JiraClient
             $this->log = new Logger('JiraClient');
 
             // Monolog 3.x has a breaking change, so I have to add this dirty code.
-            $ver = \Composer\InstalledVersions::getVersion('monolog/monolog');
+            $ver   = \Composer\InstalledVersions::getVersion('monolog/monolog');
             $major = intval(explode('.', $ver)[0]);
 
             if ($major === 2) {
                 $this->log->pushHandler(new NoOperationMonologHandler());
-            } elseif ($major === 3) {
+            } else if ($major === 3) {
                 $this->log->pushHandler(new NoOperationMonologHandlerV3());
             } else {
                 throw new JiraException("Unsupported Monolog version $major");
@@ -115,7 +115,7 @@ class JiraClient
         if (PHP_MAJOR_VERSION >= 7) {
             if (PHP_MAJOR_VERSION === 7 && PHP_MINOR_VERSION >= 3) {
                 $this->jsonOptions |= JSON_THROW_ON_ERROR;
-            } elseif (PHP_MAJOR_VERSION >= 8) { // if php major great than 7 then always setting JSON_THROW_ON_ERROR
+            } else if (PHP_MAJOR_VERSION >= 8) { // if php major great than 7 then always setting JSON_THROW_ON_ERROR
                 $this->jsonOptions |= JSON_THROW_ON_ERROR;
             }
         }
@@ -123,8 +123,8 @@ class JiraClient
 
     /**
      * @param \CurlHandle|bool $ch
-     * @param array            $curl_http_headers
-     * @param string|null      $cookieFile
+     * @param array $curl_http_headers
+     * @param string|null $cookieFile
      *
      * @return array
      */
@@ -162,7 +162,7 @@ class JiraClient
         foreach ($haystack as $key => $value) {
             if (is_array($value)) {
                 $haystack[$key] = $this->filterNullVariable($haystack[$key]);
-            } elseif (is_object($value)) {
+            } else if (is_object($value)) {
                 $haystack[$key] = $this->filterNullVariable(get_class_vars(get_class($value)));
             }
 
@@ -177,23 +177,23 @@ class JiraClient
     /**
      * Execute REST request.
      *
-     * @param string            $context        Rest API context (ex.:issue, search, etc..)
+     * @param string $context Rest API context (ex.:issue, search, etc..)
      * @param array|string|null $post_data
-     * @param string|null       $custom_request [PUT|DELETE]
-     * @param string|null       $cookieFile     cookie file
-     *
-     * @throws JiraException
+     * @param string|null $custom_request [PUT|DELETE]
+     * @param string|null $cookieFile cookie file
      *
      * @return string|bool
+     * @throws JiraException
+     *
      */
     public function exec(string $context, array|string $post_data = null, string $custom_request = null, string $cookieFile = null): string|bool
     {
         $url = $this->createUrlByContext($context);
 
         if (is_string($post_data)) {
-            $this->log->info("Curl $custom_request: $url JsonData=".$post_data);
-        } elseif (is_array($post_data)) {
-            $this->log->info("Curl $custom_request: $url JsonData=".json_encode($post_data, JSON_UNESCAPED_UNICODE));
+            $this->log->info("Curl $custom_request: $url JsonData=" . $post_data);
+        } else if (is_array($post_data)) {
+            $this->log->info("Curl $custom_request: $url JsonData=" . json_encode($post_data, JSON_UNESCAPED_UNICODE));
         }
 
         curl_reset($this->curl);
@@ -236,8 +236,8 @@ class JiraClient
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         }
 
-       // See https://github.com/php/php-src/issues/14184
-       // curl_setopt($ch, CURLOPT_ENCODING, '');
+        // See https://github.com/php/php-src/issues/14184
+        // curl_setopt($ch, CURLOPT_ENCODING, '');
 
         curl_setopt(
             $ch,
@@ -250,13 +250,13 @@ class JiraClient
         // Add proxy settings to the curl.
         $this->proxyConfigCurlHandle($ch);
 
-        $this->log->debug('Curl exec='.$url);
+        $this->log->debug('Curl exec=' . $url);
         $response = curl_exec($ch);
 
         // if request failed or have no result.
         if (!$response) {
             $this->http_response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            $body = curl_error($ch);
+            $body                = curl_error($ch);
 
             /*
              * 201: The request has been fulfilled, resulting in the creation of a new resource.
@@ -279,8 +279,8 @@ class JiraClient
             // don't check 301, 302 because setting CURLOPT_FOLLOWLOCATION
             if ($this->http_response != 200 && $this->http_response != 201) {
                 throw new JiraException('CURL HTTP Request Failed: Status Code : '
-                    .$this->http_response.', URL:'.$url
-                    ."\nError Message : ".$response, $this->http_response, null, $response);
+                    . $this->http_response . ', URL:' . $url
+                    . "\nError Message : " . $response, $this->http_response, null, $response);
             }
         }
 
@@ -315,7 +315,7 @@ class JiraClient
             ['file' => $attachments]
         );
 
-        $this->log->debug('using CURLFile='.var_export($attachments, true));
+        $this->log->debug('using CURLFile=' . var_export($attachments, true));
 
         $curl_http_headers = $this->curlPrepare($ch, $curl_http_headers, null);
 
@@ -330,7 +330,7 @@ class JiraClient
 
         curl_setopt($ch, CURLOPT_VERBOSE, $this->getConfiguration()->isCurlOptVerbose());
 
-        $this->log->debug('Curl exec='.$url);
+        $this->log->debug('Curl exec=' . $url);
 
         return $ch;
     }
@@ -355,7 +355,7 @@ class JiraClient
             // if request failed or have no result.
             if (!$response) {
                 $http_response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                $body = curl_error($ch);
+                $body          = curl_error($ch);
 
                 if ($http_response === 204 || $http_response === 201 || $http_response === 200) {
                     $results[$idx] = $response;
@@ -388,8 +388,20 @@ class JiraClient
         curl_multi_close($mh);
         if ($result_code != 200) {
             // @TODO $body might have not been defined
-            throw new JiraException('CURL Error: = '.$body, $result_code);
+            throw new JiraException('CURL Error: = ' . $body, $result_code);
         }
+    }
+
+    protected function getApiUrl(): string
+    {
+        $apiUri      = $this->getConfiguration()->getJiraDefaultApiUri();
+        $localApiUri = $this->api_uri;
+
+        if ($localApiUri) {
+            $apiUri = $localApiUri;
+        }
+
+        return $apiUri;
     }
 
     /**
@@ -399,7 +411,7 @@ class JiraClient
     {
         $host = $this->getConfiguration()->getJiraHost();
 
-        return $host.$this->api_uri.'/'.preg_replace('/\//', '', $context, 1);
+        return $host . $this->getApiUrl() . '/' . preg_replace('/\//', '', $context, 1);
     }
 
     /**
@@ -421,8 +433,8 @@ class JiraClient
 
         // if cookie file not exist, using id/pwd login
         if (!is_string($cookieFile) || !file_exists($cookieFile)) {
-            $token = base64_encode($this->getConfiguration()->getJiraUser().':'.$this->getConfiguration()->getPersonalAccessToken());
-            $curl_http_headers[] = 'Authorization: Basic '.$token;
+            $token               = base64_encode($this->getConfiguration()->getJiraUser() . ':' . $this->getConfiguration()->getPersonalAccessToken());
+            $curl_http_headers[] = 'Authorization: Basic ' . $token;
         }
     }
 
@@ -463,7 +475,7 @@ class JiraClient
                 $v = $value;
             }
 
-            $queryParam .= rawurlencode($key).'='.rawurlencode($v).'&';
+            $queryParam .= rawurlencode($key) . '=' . rawurlencode($v) . '&';
         }
 
         return $queryParam;
@@ -480,7 +492,7 @@ class JiraClient
             'X-Atlassian-Token: no-check',
         ];
 
-        $file = fopen($outDir.DIRECTORY_SEPARATOR.urldecode($file), 'w');
+        $file = fopen($outDir . DIRECTORY_SEPARATOR . urldecode($file), 'w');
 
         curl_reset($this->curl);
         $ch = $this->curl;
@@ -509,13 +521,13 @@ class JiraClient
 
         curl_setopt($ch, CURLOPT_VERBOSE, $this->getConfiguration()->isCurlOptVerbose());
 
-        $this->log->debug('Curl exec='.$url);
+        $this->log->debug('Curl exec=' . $url);
         $response = curl_exec($ch);
 
         // if request failed.
         if (!$response) {
             $this->http_response = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            $body = curl_error($ch);
+            $body                = curl_error($ch);
             fclose($file);
 
             /*
@@ -540,8 +552,8 @@ class JiraClient
             // don't check 301, 302 because setting CURLOPT_FOLLOWLOCATION
             if ($this->http_response != 200 && $this->http_response != 201) {
                 throw new JiraException('CURL HTTP Request Failed: Status Code : '
-                    .$this->http_response.', URL:'.$url
-                    ."\nError Message : ".$response, $this->http_response);
+                    . $this->http_response . ', URL:' . $url
+                    . "\nError Message : " . $response, $this->http_response);
             }
         }
 

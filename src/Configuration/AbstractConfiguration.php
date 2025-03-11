@@ -11,6 +11,8 @@ abstract class AbstractConfiguration implements ConfigurationInterface
 
     protected ?string $jiraUser = null;
 
+    protected ?string $jiraDefaultApiUri = null;
+
     protected ?string $jiraPassword;
 
     protected bool $jiraLogEnabled;
