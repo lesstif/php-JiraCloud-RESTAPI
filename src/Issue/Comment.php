@@ -31,6 +31,34 @@ class Comment implements \JsonSerializable
     public string $renderedBody;
 
     /**
+     * Comment constructor.
+     */
+    public function __construct(
+        string             $self = '',
+        string             $id = '',
+        ?Reporter          $author = null,
+        string             $body = '',
+        ?Reporter          $updateAuthor = null,
+        ?DateTimeInterface $created = null,
+        ?DateTimeInterface $updated = null,
+        ?Visibility        $visibility = null,
+        bool               $jsdPublic = false,
+        string             $renderedBody = ''
+    )
+    {
+        $this->self         = $self;
+        $this->id           = $id;
+        $this->author       = $author ?? new Reporter();
+        $this->body         = $body;
+        $this->updateAuthor = $updateAuthor ?? new Reporter();
+        $this->created      = $created;
+        $this->updated      = $updated;
+        $this->visibility   = $visibility;
+        $this->jsdPublic    = $jsdPublic;
+        $this->renderedBody = $renderedBody;
+    }
+
+    /**
      * mapping function for json_mapper.
      *
      * @param string $body
