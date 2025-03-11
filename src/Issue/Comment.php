@@ -86,4 +86,9 @@ class Comment implements \JsonSerializable
             return !is_null($var);
         });
     }
+
+    public static function builder(): CommentBuilder
+    {
+        return new CommentBuilder();
+    }
 }

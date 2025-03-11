@@ -15,6 +15,7 @@ class CommentBuilder
     private string $id = '';
     private ?Reporter $author = null;
     private string $body = '';
+    private array $bodyParts = [];
     private ?Reporter $updateAuthor = null;
     private ?DateTimeInterface $created = null;
     private ?DateTimeInterface $updated = null;
@@ -45,14 +46,91 @@ class CommentBuilder
 
     public function body(string $body): self
     {
-        $this->body = $body;
+        $this->body      = $body;
+        $this->bodyParts = [];
+
+        return $this;
+    }
+
+    /**
+     * Adds a text part to the body.
+     */
+    public function addText(string $text): self
+    {
+        $this->bodyParts[] = $text;
+
+        return $this;
+    }
+
+    /**
+     * Adds a text part to the body.
+     */
+    public function addSentence(string $text): self
+    {
+        $this->bodyParts[] = "$text ";
+
+        return $this;
+    }
+
+    /**
+     * Adds a mention to a user by account ID.
+     */
+    public function addMention(string $accountId): self
+    {
+        $this->bodyParts[] = '[~accountid:' . $accountId . ']';
+
+        return $this;
+    }
+
+    /**
+     * Adds a line break to the body.
+     */
+    public function addLineBreak(): self
+    {
+        $this->bodyParts[] = PHP_EOL;
+
+        return $this;
+    }
+
+    /**
+     * Adds multiple line breaks to the body.
+     */
+    public function addLineBreaks(int $count = 2): self
+    {
+        $this->bodyParts[] = str_repeat(PHP_EOL, $count);
+
+        return $this;
+    }
+
+    /**
+     * Adds a link with text.
+     */
+    public function addLink(string $text, string $url): self
+    {
+        $this->bodyParts[] = '[' . $text . '|' . $url . ']';
+
+        return $this;
+    }
+
+    /**
+     * Adds formatted text (bold, italic, etc.).
+     */
+    public function addFormatted(string $text, string $format = 'bold'): self
+    {
+        $this->bodyParts[] = match ($format) {
+            'bold' => '*' . $text . '*',
+            'italic' => '_' . $text . '_',
+            'code' => '{{' . $text . '}}',
+            default => $text,
+        };
 
         return $this;
     }
 
     public function bodyByAtlassianDocumentFormat(Document|Node $body): self
     {
-        $this->body = $body->jsonSerialize();
+        $this->body      = $body->jsonSerialize();
+        $this->bodyParts = [];
 
         return $this;
     }
@@ -99,13 +177,27 @@ class CommentBuilder
         return $this;
     }
 
+    /**
+     * Builds the body from all added parts if body parts exist.
+     */
+    private function buildBody(): string
+    {
+        if (empty($this->bodyParts)) {
+            return $this->body;
+        }
+
+        return implode('', $this->bodyParts);
+    }
+
     public function build(): Comment
     {
+        $body = $this->buildBody();
+
         return new Comment(
             $this->self,
             $this->id,
             $this->author,
-            $this->body,
+            $body,
             $this->updateAuthor,
             $this->created,
             $this->updated,
@@ -115,8 +207,8 @@ class CommentBuilder
         );
     }
 
-    public static function new(): CommentBuilder
+    public static function new(): self
     {
-        return new CommentBuilder();
+        return new self();
     }
 }
