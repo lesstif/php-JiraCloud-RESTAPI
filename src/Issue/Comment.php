@@ -16,7 +16,7 @@ class Comment implements \JsonSerializable
 
     public Reporter $author;
 
-    public array $body;
+    public string $body;
 
     public Reporter $updateAuthor;
 
@@ -33,13 +33,13 @@ class Comment implements \JsonSerializable
     /**
      * mapping function for json_mapper.
      *
-     * @param \stdClass $body
+     * @param string $body
      *
      * @return $this
      */
-    public function setBody(\stdClass $body): static
+    public function setBody(string $body): static
     {
-        $this->body = json_decode(json_encode($body), true);
+        $this->body = $body;
 
         return $this;
     }
