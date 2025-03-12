@@ -76,7 +76,7 @@ class IssueField implements \JsonSerializable
 
     public ?DateTimeInterface $duedate = null;
 
-    private string $duedateString;
+    public string $duedateString;
 
     public array $issuelinks;
 
