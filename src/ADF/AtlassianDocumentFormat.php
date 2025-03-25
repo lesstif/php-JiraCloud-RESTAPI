@@ -24,8 +24,7 @@ class AtlassianDocumentFormat implements \JsonSerializable
             $this->document = (new Document())
                 ->paragraph()
                 ->text($document)
-                ->end()
-            ;
+                ->end();
 
             return;
         }
