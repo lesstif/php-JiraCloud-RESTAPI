@@ -18,8 +18,18 @@ class AtlassianDocumentFormat implements \JsonSerializable
 
     private ?Document $document = null;
 
-    public function __construct(Document|Node $document)
+    public function __construct(Document|Node|string $document)
     {
+        if (is_string($document)) {
+            $this->document = (new Document())
+                ->paragraph()
+                ->text($document)
+                ->end()
+            ;
+
+            return;
+        }
+
         $this->document = $document;
     }
 
