@@ -141,4 +141,20 @@ class BoardService extends \JiraCloud\JiraClient
             return null;
         }
     }
+
+    public function getBoardColumnConfiguration($boardId, $paramArray = []): ?BoardColumnConfig
+    {
+        $json = $this->exec($this->uri.'/'.$boardId.'/configuration'.$this->toHttpQueryParameter($paramArray), null);
+
+        try {
+            return $this->json_mapper->map(
+                json_decode($json, false, 512, $this->getJsonOptions())->columnConfig,
+                BoardColumnConfig::class
+            );
+        } catch (\JsonException $exception) {
+            $this->log->error("Response cannot be decoded from json\nException: {$exception->getMessage()}");
+
+            return null;
+        }
+    }
 }

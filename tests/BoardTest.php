@@ -3,6 +3,8 @@
 namespace JiraCloud\Test;
 
 use ArrayObject;
+use JiraCloud\Board\BoardColumn;
+use JiraCloud\Board\BoardColumnConfig;
 use PHPUnit\Framework\TestCase;
 use JiraCloud\Board\BoardService;
 use JiraCloud\Board\Board;
@@ -81,6 +83,23 @@ class BoardTest extends TestCase
             $this->assertInstanceOf(Issue::class, $issue);
             $this->assertNotEmpty($issue->id);
         }
+    }
+
+    /**
+     * @test
+     *
+     * @depends get_last_board
+     * Test can get board column configuration
+     */
+    public function get_board_configuration(string $last_board_id): void
+    {
+        $board_service = new BoardService();
+        $board_column_configuration = $board_service->getBoardColumnConfiguration($last_board_id);
+
+        $this->assertInstanceOf(BoardColumnConfig::class, $board_column_configuration);
+        $this->assertIsArray($board_column_configuration->columns);
+        $this->assertInstanceOf(BoardColumn::class, $board_column_configuration->columns[0]);
+        $this->assertIsString($board_column_configuration->constraintType);
     }
 
 }
