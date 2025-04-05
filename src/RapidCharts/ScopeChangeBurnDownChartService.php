@@ -12,7 +12,7 @@ class ScopeChangeBurnDownChartService extends \JiraCloud\JiraClient
 
     private $uri = '/rapid/charts/scopechangeburndownchart';
 
-    public function __construct(ConfigurationInterface $configuration = null, LoggerInterface $logger = null, $path = './')
+    public function __construct(?ConfigurationInterface $configuration = null, ?LoggerInterface $logger = null, $path = './')
     {
         parent::__construct($configuration, $logger, $path);
         $this->setupAPIUri();

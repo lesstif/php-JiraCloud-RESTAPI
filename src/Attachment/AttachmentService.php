@@ -30,7 +30,7 @@ class AttachmentService extends \JiraCloud\JiraClient
      *
      * @return Attachment
      */
-    public function get(int|string $id, string $outDir = null, bool $overwrite = false, int $mode = 0777, bool $recursive = true): Attachment
+    public function get(int|string $id, ?string $outDir = null, bool $overwrite = false, int $mode = 0777, bool $recursive = true): Attachment
     {
         $ret = $this->exec($this->uri.$id, null);
 

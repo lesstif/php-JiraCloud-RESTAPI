@@ -9,7 +9,7 @@ class AgileIssueService extends \JiraCloud\JiraClient
 {
     private $uri = '/rest/agile/1.0';
 
-    public function __construct(ConfigurationInterface $configuration = null, LoggerInterface $logger = null, $path = './')
+    public function __construct(?ConfigurationInterface $configuration = null, ?LoggerInterface $logger = null, $path = './')
     {
         parent::__construct($configuration, $logger, $path);
     }
