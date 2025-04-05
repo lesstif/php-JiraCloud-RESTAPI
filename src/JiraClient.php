@@ -59,7 +59,7 @@ class JiraClient
      *
      * @throws JiraException
      */
-    public function __construct(ConfigurationInterface $configuration = null, LoggerInterface $logger = null, string $path = './')
+    public function __construct(?ConfigurationInterface $configuration = null, ?LoggerInterface $logger = null, string $path = './')
     {
         if ($configuration === null) {
             if (!file_exists($path.'.env')) {
@@ -186,7 +186,7 @@ class JiraClient
      *
      * @return string|bool
      */
-    public function exec(string $context, array|string $post_data = null, string $custom_request = null, string $cookieFile = null): string|bool
+    public function exec(string $context, array|string|null $post_data = null, ?string $custom_request = null, ?string $cookieFile = null): string|bool
     {
         $url = $this->createUrlByContext($context);
 
@@ -236,8 +236,8 @@ class JiraClient
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         }
 
-       // See https://github.com/php/php-src/issues/14184
-       // curl_setopt($ch, CURLOPT_ENCODING, '');
+        // See https://github.com/php/php-src/issues/14184
+        // curl_setopt($ch, CURLOPT_ENCODING, '');
 
         curl_setopt(
             $ch,
@@ -405,7 +405,7 @@ class JiraClient
     /**
      * Add authorize to curl request.
      */
-    protected function authorization(\CurlHandle $ch, array &$curl_http_headers, string $cookieFile = null): void
+    protected function authorization(\CurlHandle $ch, array &$curl_http_headers, ?string $cookieFile = null): void
     {
         // use cookie
         if ($this->getConfiguration()->isCookieAuthorizationEnabled()) {
@@ -472,7 +472,7 @@ class JiraClient
     /**
      * download and save into outDir.
      */
-    public function download(string $url, string $outDir, string $file, string $cookieFile = null): mixed
+    public function download(string $url, string $outDir, string $file, ?string $cookieFile = null): mixed
     {
         $curl_http_header = [
             'Accept: */*',

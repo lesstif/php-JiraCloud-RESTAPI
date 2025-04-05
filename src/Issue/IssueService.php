@@ -39,7 +39,7 @@ class IssueService extends \JiraCloud\JiraClient
      *
      * @return Issue class
      */
-    public function get(int|string $issueIdOrKey, array $paramArray = [], Issue $issueObject = null): Issue
+    public function get(int|string $issueIdOrKey, array $paramArray = [], ?Issue $issueObject = null): Issue
     {
         $issueObject = ($issueObject) ? $issueObject : new Issue();
 

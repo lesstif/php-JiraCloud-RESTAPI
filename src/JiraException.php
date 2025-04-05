@@ -17,7 +17,7 @@ class JiraException extends \Exception
     /**
      * Create a new Jira exception instance.
      */
-    public function __construct(?string $message = null, int $code = 0, \Throwable $previous = null, string $response = null)
+    public function __construct(?string $message = null, int $code = 0, ?\Throwable $previous = null, ?string $response = null)
     {
         parent::__construct($message, $code, $previous);
 
