@@ -481,6 +481,43 @@ class IssueService extends \JiraCloud\JiraClient
      * Search issues.
      *
      * @param string $jql
+     * @param string $nextPageToken
+     * @param int    $maxResults
+     * @param array  $fields
+     * @param array  $expand
+     * @param array  $reconcileIssues
+     *
+     * @throws \JsonMapper_Exception
+     * @throws JiraException
+     *
+     * @return IssueSearchResult
+     */
+    public function search(string $jql, string $nextPageToken = '', int $maxResults = 50, array $fields = [], array $expand = [], array $reconcileIssues = []): IssueSearchResult
+    {
+        $data = json_encode([
+            'jql'             => $jql,
+            'nextPageToken'   => $nextPageToken,
+            'maxResults'      => $maxResults,
+            'fields'          => $fields,
+            'expand'          => $expand,
+            'reconcileIssues' => $reconcileIssues,
+        ]);
+
+        $ret = $this->exec('search/jql', $data, 'POST');
+        $json = json_decode($ret);
+
+        $result = $this->json_mapper->map(
+            $json,
+            new IssueSearchResult()
+        );
+
+        return $result;
+    }
+
+    /**
+     * Search issues (old).
+     *
+     * @param string $jql
      * @param int    $startAt
      * @param int    $maxResults
      * @param array  $fields
@@ -492,7 +529,7 @@ class IssueService extends \JiraCloud\JiraClient
      *
      * @return IssueSearchResult
      */
-    public function search(string $jql, int $startAt = 0, int $maxResults = 15, array $fields = [], array $expand = [], bool $validateQuery = true): IssueSearchResult
+    public function search_old(string $jql, int $startAt = 0, int $maxResults = 15, array $fields = [], array $expand = [], bool $validateQuery = true): IssueSearchResult
     {
         $data = json_encode([
             'jql'           => $jql,
