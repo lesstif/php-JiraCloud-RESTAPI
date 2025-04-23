@@ -559,7 +559,7 @@ class IssueService extends \JiraCloud\JiraClient
             'issueIdsOrKeys'  => $issueIdsOrKeys,
             'fields'          => $fields,
             'expand'          => $expand,
-            'fieldsByKeys' => $fieldsByKeys,
+            'fieldsByKeys'    => $fieldsByKeys,
         ]);
 
         $ret = $this->exec('issue//bulkfetch', $data, 'POST');
