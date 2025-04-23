@@ -484,7 +484,7 @@ class IssueService extends \JiraCloud\JiraClient
      * @param string $nextPageToken
      * @param int    $maxResults
      * @param array  $fields
-     * @param string  $expand
+     * @param string $expand
      * @param array  $reconcileIssues
      *
      * @throws \JsonMapper_Exception
