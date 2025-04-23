@@ -10,22 +10,7 @@ class IssueSearchResult
     /**
      * @var string
      */
-    public $expand;
-
-    /**
-     * @var int
-     */
-    public $startAt;
-
-    /**
-     * @var int
-     */
-    public $maxResults;
-
-    /**
-     * @var int
-     */
-    public $total;
+    public $nextPageToken;
 
     /**
      * @var \JiraCloud\Issue\Issue[]
@@ -33,51 +18,19 @@ class IssueSearchResult
     public $issues;
 
     /**
-     * @return int
+     * @return string
      */
-    public function getStartAt()
+    public function getNextPageToken()
     {
-        return $this->startAt;
+        return $this->nextPageToken;
     }
 
     /**
-     * @param int $startAt
+     * @param string $nextPageToken
      */
-    public function setStartAt($startAt)
+    public function setNextPageToken($nextPageToken)
     {
-        $this->startAt = $startAt;
-    }
-
-    /**
-     * @return int
-     */
-    public function getMaxResults()
-    {
-        return $this->maxResults;
-    }
-
-    /**
-     * @param int $maxResults
-     */
-    public function setMaxResults($maxResults)
-    {
-        $this->maxResults = $maxResults;
-    }
-
-    /**
-     * @return int
-     */
-    public function getTotal()
-    {
-        return $this->total;
-    }
-
-    /**
-     * @param int $total
-     */
-    public function setTotal($total)
-    {
-        $this->total = $total;
+        $this->nextPageToken = $nextPageToken;
     }
 
     /**
@@ -104,21 +57,5 @@ class IssueSearchResult
     public function getIssue($ndx)
     {
         return $this->issues[$ndx];
-    }
-
-    /**
-     * @return string
-     */
-    public function getExpand()
-    {
-        return $this->expand;
-    }
-
-    /**
-     * @param string $expand
-     */
-    public function setExpand($expand)
-    {
-        $this->expand = $expand;
     }
 }
