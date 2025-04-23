@@ -518,6 +518,63 @@ class IssueService extends \JiraCloud\JiraClient
     }
 
     /**
+     * Search issues.
+     *
+     * @param string $jql
+     *
+     * @throws \JsonMapper_Exception
+     * @throws JiraException
+     *
+     * @return string[] array of count
+     *
+     * @phpstan-return array<string>
+     */
+    public function searchApproximateCount(string $jql): array
+    {
+        $data = json_encode([
+            'jql' => $jql,
+        ]);
+
+        $ret = $this->exec('search//approximate-count', $data, 'POST');
+
+        return json_decode($ret, true);
+    }
+
+    /**
+     * Bulk fetch issues.
+     *
+     * @param array $issueIdsOrKeys
+     * @param array $fields
+     * @param array $expand
+     * @param bool  $fieldsByKeys
+     *
+     * @throws \JsonMapper_Exception
+     * @throws JiraException
+     *
+     * @return IssueBulkResult
+     */
+    public function bulkFetch(array $issueIdsOrKeys, array $fields = [], array $expand = [], bool $fieldsByKeys = false): IssueBulkResult
+    {
+        $data = json_encode([
+            'issueIdsOrKeys'  => $issueIdsOrKeys,
+            'fields'          => $fields,
+            'expand'          => $expand,
+            'fieldsByKeys' => $fieldsByKeys,
+        ]);
+
+        $ret = $this->exec('issue//bulkfetch', $data, 'POST');
+
+        $json = json_decode($ret);
+
+        $result = $this->json_mapper->map(
+            $json,
+            new IssueBulkResult()
+        );
+
+        return $result;
+    }
+
+    /**
      * get TimeTracking info.
      *
      * @param string|int $issueIdOrKey
