@@ -438,7 +438,7 @@ class ProjectService extends \JiraCloud\JiraClient
                 return $reporter;
             },
             array_filter(json_decode($response)->actors, function ($elem) {
-                return $elem->type === "atlassian-user-role-actor";
+                return $elem->type === 'atlassian-user-role-actor';
             }),
         );
 
