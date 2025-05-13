@@ -7,6 +7,7 @@ use JiraCloud\Issue\IssueType;
 use JiraCloud\Issue\Reporter;
 use JiraCloud\Issue\Version;
 use JiraCloud\JiraException;
+use JiraCloud\Role\Role;
 
 class ProjectService extends \JiraCloud\JiraClient
 {
@@ -410,5 +411,43 @@ class ProjectService extends \JiraCloud\JiraClient
         $this->log->info('getProjectRoles Result='.$response);
 
         return (array) json_decode($response);
+    }
+
+    /**
+     * @param $projectIdOrKey
+     * @param $roleId
+     *
+     * @throws JiraException
+     *
+     * @return Role
+     *
+     * STATUS 401 Returned if the user is not logged in.
+     * STATUS 404 - Returned if the project does not exist.
+     */
+    public function getProjectRole($projectIdOrKey, $roleId, $excludeInactiveUsers = false)
+    {
+        $response = $this->exec($this->uri.'/'.$projectIdOrKey.'/role/'.$roleId.'?excludeInactiveUsers='.$excludeInactiveUsers);
+
+        $this->log->info('getProjectRole Result='.$response);
+
+        $reporters = array_map(
+            function ($elem) {
+                $reporter = $this->json_mapper->map($elem, new Reporter());
+                $reporter->accountId = $elem->actorUser->accountId;
+
+                return $reporter;
+            },
+            array_filter(json_decode($response)->actors, function ($elem) {
+                return $elem->type === "atlassian-user-role-actor";
+            }),
+        );
+
+        $role = $this->json_mapper->map(
+            json_decode($response),
+            new Role()
+        );
+        $role->actors = $reporters;
+
+        return $role;
     }
 }

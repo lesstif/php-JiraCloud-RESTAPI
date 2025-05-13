@@ -124,7 +124,8 @@ $iss = new IssueService(new ArrayConfiguration(
 - [Get Project Components](#get-project-components)
 - [Get Project Type](#get-project-type)
 - [Get Project Version](#get-project-version)
-- [Get Project Roles]()
+- [Get Project Roles](#get-project-roles)
+- [Get Project Role](#get-project-role)
 
 ### Custom Field
 - [Get All Field list](#get-all-field-list)
@@ -491,7 +492,6 @@ try {
 
 ```
 
-
 #### Get Project Roles
 
 [See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-roles/#api-rest-api-3-project-projectidorkey-role-get)
@@ -515,6 +515,28 @@ try {
 }
 ```
 
+#### Get Project Role
+
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-roles/#api-rest-api-3-project-projectidorkey-role-id-get)
+
+```php
+<?php
+require 'vendor/autoload.php';
+
+use JiraCloud\Project\ProjectService;
+use JiraCloud\JiraException;
+
+try {
+    $projectService = new ProjectService();
+
+    // return project role data with reporter assigned. 
+    $ret = $projectService->getProjectRoles('TEST', '1'); 
+    	
+    var_dump($ret);
+} catch (JiraCloud\JiraException $e) {
+	print('Error Occurred! ' . $e->getMessage());
+}
+```
 
 #### Get All Field List
 
