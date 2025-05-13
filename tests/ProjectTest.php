@@ -202,4 +202,23 @@ class ProjectTest extends TestCase
 
         return $projKey;
     }
+
+    /**
+     * @test
+     * @depends get_project_lists
+     */
+    public function get_project_roles_array(string $projKey): string
+    {
+        try {
+            $projectService = new ProjectService();
+
+            $roles = $projectService->getProjectRoles($projKey);
+
+            $this->assertIsArray($roles);
+        } catch (JiraException $e) {
+            $this->fail('get_project_roles_array ' . $e->getMessage());
+        }
+
+        return $projKey;
+    }
 }

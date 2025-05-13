@@ -124,6 +124,7 @@ $iss = new IssueService(new ArrayConfiguration(
 - [Get Project Components](#get-project-components)
 - [Get Project Type](#get-project-type)
 - [Get Project Version](#get-project-version)
+- [Get Project Roles]()
 
 ### Custom Field
 - [Get All Field list](#get-all-field-list)
@@ -488,6 +489,30 @@ try {
 	print('Error Occurred! ' . $e->getMessage());
 }
 
+```
+
+
+#### Get Project Roles
+
+[See Jira API reference](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-project-roles/#api-rest-api-3-project-projectidorkey-role-get)
+
+```php
+<?php
+require 'vendor/autoload.php';
+
+use JiraCloud\Project\ProjectService;
+use JiraCloud\JiraException;
+
+try {
+    $projectService = new ProjectService();
+
+    // return project roles list. 
+    $ret = $projectService->getProjectRoles('TEST'); 
+    	
+    var_dump($ret);
+} catch (JiraCloud\JiraException $e) {
+	print('Error Occurred! ' . $e->getMessage());
+}
 ```
 
 

@@ -392,4 +392,23 @@ class ProjectService extends \JiraCloud\JiraClient
 
         return $ret;
     }
+
+    /**
+     * @param $projectIdOrKey
+     *
+     * @throws JiraException
+     *
+     * @return array<string, string>
+     *
+     * STATUS 401 Returned if the user is not logged in.
+     * STATUS 404 - Returned if the project does not exist.
+     */
+    public function getProjectRoles($projectIdOrKey)
+    {
+        $response = $this->exec($this->uri.'/'.$projectIdOrKey.'/role');
+
+        $this->log->info('getProjectRoles Result='.$response);
+
+        return (array) json_decode($response);
+    }
 }
