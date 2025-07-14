@@ -7,7 +7,7 @@
         "php": "^8.1",
         "ext-curl": "*",
         "ext-json": "*",
-        "netresearch/jsonmapper": "^3.0|^4.0",
+        "netresearch/jsonmapper": "^3.0|^4.0|^5.0",
         "monolog/monolog": "^2.0|^3.0",
         "vlucas/phpdotenv": "^5.0|^6.0",
         "damienharper/adf-tools": "^1.0"
