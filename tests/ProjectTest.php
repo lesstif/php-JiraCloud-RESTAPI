@@ -7,6 +7,7 @@ use JiraCloud\Issue\Version;
 use JiraCloud\JiraException;
 use JiraCloud\Project\Project;
 use JiraCloud\Project\ProjectType;
+use JiraCloud\Role\Role;
 use PHPUnit\Framework\TestCase;
 use JiraCloud\Project\ProjectService;
 
@@ -201,5 +202,55 @@ class ProjectTest extends TestCase
         }
 
         return $projKey;
+    }
+
+    /**
+     * @test
+     * @depends get_project_lists
+     */
+    public function get_project_roles_array(string $projKey): array
+    {
+        try {
+            $projectService = new ProjectService();
+
+            $roles = $projectService->getProjectRoles($projKey);
+
+            $this->assertIsArray($roles);
+
+            $parts = explode('/', rtrim(array_shift($roles), '/'));
+            $roleId = end($parts);
+        } catch (JiraException $e) {
+            $this->fail('get_project_roles_array ' . $e->getMessage());
+        }
+
+        return ['projKey' => 'JUL', 'roleId' => $roleId];
+    }
+
+    /**
+     * @test
+     * @depends get_project_roles_array
+     * @param array<string, string> $datas
+     *      projKey: project key
+     *      roleId: role id
+     *
+     * @return string
+     * @throws \JsonMapper_Exception
+     */
+    public function get_project_role(array $datas): string
+    {
+        try {
+            $projectService = new ProjectService();
+
+            $role = $projectService->getProjectRole($datas['projKey'], $datas['roleId'], true);
+
+            self::assertInstanceOf(Role::class, $role);
+            self::assertIsString($role->name);
+            self::assertIsString($role->description);
+            self::assertIsInt($role->id);
+        } catch (JiraException $e) {
+            $this->fail('get_project_role ' . $e->getMessage());
+        }
+
+        return '$projKey';
     }
 }
