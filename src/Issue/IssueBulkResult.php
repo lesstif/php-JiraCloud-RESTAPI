@@ -5,12 +5,12 @@ namespace JiraCloud\Issue;
 /**
  * Issue search result.
  */
-class IssueSearchResult
+class IssueBulkResult
 {
     /**
      * @var string
      */
-    public $nextPageToken;
+    public $expand;
 
     /**
      * @var \JiraCloud\Issue\Issue[]
@@ -18,19 +18,24 @@ class IssueSearchResult
     public $issues;
 
     /**
-     * @return string
+     * @var array
      */
-    public function getNextPageToken()
+    public $issueErrors;
+
+    /**
+     * @return array
+     */
+    public function getIssueErrors()
     {
-        return $this->nextPageToken;
+        return $this->issueErrors;
     }
 
     /**
-     * @param string $nextPageToken
+     * @param array $issueErrors
      */
-    public function setNextPageToken($nextPageToken)
+    public function setIssueErrors($issueErrors)
     {
-        $this->nextPageToken = $nextPageToken;
+        $this->issueErrors = $issueErrors;
     }
 
     /**
@@ -57,5 +62,21 @@ class IssueSearchResult
     public function getIssue($ndx)
     {
         return $this->issues[$ndx];
+    }
+
+    /**
+     * @return string
+     */
+    public function getExpand()
+    {
+        return $this->expand;
+    }
+
+    /**
+     * @param string $expand
+     */
+    public function setExpand($expand)
+    {
+        $this->expand = $expand;
     }
 }
