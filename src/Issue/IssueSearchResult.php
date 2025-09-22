@@ -8,7 +8,7 @@ namespace JiraCloud\Issue;
 class IssueSearchResult
 {
     /**
-     * @var string
+     * @var string|null
      */
     public $nextPageToken;
 
