@@ -18,7 +18,7 @@ class IssueSearchResult
     public $issues;
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getNextPageToken()
     {
