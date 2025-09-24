@@ -528,12 +528,12 @@ class JqlQuery
      * Do not use this method with array values.
      * Use addInExpression, addNotInExpression or addAnyExpression instead.
      *
-     * @param string $field             field name
-     * @param string $operator          supported scalar operator (see OPERATOR_ constants.
-     *                                  {@see JqlQuery::OPERATOR_EQUALS} etc.)
-     * @param string|JqlFunction $value field value
-     * @param string $logicLinkKeyword  use {@see JqlQuery::KEYWORD_AND} or {@see JqlQuery::KEYWORD_OR}
-     *                                  to set join logical operation. Default {@see JqlQuery::KEYWORD_AND}.
+     * @param string             $field            field name
+     * @param string             $operator         supported scalar operator (see OPERATOR_ constants.
+     *                                             {@see JqlQuery::OPERATOR_EQUALS} etc.)
+     * @param string|JqlFunction $value            field value
+     * @param string             $logicLinkKeyword use {@see JqlQuery::KEYWORD_AND} or {@see JqlQuery::KEYWORD_OR}
+     *                                             to set join logical operation. Default {@see JqlQuery::KEYWORD_AND}.
      *
      * @return JqlQuery
      */
