@@ -2,11 +2,15 @@
 
 namespace JiraCloud\Issue;
 
+use JiraCloud\DynamicPropertiesTrait;
+
 /**
  * Issue search result.
  */
 class IssueSearchResult
 {
+    use DynamicPropertiesTrait;
+
     /**
      * @var string
      */

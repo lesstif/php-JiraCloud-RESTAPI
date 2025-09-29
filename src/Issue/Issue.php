@@ -2,8 +2,12 @@
 
 namespace JiraCloud\Issue;
 
+use JiraCloud\DynamicPropertiesTrait;
+
 class Issue implements \JsonSerializable
 {
+    use DynamicPropertiesTrait;
+
     /**
      * return only if Project query by key(not id).
      */
