@@ -16,6 +16,7 @@ trait DynamicPropertiesTrait
      * Attempts to retrieve a dynamic property from {@link static::$dynamicProperties}.
      *
      * @param string $name
+     *
      * @return mixed The requested value if found, `null` otherwise.
      */
     public function __get(string $name): mixed
@@ -27,6 +28,7 @@ trait DynamicPropertiesTrait
      * Returns whether the dynamic property `$name` is set (not `null`!) in {@link static::$dynamicProperties}.
      *
      * @param string $name
+     *
      * @return bool
      */
     public function __isset(string $name): bool
@@ -38,10 +40,11 @@ trait DynamicPropertiesTrait
      * Applies `$value` using `$name` as key on {@link static::$dynamicProperties}.
      *
      * @param string $name
-     * @param        $value
+     * @param mixed  $value
+     *
      * @return void
      */
-    public function __set(string $name, $value): void
+    public function __set(string $name, mixed $value): void
     {
         $this->dynamicProperties[$name] = $value;
     }

@@ -12,7 +12,7 @@ use JiraCloud\DynamicPropertiesTrait;
 class History implements \JsonSerializable
 {
     use DynamicPropertiesTrait;
-    
+
     public int $id;
 
     public Reporter $author;
