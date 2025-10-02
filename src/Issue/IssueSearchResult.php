@@ -8,6 +8,11 @@ namespace JiraCloud\Issue;
 class IssueSearchResult
 {
     /**
+     * @var bool
+     */
+    public $isLast = false;
+
+    /**
      * @var string
      */
     public $nextPageToken;
@@ -16,6 +21,22 @@ class IssueSearchResult
      * @var \JiraCloud\Issue\Issue[]
      */
     public $issues;
+
+    /**
+     * @return bool
+     */
+    public function getIsLast()
+    {
+        return $this->isLast;
+    }
+
+    /**
+     * @param bool $isLast
+     */
+    public function setIsLast($isLast)
+    {
+        return $this->isLast;
+    }
 
     /**
      * @return string
