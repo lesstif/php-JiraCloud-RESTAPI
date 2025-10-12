@@ -12,6 +12,12 @@ class IssueSearchResult
     use DynamicPropertiesTrait;
 
     /**
+     * @var bool
+     */
+    public $isLast = false;
+
+    /**
+     * @var string
      * @var string|null
      */
     public $nextPageToken;
@@ -22,6 +28,23 @@ class IssueSearchResult
     public $issues;
 
     /**
+     * @return bool
+     */
+    public function getIsLast()
+    {
+        return $this->isLast;
+    }
+
+    /**
+     * @param bool $isLast
+     */
+    public function setIsLast($isLast)
+    {
+        return $this->isLast;
+    }
+
+    /**
+     * @return string
      * @return string|null
      */
     public function getNextPageToken()
