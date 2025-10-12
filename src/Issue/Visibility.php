@@ -2,8 +2,12 @@
 
 namespace JiraCloud\Issue;
 
+use JiraCloud\DynamicPropertiesTrait;
+
 class Visibility implements \JsonSerializable
 {
+    use DynamicPropertiesTrait;
+
     private string $type;
     private string $value;
 

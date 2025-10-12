@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace JiraCloud\Sprint;
 
+use JiraCloud\DynamicPropertiesTrait;
 use JiraCloud\JsonSerializableTrait;
 
 class Sprint implements \JsonSerializable
 {
     use JsonSerializableTrait;
+    use DynamicPropertiesTrait;
 
     public string $self;
 
