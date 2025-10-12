@@ -9,7 +9,7 @@ vendor/
 # composer.lock
 
 
-### Editor (Vim, PhpStorm) ###
+### Editor (Vim, PhpStorm, VS Code) ###
 [._]*.s[a-w][a-z]
 [._]s[a-w][a-z]
 *.un~
@@ -17,6 +17,7 @@ Session.vim
 .netrwhist
 *~
 .idea/
+.vscode
 
 composer.lock
 config.php

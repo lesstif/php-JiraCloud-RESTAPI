@@ -17,7 +17,6 @@ class IssueSearchResult
     public $isLast = false;
 
     /**
-     * @var string
      * @var string|null
      */
     public $nextPageToken;
@@ -44,7 +43,6 @@ class IssueSearchResult
     }
 
     /**
-     * @return string
      * @return string|null
      */
     public function getNextPageToken()
