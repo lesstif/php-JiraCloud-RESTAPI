@@ -8,7 +8,7 @@ namespace JiraCloud\Issue;
 class IssueSearchResult
 {
     /**
-     * @var string
+     * @var string|null
      */
     public $nextPageToken;
 
@@ -18,7 +18,7 @@ class IssueSearchResult
     public $issues;
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getNextPageToken()
     {
