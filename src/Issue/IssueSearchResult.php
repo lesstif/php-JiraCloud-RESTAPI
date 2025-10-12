@@ -2,11 +2,15 @@
 
 namespace JiraCloud\Issue;
 
+use JiraCloud\DynamicPropertiesTrait;
+
 /**
  * Issue search result.
  */
 class IssueSearchResult
 {
+    use DynamicPropertiesTrait;
+
     /**
      * @var bool
      */
@@ -14,6 +18,7 @@ class IssueSearchResult
 
     /**
      * @var string
+     * @var string|null
      */
     public $nextPageToken;
 
@@ -40,6 +45,7 @@ class IssueSearchResult
 
     /**
      * @return string
+     * @return string|null
      */
     public function getNextPageToken()
     {

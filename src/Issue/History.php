@@ -2,6 +2,8 @@
 
 namespace JiraCloud\Issue;
 
+use JiraCloud\DynamicPropertiesTrait;
+
 /**
  * ChangeLog History.
  *
@@ -9,6 +11,8 @@ namespace JiraCloud\Issue;
  */
 class History implements \JsonSerializable
 {
+    use DynamicPropertiesTrait;
+
     public int $id;
 
     public Reporter $author;
