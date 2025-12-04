@@ -35,6 +35,9 @@ class JiraClient
      */
     protected \CurlHandle $curl;
 
+    /**
+     * CURL share instance.
+     */
     protected \CurlShareHandle $curlShare = null;
 
     /**
