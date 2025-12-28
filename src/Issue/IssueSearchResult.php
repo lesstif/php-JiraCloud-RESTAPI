@@ -39,7 +39,7 @@ class IssueSearchResult
      */
     public function setIsLast($isLast)
     {
-        return $this->isLast;
+        return $this->isLast = $isLast;
     }
 
     /**
