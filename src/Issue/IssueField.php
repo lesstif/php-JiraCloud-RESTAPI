@@ -147,6 +147,11 @@ class IssueField implements \JsonSerializable
             unset($vars['duedateString']);
         }
 
+        if (!empty($this->timeTracking)) {
+            $vars['timetracking'] = $this->timeTracking;
+            unset($vars['timeTracking']);
+        }
+
         return $vars;
     }
 
