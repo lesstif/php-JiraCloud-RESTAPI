@@ -39,6 +39,32 @@ class ProjectTest extends TestCase
 
         return $projKey;
     }
+
+    /**
+     * @test
+     *
+     */
+    public function get_project_paginated_lists() : string
+    {
+        $projKey = 'TEST';
+        try {
+            $proj = new ProjectService();
+
+            $prjsPag = $proj->getProjectsPaginated();
+
+            foreach ($prjsPag->values as $p) {
+                $this->assertTrue($p instanceof Project);
+                $this->assertTrue(strlen($p->key) > 0);
+                $this->assertTrue(!empty($p->id));
+                $this->assertTrue(strlen($p->name) > 0);
+            }
+        } catch (\Exception $e) {
+            $this->fail('get_project_paginated_lists ' . $e->getMessage());
+        }
+
+        return $projKey;
+    }
+
     /**
      * @test
      * @depends get_project_lists
