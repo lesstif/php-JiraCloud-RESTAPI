@@ -99,7 +99,7 @@ class PaginatedResult
     }
 
     /**
-     * @param int $nextPage
+     * @param string $self
      */
     public function setSelf($self)
     {
