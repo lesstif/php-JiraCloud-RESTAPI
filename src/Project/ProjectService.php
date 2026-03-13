@@ -46,7 +46,7 @@ class ProjectService extends \JiraCloud\JiraClient
      */
     public function getProjectsPaginated($paramArray = []): PaginatedResult
     {
-        $ret = $this->exec($this->uri . '/search' . $this->toHttpQueryParameter($paramArray), null);
+        $ret = $this->exec($this->uri.'/search'.$this->toHttpQueryParameter($paramArray), null);
 
         $decodedRet = json_decode($ret, false);
 
@@ -58,7 +58,7 @@ class ProjectService extends \JiraCloud\JiraClient
 
         $prjsPag = $this->json_mapper->map(
             $decodedRet,
-            new PaginatedResult
+            new PaginatedResult()
         );
 
         return $prjsPag;
