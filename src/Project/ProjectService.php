@@ -36,6 +36,35 @@ class ProjectService extends \JiraCloud\JiraClient
     }
 
     /**
+     * get a paginated list of projects.
+     *
+     * @param array $paramArray
+     *
+     * @throws \JiraCloud\JiraException
+     *
+     * @return PaginatedResult
+     */
+    public function getProjectsPaginated($paramArray = []): PaginatedResult
+    {
+        $ret = $this->exec($this->uri.'/search'.$this->toHttpQueryParameter($paramArray), null);
+
+        $decodedRet = json_decode($ret, false);
+
+        $decodedRet->values = $this->json_mapper->mapArray(
+            $decodedRet->values,
+            new \ArrayObject(),
+            Project::class
+        );
+
+        $prjsPag = $this->json_mapper->map(
+            $decodedRet,
+            new PaginatedResult()
+        );
+
+        return $prjsPag;
+    }
+
+    /**
      * get Project id By Project Key.
      * throws HTTPException if the project is not found, or the calling user does not have permission or view it.
      *
