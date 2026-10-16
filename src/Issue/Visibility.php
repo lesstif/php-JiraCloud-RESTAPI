@@ -6,6 +6,7 @@ class Visibility implements \JsonSerializable
 {
     private string $type;
     private string $value;
+    private ?string $identifier = null;
 
     public function setType(string $type)
     {
@@ -17,6 +18,11 @@ class Visibility implements \JsonSerializable
         $this->value = $value;
     }
 
+    public function setIdentifier(?string $identifier)
+    {
+        $this->identifier = $identifier;
+    }    
+
     public function getType(): string
     {
         return $this->type;
@@ -27,6 +33,11 @@ class Visibility implements \JsonSerializable
         return $this->value;
     }
 
+    public function getIdentifier(): ?string
+    {
+        return $this->identifier;
+    }
+    
     #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
