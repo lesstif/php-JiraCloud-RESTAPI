@@ -7,6 +7,12 @@ namespace JiraCloud\Issue;
  */
 class IssueSearchResult
 {
+
+    /**
+     * @var bool
+     */
+    public $isLast = false;
+    
     /**
      * @var string
      */
